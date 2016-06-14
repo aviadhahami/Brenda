@@ -23,7 +23,7 @@ class SplashScreen extends Component{
 			this.setState({
 				done: true
 			});
-		},1000)
+		},this.props.duration || 1000)
 	}
 	componentDidMount(){
 		this.timer();
@@ -35,7 +35,7 @@ class SplashScreen extends Component{
 				({...this.props.children})
 				:
 				// Display Splash Screen
-				(<View>
+				(<View style={[styles.container, this.props.backgroundColor]}>
 					<Text>
 						I'm Splash Screen
 					</Text>
@@ -47,7 +47,12 @@ class SplashScreen extends Component{
 }
 
 const styles = StyleSheet.create({
-
+	container: {
+		flexDirection:'column',
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
 });
 
 export default SplashScreen
