@@ -9,10 +9,10 @@ import {AppRegistry} from 'react-native';
 import App from './components/app'
 
 class Brenda extends Component {
-  render() {
-    return (
-      <App />
-    );
-  }
+	render() {
+		return (
+			<App />
+		);
+	}
 }
 AppRegistry.registerComponent('Brenda', () => Brenda);

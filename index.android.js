@@ -15,5 +15,4 @@ class Brenda extends Component {
 		);
 	}
 }
-
 AppRegistry.registerComponent('Brenda', () => Brenda);
