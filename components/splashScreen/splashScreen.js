@@ -6,7 +6,8 @@ import React, { Component } from 'react';
 import {
 	StyleSheet,
 	Text,
-	View
+	View,
+	Image
 } from 'react-native';
 
 class SplashScreen extends Component{
@@ -36,9 +37,7 @@ class SplashScreen extends Component{
 				:
 				// Display Splash Screen
 				(<View style={[styles.container, this.props.backgroundColor]}>
-					<Text>
-						I'm Splash Screen
-					</Text>
+					<Image style={styles.logo} source={this.props.logo}/>
 				</View>)
 
 		);
@@ -53,6 +52,10 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
+	logo: {
+		width:300,
+		height:300
+	}
 });
 
 export default SplashScreen
