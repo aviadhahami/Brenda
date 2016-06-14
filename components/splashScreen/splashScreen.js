@@ -32,7 +32,7 @@ class SplashScreen extends Component{
 		return(
 			this.state.done ?
 				// If done -> Show all nested
-				({...this.props.chidren})
+				({...this.props.children})
 				:
 				// Display Splash Screen
 				(<View>
