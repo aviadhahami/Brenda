@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 		margin: 10,
 	},
 	splashScreenContainer: {
-		backgroundColor:'#9C27B0'
+		backgroundColor:'#e91e63'
 	}
 });
 
