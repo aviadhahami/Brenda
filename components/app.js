@@ -14,11 +14,9 @@ class App extends Component{
 	render(){
 		return(
 			<SplashScreen logo={require('./../assets/logo/Brenda-Logo.png')} duration={3000} backgroundColor={styles.splashScreenContainer}>
-				<View style={styles.container}>
-					<Text style={styles.welcome}>
-						Welcome to React Native!
-					</Text>
-				</View>
+				<AuthContainer>
+
+				</AuthContainer>
 			</SplashScreen>
 		)
 	}
