@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react'
 import {Text} from 'react-native'
+import LoginContainer from './LoginContainer/loginContainer'
 
 class AuthContainer extends Component{
 	constructor(props){
@@ -16,9 +17,7 @@ class AuthContainer extends Component{
 		return (
 			!this.state.isAuth?
 				// Not authenticated
-				<Text>
-					Not auth
-				</Text>
+				<LoginContainer />
 				:
 				// Is authenticated
 				<Text>
