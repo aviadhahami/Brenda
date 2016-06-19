@@ -19,6 +19,7 @@ class LoginContainer extends Component{
 				</View>
 				<View style={styles.loginContainer}>
 					<TextField
+						dense={true}
 						label={'Username'}
 						highlightColor={'#ffffff'}
 						keyboardType={'default'}
@@ -26,6 +27,7 @@ class LoginContainer extends Component{
 						labelColor={'#ffffff'}
 					/>
 					<TextField
+						dense={true}
 						label={'Password'}
 						highlightColor={'#ffffff'}
 						keyboardType={'default'}

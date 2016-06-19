@@ -14,7 +14,7 @@ import AuthContainer from './AuthContainer/authContainer'
 class App extends Component{
 	render(){
 		return(
-			<SplashScreen logo={require('./../assets/logo/Brenda-Logo.png')} duration={1000} backgroundColor={styles.splashScreenContainer}>
+			<SplashScreen logo={require('./../assets/logo/Brenda-Logo.png')} duration={3000} backgroundColor={styles.splashScreenContainer}>
 				<AuthContainer>
 
 				</AuthContainer>
