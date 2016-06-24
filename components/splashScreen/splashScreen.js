@@ -9,6 +9,7 @@ import {
 	View,
 	Image
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient'
 
 class SplashScreen extends Component{
 
@@ -36,9 +37,11 @@ class SplashScreen extends Component{
 				({...this.props.children})
 				:
 				// Display Splash Screen
-				(<View style={[styles.container, this.props.backgroundColor]}>
-					<Image style={styles.logo} source={this.props.logo}/>
-				</View>)
+				(
+				<LinearGradient colors={['#6B2162', '#D129BA']} style={[styles.container]}>
+					<Image style={styles.logo} source={this.props.logo} resizeMode='contain'/>
+				</LinearGradient>
+				)
 
 		);
 	}
@@ -53,8 +56,8 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	logo: {
-		width:300,
-		height:300
+		flex:1,
+		width:300
 	}
 });
 
