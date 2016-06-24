@@ -17,7 +17,6 @@ const overrides={
 class Login extends Component{
 
 	render(){
-
 		return(
 			<View style={styles.container}>
 				<View style={styles.titleContainer}>
@@ -43,9 +42,11 @@ class Login extends Component{
 						labelColor={'#ffffff'}
 						secureTextEntry={true}
 					/>
-					<Button text='Sign in' raised={true} />
+					<View style={styles.signIn}>
+						<Button text='Sign in' raised={true} />
+					</View>
 				</View>
-				<View style={styles.signup}>
+				<View style={styles.signupContainer}>
 					<Button
 						text='or Sign up'
 						raised={false}
@@ -53,31 +54,32 @@ class Login extends Component{
 				</View>
 			</View>
 		)
+
 	}
 }
 
 const styles = StyleSheet.create({
-	container:{
-		backgroundColor:'#e91e63',
-		flexDirection:'column',
+	container: {
+		flexDirection: 'column',
 		flex: 1,
-		justifyContent: 'space-between',
-		alignItems: 'center',
+	},
+	loginContainer:{
+		marginTop:50,
+		width:300,
 	},
 	titleContainer:{
-		justifyContent:'center',
-		height:200
+		alignItems:'center',
+		marginTop:100,
 	},
 	title:{
 		color:'white',
 		fontSize:25,
 	},
-	loginContainer:{
-		width:250,
-		// height:0
+	signIn:{
+		marginTop:20
 	},
-	signup:{
-		height:200,
+	signupContainer:{
+		marginTop:110,
 		justifyContent:'flex-end'
 	},
 });

@@ -11,7 +11,7 @@ class LoginContainer extends Component{
 	constructor(props){
 		super(props)
 		this.state = {
-			exist: true,
+			exist: false,
 		}
 	}
 	render(){
