@@ -18,7 +18,7 @@ class SignUp extends Component{
 			<ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
 				<View style={styles.titleContainer}>
 					<Text style={styles.title}>
-						Welcome To Brenda!
+						Sign up to use Brenda!
 					</Text>
 				</View>
 				<View style={styles.loginContainer}>

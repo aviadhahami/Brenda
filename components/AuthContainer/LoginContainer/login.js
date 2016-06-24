@@ -8,11 +8,16 @@ import { Text, View, ScrollView, StyleSheet } from 'react-native'
 import { Button, Divider } from 'react-native-material-design'
 import TextField from 'react-native-md-textinput'
 
-const overrides={
-	textColor:'black',
-	backgroundColor:'black',
-	rippleColor:'white'
-};
+const overridesMain = {
+	textColor: '#E741F0',
+	backgroundColor: '#Ffffff',
+	rippleColor: '#E741F0'
+}
+const overridesSec = {
+	textColor: 'rgba(255, 255, 255, 0.8)',
+	backgroundColor: '#Ffffff',
+	rippleColor: '#E741F0'
+}
 
 class Login extends Component{
 
@@ -43,14 +48,14 @@ class Login extends Component{
 						secureTextEntry={true}
 					/>
 					<View style={styles.signIn}>
-						<Button text='Sign in' raised={true} />
+						<Button text='Sign in' raised={true} overrides={overridesMain} />
 					</View>
 				</View>
 				<View style={styles.signupContainer}>
 					<Button
 						text='or Sign up'
 						raised={false}
-						overrides={overrides}/>
+						overrides={overridesSec}/>
 				</View>
 			</View>
 		)
