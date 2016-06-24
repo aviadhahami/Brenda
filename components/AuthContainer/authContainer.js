@@ -2,9 +2,10 @@
  * Created by aviad on 6/20/2016.
  */
 
-import React, { Component } from 'react'
-import {Text} from 'react-native'
+import React, {Component} from 'react'
+import {Text, StyleSheet} from 'react-native'
 import LoginContainer from './LoginContainer/loginContainer'
+import LinearGradient from 'react-native-linear-gradient'
 
 class AuthContainer extends Component{
 	constructor(props){
@@ -17,7 +18,9 @@ class AuthContainer extends Component{
 		return (
 			!this.state.isAuth?
 				// Not authenticated
-				<LoginContainer />
+				<LinearGradient colors={['#6B2162', '#D129BA']} style={[styles.container]}>
+					<LoginContainer />
+				</LinearGradient>
 				:
 				// Is authenticated
 				<Text>
@@ -26,5 +29,13 @@ class AuthContainer extends Component{
 		)
 	}
 }
+const styles = StyleSheet.create({
+	container: {
+		flexDirection: 'column',
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+});
 
 export default AuthContainer
