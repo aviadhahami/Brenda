@@ -18,7 +18,7 @@ class AuthContainer extends Component{
 		return (
 			!this.state.isAuth?
 				// Not authenticated
-				<LinearGradient colors={['#6B2162', '#D129BA']} style={[styles.container]}>
+				<LinearGradient colors={gradientColor} style={[styles.container]}>
 					<LoginContainer />
 				</LinearGradient>
 				:
@@ -37,5 +37,5 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 });
-
+const gradientColor =	['#6B2162', '#D129BA'];
 export default AuthContainer

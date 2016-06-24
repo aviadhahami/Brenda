@@ -14,7 +14,7 @@ import TextField from 'react-native-md-textinput'
 class SignUp extends Component{
 	render(){
 		return(
-			<ScrollView style={styles.container}>
+			<ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
 				<View style={styles.titleContainer}>
 					<Text style={styles.title}>
 						Welcome To Brenda!
@@ -68,10 +68,8 @@ const overrides={
 };
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#e91e63',
 		flexDirection: 'column',
 		flex: 1,
-		// justifyContent: 'space-between',
 		// alignItems: 'center',
 		// justifyContent:'center',
 

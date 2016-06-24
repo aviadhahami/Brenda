@@ -38,7 +38,7 @@ class SplashScreen extends Component{
 				:
 				// Display Splash Screen
 				(
-				<LinearGradient colors={['#6B2162', '#D129BA']} style={[styles.container]}>
+				<LinearGradient colors={gradientColor} style={[styles.container]}>
 					<Image style={styles.logo} source={this.props.logo} resizeMode='contain'/>
 				</LinearGradient>
 				)
@@ -60,5 +60,6 @@ const styles = StyleSheet.create({
 		width:300
 	}
 });
+const gradientColor =	['#6B2162', '#D129BA'];
 
 export default SplashScreen
