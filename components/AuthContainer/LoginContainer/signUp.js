@@ -8,8 +8,9 @@ import {ScrollView,
 	Text,
 	StyleSheet,} from 'react-native'
 
-import { Button, Divider } from 'react-native-material-design'
+import { Button } from 'react-native-material-design'
 import TextField from 'react-native-md-textinput'
+
 
 class SignUp extends Component{
 	render(){
@@ -48,8 +49,7 @@ class SignUp extends Component{
 					/>
 
 				</View>
-				<View>
-					<Divider/>
+				<View style={styles.buttonContainer}>
 					<Button
 						text='Sign up'
 						raised={true}
@@ -60,32 +60,36 @@ class SignUp extends Component{
 	}
 
 }
+var overrides = {
+	textColor: '#E741F0',
+	backgroundColor: '#Ffffff',
+	rippleColor: '#E741F0'
+}
 
-const overrides={
-	textColor:'black',
-	backgroundColor:'black',
-	rippleColor:'white'
-};
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'column',
 		flex: 1,
-		// alignItems: 'center',
-		// justifyContent:'center',
-
 	},
 	loginContainer:{
-		width:250,
-		// height:0
+		marginTop:50,
+		width:300,
 	},
 	titleContainer:{
-
-		height:200
+		flex:5,
+		alignItems:'center',
+		marginTop:100,
 	},
 	title:{
 		color:'white',
 		fontSize:25,
 	},
+	buttonContainer:{
+		flex:1,
+		flexDirection:'column',
+		marginTop:50,
+		justifyContent:'flex-end',
+	}
 })
 
 export default SignUp
