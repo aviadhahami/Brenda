@@ -37,5 +37,5 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 });
-const gradientColor =	['#6B2162', '#D129BA'];
+const gradientColor = ['#D129BA', '#6B2162' , '#45153f'];
 export default AuthContainer
