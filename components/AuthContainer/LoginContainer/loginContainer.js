@@ -11,15 +11,21 @@ class LoginContainer extends Component{
 	constructor(props){
 		super(props)
 		this.state = {
-			exist: false,
+			exist: true,
 		}
+	}
+	userHasAccount(){
+		this.setState({exist:true})
+	}
+	userDoesntHaveAccount(){
+		this.setState({exist:false})
 	}
 	render(){
 		return(
-			!this.state.exist?
-				<Login/>
+			this.state.exist?
+				<Login click={this.userDoesntHaveAccount.bind(this)}/>
 				:
-				<SignUp />
+				<SignUp click={this.userHasAccount.bind(this)}/>
 		)
 	}
 }

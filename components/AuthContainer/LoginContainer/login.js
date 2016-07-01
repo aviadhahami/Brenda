@@ -20,7 +20,9 @@ const overridesSec = {
 }
 
 class Login extends Component{
-
+	constructor(props){
+		super(props)
+	}
 	render(){
 		return(
 			<View style={styles.container}>
@@ -54,6 +56,7 @@ class Login extends Component{
 				<View style={styles.signupContainer}>
 					<Button
 						text='or Sign up'
+						onPress={this.props.click}
 						raised={false}
 						overrides={overridesSec}/>
 				</View>
