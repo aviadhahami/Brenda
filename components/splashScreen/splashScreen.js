@@ -7,7 +7,8 @@ import {
 	StyleSheet,
 	Text,
 	View,
-	Image
+	Image,
+	Animated
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient'
 
@@ -16,7 +17,8 @@ class SplashScreen extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			done: false
+			done: false,
+			fadeAnim: new Animated.Value(0), // init opacity 0
 		}
 	}
 
@@ -28,6 +30,10 @@ class SplashScreen extends Component{
 		},this.props.duration || 1000)
 	}
 	componentDidMount(){
+		Animated.timing(          // Uses easing functions
+			this.state.fadeAnim,    // The value to drive
+			{toValue: 1}            // Configuration
+		).start();                // Don't forget start!
 		this.timer();
 	}
 	render(){
@@ -38,9 +44,11 @@ class SplashScreen extends Component{
 				:
 				// Display Splash Screen
 				(
-				<LinearGradient colors={gradientColor} style={[styles.container]}>
-					<Image style={styles.logo} source={this.props.logo} resizeMode='contain'/>
-				</LinearGradient>
+					<Animated.View style={[{opacity: this.state.fadeAnim},styles.container]}>
+						<LinearGradient colors={gradientColor} style={styles.gradient}>
+							<Image style={styles.logo} source={this.props.logo} resizeMode='contain'/>
+						</LinearGradient>
+					</Animated.View>
 				)
 
 		);
@@ -50,6 +58,10 @@ class SplashScreen extends Component{
 
 const styles = StyleSheet.create({
 	container: {
+		flexDirection:'column',
+		flex: 1,
+	},
+	gradient:{
 		flexDirection:'column',
 		flex: 1,
 		justifyContent: 'center',

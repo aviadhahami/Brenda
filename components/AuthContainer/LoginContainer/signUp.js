@@ -58,7 +58,7 @@ class SignUp extends Component{
 
 				<View style={styles.signupContainer}>
 					<Button
-						text='or sign in'
+						text='Already have an account? Sign In!'
 						onPress={this.props.click}
 						raised={false}
 						overrides={overridesSec}/>
