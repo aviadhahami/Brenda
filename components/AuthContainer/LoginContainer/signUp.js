@@ -6,64 +6,79 @@ import React, {Component} from 'react'
 import {ScrollView,
 	View,
 	Text,
-	StyleSheet,} from 'react-native'
+	StyleSheet,
+	Animated} from 'react-native'
 
 import { Button } from 'react-native-material-design'
 import TextField from 'react-native-md-textinput'
 
 
 class SignUp extends Component{
+	constructor(props){
+		super(props)
+		this.state = {
+			fadeAnim: new Animated.Value(0.5), // init opacity 0
+		}
+	}
+	componentDidMount() {
+		Animated.timing(          // Uses easing functions
+			this.state.fadeAnim,    // The value to drive
+			{toValue: 1}            // Configuration
+		).start();                // Don't forget start!
+	}
 	render(){
 		return(
-			<ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-				<View style={styles.titleContainer}>
-					<Text style={styles.title}>
-						Sign up to use Brenda!
-					</Text>
-				</View>
-				<View style={styles.loginContainer}>
-					<TextField
-						dense={true}
-						label={'Username'}
-						highlightColor={'#ffffff'}
-						keyboardType={'default'}
-						textColor={'#ffffff'}
-						labelColor={'#ffffff'}
-					/>
-					<TextField
-						dense={true}
-						label={'email'}
-						highlightColor={'#ffffff'}
-						keyboardType={'email-address'}
-						textColor={'#ffffff'}
-						labelColor={'#ffffff'}
-					/>
-					<TextField
-						dense={true}
-						label={'Password'}
-						highlightColor={'#ffffff'}
-						keyboardType={'default'}
-						textColor={'#ffffff'}
-						labelColor={'#ffffff'}
-						secureTextEntry={true}
-					/>
+			<Animated.View style={[styles.container,{opacity: this.state.fadeAnim}]}>
+				<ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+					<View style={styles.titleContainer}>
+						<Text style={styles.title}>
+							Sign up to use Brenda!
+						</Text>
+					</View>
+					<View style={styles.loginContainer}>
+						<TextField
+							dense={true}
+							label={'Username'}
+							highlightColor={'#ffffff'}
+							keyboardType={'default'}
+							textColor={'#ffffff'}
+							labelColor={'#ffffff'}
+						/>
+						<TextField
+							dense={true}
+							label={'email'}
+							highlightColor={'#ffffff'}
+							keyboardType={'email-address'}
+							textColor={'#ffffff'}
+							labelColor={'#ffffff'}
+						/>
+						<TextField
+							dense={true}
+							label={'Password'}
+							highlightColor={'#ffffff'}
+							keyboardType={'default'}
+							textColor={'#ffffff'}
+							labelColor={'#ffffff'}
+							secureTextEntry={true}
+						/>
 
-				</View>
-				<View style={styles.buttonContainer}>
-					<Button
-						text='Sign up'
-						raised={true}
-						overrides={overrides}/>
-				</View>
+					</View>
+					<View style={styles.buttonContainer}>
+						<Button
+							text='Sign up'
+							raised={true}
+							overrides={overrides}/>
+					</View>
 
-				<View style={styles.signupContainer}>
-					<Button
-						text='Already have an account? Sign In!'
-						onPress={this.props.click}
-						raised={false}
-						overrides={overridesSec}/>
-				</View>
-			</ScrollView>
+					<View style={styles.signupContainer}>
+						<Button
+							text='Already have an account? Sign In!'
+							onPress={this.props.click}
+							raised={false}
+							overrides={overridesSec}/>
+					</View>
+				</ScrollView>
+			</Animated.View>
 		)
 	}
 

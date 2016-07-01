@@ -4,7 +4,7 @@
 
 
 import React, {Component} from 'react'
-import { Text, View, ScrollView, StyleSheet } from 'react-native'
+import { Text, View, ScrollView, StyleSheet,Animated } from 'react-native'
 import { Button, Divider } from 'react-native-material-design'
 import TextField from 'react-native-md-textinput'
 
@@ -22,10 +22,19 @@ const overridesSec = {
 class Login extends Component{
 	constructor(props){
 		super(props)
+		this.state = {
+			fadeAnim: new Animated.Value(0.5), // init opacity 0
+		}
+	}
+	componentDidMount() {
+		Animated.timing(          // Uses easing functions
+			this.state.fadeAnim,    // The value to drive
+			{toValue: 1}            // Configuration
+		).start();                // Don't forget start!
 	}
 	render(){
 		return(
-			<View style={styles.container}>
+			<Animated.View style={[styles.container,{opacity: this.state.fadeAnim}]}>
 				<View style={styles.titleContainer}>
 					<Text style={styles.title}>
 						Welcome To Brenda!
@@ -60,7 +69,7 @@ class Login extends Component{
 						raised={false}
 						overrides={overridesSec}/>
 				</View>
-			</View>
+			</Animated.View>
 		)
 
 	}
