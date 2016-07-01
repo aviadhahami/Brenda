@@ -55,6 +55,14 @@ class SignUp extends Component{
 						raised={true}
 						overrides={overrides}/>
 				</View>
+
+				<View style={styles.signupContainer}>
+					<Button
+						text='or sign in'
+						onPress={this.props.click}
+						raised={false}
+						overrides={overridesSec}/>
+				</View>
 			</ScrollView>
 		)
 	}
@@ -62,6 +70,11 @@ class SignUp extends Component{
 }
 var overrides = {
 	textColor: '#E741F0',
+	backgroundColor: '#Ffffff',
+	rippleColor: '#E741F0'
+}
+const overridesSec = {
+	textColor: 'rgba(255, 255, 255, 0.8)',
 	backgroundColor: '#Ffffff',
 	rippleColor: '#E741F0'
 }
@@ -78,7 +91,7 @@ const styles = StyleSheet.create({
 	titleContainer:{
 		flex:5,
 		alignItems:'center',
-		marginTop:100,
+		marginTop:50,
 	},
 	title:{
 		color:'white',
@@ -89,7 +102,11 @@ const styles = StyleSheet.create({
 		flexDirection:'column',
 		marginTop:50,
 		justifyContent:'flex-end',
-	}
+	},
+	signupContainer:{
+		marginTop:80,
+		justifyContent:'flex-end'
+	},
 })
 
 export default SignUp
