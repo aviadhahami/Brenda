@@ -35,43 +35,45 @@ class Login extends Component{
 	render(){
 		return(
 			<Animated.View style={[styles.container,{opacity: this.state.fadeAnim}]}>
-				<View style={styles.titleContainer}>
-					<Text style={styles.title}>
-						Welcome To Brenda!
-					</Text>
-				</View>
-				<View style={styles.loginContainer}>
-					<TextField
-						dense={true}
-						label={'Username'}
-						highlightColor={'#ffffff'}
-						keyboardType={'default'}
-						textColor={'#ffffff'}
-						labelColor={'#ffffff'}
-					/>
-					<TextField
-						dense={true}
-						label={'Password'}
-						highlightColor={'#ffffff'}
-						keyboardType={'default'}
-						textColor={'#ffffff'}
-						labelColor={'#ffffff'}
-						secureTextEntry={true}
-					/>
-					<View style={styles.signIn}>
-						<Button text='Sign in' raised={true} overrides={overridesMain} />
+				<ScrollView>
+					<View style={styles.titleContainer}>
+						<Text style={styles.title}>
+							Welcome To Brenda!
+						</Text>
 					</View>
-				</View>
-				<View style={styles.signupContainer}>
-					<Button
-						text="Don't have an account? Sign Up!"
-						onPress={this.props.click}
-						raised={false}
-						overrides={overridesSec}/>
-				</View>
+					<View style={styles.loginContainer}>
+						<TextField
+							dense={true}
+							label={'Username'}
+							highlightColor={'#ffffff'}
+							keyboardType={'default'}
+							textColor={'#ffffff'}
+							labelColor={'#ffffff'}
+						/>
+						<TextField
+							dense={true}
+							label={'Password'}
+							highlightColor={'#ffffff'}
+							keyboardType={'default'}
+							textColor={'#ffffff'}
+							labelColor={'#ffffff'}
+							secureTextEntry={true}
+						/>
+						<View style={styles.signIn}>
+							<Button text='Sign in' raised={true} overrides={overridesMain} />
+						</View>
+					</View>
+					<View style={styles.signupContainer}>
+						<Button
+							text="Don't have an account? Sign Up!"
+							onPress={this.props.click}
+							raised={false}
+							overrides={overridesSec}/>
+					</View>
+				</ScrollView>
 			</Animated.View>
 		)
-
+		
 	}
 }
 
