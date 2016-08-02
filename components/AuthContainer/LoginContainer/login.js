@@ -12,16 +12,16 @@ const overridesMain = {
 	textColor: '#E741F0',
 	backgroundColor: '#Ffffff',
 	rippleColor: '#E741F0'
-}
+};
 const overridesSec = {
 	textColor: 'rgba(255, 255, 255, 0.8)',
 	backgroundColor: '#Ffffff',
 	rippleColor: '#E741F0'
-}
+};
 
 class Login extends Component{
 	constructor(props){
-		super(props)
+		super(props);
 		this.state = {
 			fadeAnim: new Animated.Value(0.5), // init opacity 0
 		}

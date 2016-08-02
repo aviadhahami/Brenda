@@ -16,7 +16,7 @@ class App extends Component{
 		return(
 			<SplashScreen logo={require('./../assets/logo/Brenda-Logo.png')} duration={3000} backgroundColor={styles.splashScreenContainer}>
 				<AuthContainer>
-
+					// TODO: add components
 				</AuthContainer>
 			</SplashScreen>
 		)
