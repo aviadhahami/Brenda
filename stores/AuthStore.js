@@ -20,7 +20,7 @@ let authStore = createStore(
 		/* this is the store definition: */
 		getInitialState(){ // same as React!
 			return {
-				text:'hi'
+				data:'dummy'
 			}
 		},
 		
@@ -41,5 +41,5 @@ let authStore = createStore(
 			if(this.state.text !== prevState.text){console.log('text has changed'); }
 		}
 	});
-
+// createStore.allowHMR(module, authStore);
 export default authStore;

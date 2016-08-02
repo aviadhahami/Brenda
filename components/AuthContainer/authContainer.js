@@ -7,21 +7,22 @@ import {Text, StyleSheet} from 'react-native'
 import LoginContainer from './LoginContainer/loginContainer'
 import LinearGradient from 'react-native-linear-gradient'
 
-
-import {connect} from 'cartiv';
 import authStore from './../../stores/AuthStore';
 import API from './../../stores/API'
+import {createConnector} from 'cartiv';
+const connect = createConnector(React);
 
-// @connect(authStore)
+@connect(authStore)
 class AuthContainer extends Component{
 	constructor(props){
 		super(props);
-		this.state = {
-			isAuth:false
-		}
+		// this.state = {
+		// 	isAuth:false
+		// };
+		console.log(this);
+		
 	}
 	render(){
-		console.log(this);
 		return (
 			!this.state.isAuth?
 				// Not authenticated
