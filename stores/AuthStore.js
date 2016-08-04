@@ -3,6 +3,17 @@
  */
 import {createStore} from 'cartiv';
 import API from './API'
+// FireBase.createUser({
+// 	email    : "bobtony@firebase.com",
+// 	password : "correcthorsebatterystaple"
+// }, function(error, userData) {
+// 	if (error) {
+// 		console.log("Error creating user:", error);
+// 	} else {
+// 		console.log("Successfully created user account with uid:", userData.uid);
+// 	}
+// });
+let FireBase = new Firebase("https://brenda-139c4.firebaseio.com");
 
 let authStore = createStore(
 	{
