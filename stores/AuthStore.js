@@ -20,17 +20,16 @@ let authStore = createStore(
 		/* this is the store definition: */
 		getInitialState(){ // same as React!
 			return {
-				isAuth:false
+				isAuth:false,
+				loading: false
 			}
 		},
 		
-		signUp(){
+		signUp(email, password){
 			console.log('create user');
 		},
 		
-		signIn(email,password){
-			console.log(this);
-			console.log('signIn invoked');
+		signIn(email, password){
 			console.log(email, password);
 		}
 	});

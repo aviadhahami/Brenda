@@ -34,6 +34,13 @@ class Login extends Component{
 			{toValue: 1}            // Configuration
 		).start();                // Don't forget start!
 	}
+	
+	signIn(){
+		console.log(this.refs.email.state.text,this.refs.password.state.text);
+		if(!!this.refs.email.state.text && !!this.refs.password.state.text){
+			// this.props.signIn(this.state.email,this.state.password);
+		}
+	}
 	render(){
 		return(
 			<Animated.View style={[styles.container,{opacity: this.state.fadeAnim}]}>
@@ -51,7 +58,7 @@ class Login extends Component{
 							keyboardType={'default'}
 							textColor={'#ffffff'}
 							labelColor={'#ffffff'}
-							onChangeText={(text) => {this.setState({email:text})}}
+							ref="email"
 						/>
 						<TextField
 							dense={true}
@@ -61,13 +68,13 @@ class Login extends Component{
 							textColor={'#ffffff'}
 							labelColor={'#ffffff'}
 							secureTextEntry={true}
-							onChangeText={(text) => {this.setState({password:text})}}
+							ref="password"
 						/>
 						<View style={styles.signIn}>
 							<Button
 								text='Sign in'
 								raised={true}
-								onPress={this.props.signIn}
+								onPress={this.signIn.bind(this)}
 								overrides={overridesMain}
 							/>
 						</View>
