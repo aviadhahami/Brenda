@@ -15,7 +15,7 @@ import TextField from 'react-native-md-textinput'
 
 class SignUp extends Component{
 	constructor(props){
-		super(props)
+		super(props);
 		this.state = {
 			fadeAnim: new Animated.Value(0.5), // init opacity 0
 		}
@@ -25,6 +25,15 @@ class SignUp extends Component{
 			this.state.fadeAnim,    // The value to drive
 			{toValue: 1}            // Configuration
 		).start();                // Don't forget start!
+	}
+	signUp(){
+		console.log(this);
+		let email = this.refs.email.state.text;
+		let password = this.refs.password.state.text;
+		let displayname = this.refs.displayName.state.text;
+		if (!!email && !!password){
+			this.props.signUp(email,password);
+		}
 	}
 	render(){
 		return(
@@ -43,6 +52,7 @@ class SignUp extends Component{
 							keyboardType={'default'}
 							textColor={'#ffffff'}
 							labelColor={'#ffffff'}
+							ref="displayName"
 						/>
 						<TextField
 							dense={true}
@@ -51,6 +61,7 @@ class SignUp extends Component{
 							keyboardType={'email-address'}
 							textColor={'#ffffff'}
 							labelColor={'#ffffff'}
+							ref="email"
 						/>
 						<TextField
 							dense={true}
@@ -60,6 +71,7 @@ class SignUp extends Component{
 							textColor={'#ffffff'}
 							labelColor={'#ffffff'}
 							secureTextEntry={true}
+							ref="password"
 						/>
 
 					</View>
@@ -67,7 +79,7 @@ class SignUp extends Component{
 						<Button
 							text='Sign up'
 							raised={true}
-							onPress={this.props.signUp}
+							onPress={this.signUp.bind(this)}
 							overrides={overrides}/>
 					</View>
 

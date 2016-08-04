@@ -26,11 +26,11 @@ let authStore = createStore(
 		},
 		
 		signUp(email, password){
-			console.log('create user');
+			console.log('create user',email,password);
 		},
 		
 		signIn(email, password){
-			console.log(email, password);
+			console.log('signin',email, password);
 		}
 	});
 // createStore.allowHMR(module, authStore);

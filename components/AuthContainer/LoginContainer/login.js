@@ -36,9 +36,10 @@ class Login extends Component{
 	}
 	
 	signIn(){
-		console.log(this.refs.email.state.text,this.refs.password.state.text);
+		let email = this.refs.email.state.text
+		let password =this.refs.password.state.text
 		if(!!this.refs.email.state.text && !!this.refs.password.state.text){
-			// this.props.signIn(this.state.email,this.state.password);
+			this.props.signIn(email,password);
 		}
 	}
 	render(){
