@@ -38,7 +38,7 @@ class SignUp extends Component{
 					<View style={styles.loginContainer}>
 						<TextField
 							dense={true}
-							label={'Username'}
+							label={'Display name'}
 							highlightColor={'#ffffff'}
 							keyboardType={'default'}
 							textColor={'#ffffff'}
@@ -46,7 +46,7 @@ class SignUp extends Component{
 						/>
 						<TextField
 							dense={true}
-							label={'email'}
+							label={'Email'}
 							highlightColor={'#ffffff'}
 							keyboardType={'email-address'}
 							textColor={'#ffffff'}
@@ -67,6 +67,7 @@ class SignUp extends Component{
 						<Button
 							text='Sign up'
 							raised={true}
+							onPress={this.props.signUp}
 							overrides={overrides}/>
 					</View>
 

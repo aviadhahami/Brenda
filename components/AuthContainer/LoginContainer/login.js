@@ -24,6 +24,8 @@ class Login extends Component{
 		super(props);
 		this.state = {
 			fadeAnim: new Animated.Value(0.5), // init opacity 0
+			email:'',
+			password:''
 		}
 	}
 	componentDidMount() {
@@ -44,11 +46,12 @@ class Login extends Component{
 					<View style={styles.loginContainer}>
 						<TextField
 							dense={true}
-							label={'Username'}
+							label={'Email'}
 							highlightColor={'#ffffff'}
 							keyboardType={'default'}
 							textColor={'#ffffff'}
 							labelColor={'#ffffff'}
+							onChangeText={(text) => {this.setState({email:text})}}
 						/>
 						<TextField
 							dense={true}
@@ -58,9 +61,15 @@ class Login extends Component{
 							textColor={'#ffffff'}
 							labelColor={'#ffffff'}
 							secureTextEntry={true}
+							onChangeText={(text) => {this.setState({password:text})}}
 						/>
 						<View style={styles.signIn}>
-							<Button text='Sign in' raised={true} overrides={overridesMain} />
+							<Button
+								text='Sign in'
+								raised={true}
+								onPress={this.props.signIn}
+								overrides={overridesMain}
+							/>
 						</View>
 					</View>
 					<View style={styles.signupContainer}>

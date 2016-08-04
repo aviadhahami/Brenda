@@ -16,18 +16,14 @@ const connect = createConnector(React);
 class AuthContainer extends Component{
 	constructor(props){
 		super(props);
-		// this.state = {
-		// 	isAuth:false
-		// };
 		console.log(this);
-		
 	}
 	render(){
 		return (
 			!this.state.isAuth?
 				// Not authenticated
 				<LinearGradient colors={gradientColor} style={[styles.container]}>
-					<LoginContainer />
+					<LoginContainer signIn={API.auth.signIn.bind(this)} signUp={API.auth.signUp.bind(this)}/>
 				</LinearGradient>
 				:
 				// Is authenticated

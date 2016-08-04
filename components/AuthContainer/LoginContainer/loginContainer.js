@@ -9,7 +9,7 @@ import SignUp from './signUp'
 
 class LoginContainer extends Component{
 	constructor(props){
-		super(props)
+		super(props);
 		this.state = {
 			exist: true,
 		}
@@ -23,9 +23,9 @@ class LoginContainer extends Component{
 	render(){
 		return(
 			this.state.exist?
-				<Login click={this.userDoesntHaveAccount.bind(this)}/>
+				<Login signIn={this.props.signIn} click={this.userDoesntHaveAccount.bind(this)}/>
 				:
-				<SignUp click={this.userHasAccount.bind(this)}/>
+				<SignUp signUp={this.props.signUp} click={this.userHasAccount.bind(this)}/>
 		)
 	}
 }
