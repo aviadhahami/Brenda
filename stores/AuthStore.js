@@ -3,6 +3,7 @@
  */
 import {createStore} from 'cartiv';
 import API from './API'
+import * as firebase from 'firebase';
 // FireBase.createUser({
 // 	email    : "bobtony@firebase.com",
 // 	password : "correcthorsebatterystaple"
@@ -13,7 +14,14 @@ import API from './API'
 // 		console.log("Successfully created user account with uid:", userData.uid);
 // 	}
 // });
-let FireBase = new Firebase("https://brenda-139c4.firebaseio.com");
+
+const firebaseConfig = {
+	apiKey: "AIzaSyDvHAflY3tpYWmqL3tYxTUZ29TDV17mHUM",
+	authDomain: "brenda-139c4.firebaseapp.com",
+	databaseURL: "https://brenda-139c4.firebaseio.com",
+	storageBucket: "",
+};
+const firebaseRef = firebase.initializeApp(firebaseConfig);
 
 let authStore = createStore(
 	{
@@ -30,14 +38,31 @@ let authStore = createStore(
 	{
 		/* this is the store definition: */
 		getInitialState(){ // same as React!
+			this.initFireBaseListener();
 			return {
 				isAuth:false,
 				loading: false
 			}
 		},
-		
+		initFireBaseListener(){
+			firebaseRef.auth().onAuthStateChanged((user)=>{
+				if (user) {
+					// User is signed in.
+					console.log(user);
+				} else {
+					// No user is signed in.
+				}
+			});
+		},
 		signUp(email, password){
 			console.log('create user',email,password);
+			firebaseRef.auth().createUserWithEmailAndPassword(email, password).catch((error) =>{
+				// Handle Errors here.
+				var errorCode = error.code;
+				var errorMessage = error.message;
+				// ...
+				console.log('error', error);
+			});
 		},
 		
 		signIn(email, password){
