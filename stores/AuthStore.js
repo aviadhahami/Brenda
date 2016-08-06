@@ -53,7 +53,7 @@ let authStore = createStore(
 		getInitialState(){ // same as React!
 			return {
 				isAuth:false,
-				loading: true,
+				loading: true, // Loading start as true and once the firebase promise ends will change to false
 				error:false,
 				user:null
 			}
