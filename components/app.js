@@ -15,7 +15,7 @@ class App extends Component{
 	render(){
 		return(
 			//TODO: change duration to 3K ms
-			<SplashScreen logo={require('./../assets/logo/Brenda-Logo.png')} duration={1} backgroundColor={styles.splashScreenContainer}>
+			<SplashScreen logo={require('./../assets/logo/Brenda-Logo.png')} duration={0} backgroundColor={styles.splashScreenContainer}>
 				<AuthContainer>
 					// TODO: add components
 				</AuthContainer>
