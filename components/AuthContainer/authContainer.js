@@ -21,7 +21,6 @@ class AuthContainer extends Component{
 		API.auth.initFireBaseListener();
 	}
 	render(){
-		console.log(this.state);
 		return (
 			this.state.loading?
 				<Text>

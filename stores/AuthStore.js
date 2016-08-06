@@ -27,7 +27,6 @@ const firebaseRef = firebase.initializeApp(firebaseConfig);
 
 
 function sanitizeUserData(user) {
-	console.log('user is', user);
 	let clearUser={};
 	user.providerData.forEach((profile) => {
 		clearUser['displayName'] = profile.displayName || user.displayName;
@@ -89,7 +88,7 @@ let authStore = createStore(
 					}).then((payload)=>{
 						console.log('name change PL',payload);
 						// Update successful.
-					
+						
 					}, function(error) {
 						// An error happened.
 						console.log('error updating name', error);
@@ -106,6 +105,18 @@ let authStore = createStore(
 		
 		signIn(email, password){
 			console.log('signin',email, password);
+			this.setState({loading:true});
+			firebase.auth().signInWithEmailAndPassword(email, password).then((payload)=>{
+				
+				// Observer should notify about login so basically nothing...
+			}).catch((error)=> {
+				// Handle Errors here.
+				var errorCode = error.code;
+				var errorMessage = error.message;
+				// ...
+			});
+			this.setState({loading:false});
+			
 		}
 	});
 // createStore.allowHMR(module, authStore);
