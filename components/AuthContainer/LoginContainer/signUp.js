@@ -2,16 +2,11 @@
  * Created by aviad on 6/22/2016.
  */
 
-import React, {Component} from 'react'
-import {ScrollView,
-	View,
-	Text,
-	StyleSheet} from 'react-native'
+import React, {Component} from "react";
+import {ScrollView, View, Text, StyleSheet} from "react-native";
+import TextField from "react-native-md-textinput";
+import Button from "apsl-react-native-button";
 // import { Button } from 'react-native-material-design'
-import TextField from 'react-native-md-textinput'
-
-import Button from 'apsl-react-native-button'
-
 
 
 class SignUp extends Component{
@@ -70,18 +65,19 @@ class SignUp extends Component{
 				</View>
 				<View style={styles.buttonContainer}>
 					<Button
-						style={styles.button}
 						onPress={this.signUp.bind(this)}
-					>
+						style={styles.mainButton}
+						textStyle={{color: 'rgba(231, 65, 240, 1)'}}>
 						Sign up
 					</Button>
 				</View>
 				<View style={styles.signupContainer}>
 					<Button
-						text='Already have an account? Sign In!'
-						onPress={this.props.click}
-						raised={false}
-						overrides={overridesSec}/>
+						style={styles.secondaryButton}
+						textStyle={{color: 'rgba(255, 255, 255, 0.8)'}}
+						onPress={this.props.click}>
+						Don't have an account? Sign Up!
+					</Button>
 				</View>
 			</ScrollView>
 		)
@@ -129,9 +125,16 @@ const styles = StyleSheet.create({
 	errorMessage:{
 		color:'#FF6161'
 	},
-	button:{
-		textColor: 'rgba(255, 255, 255, 0.8)',
-		backgroundColor: '#Ffffff',
+	mainButton:{
+		backgroundColor: 'rgba(255, 255, 255, 1)',
+		borderWidth:1,
+		borderColor:'rgba(255, 255, 255, 1)'
+	},
+	secondaryButton:{
+		color: 'rgba(255, 255, 255, 0.8)',
+		backgroundColor: 'transparent',
+		borderWidth:0,
+		borderColor:'rgba(255, 255, 255, 1)'
 	}
 });
 
