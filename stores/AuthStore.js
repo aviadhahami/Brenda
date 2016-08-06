@@ -89,7 +89,7 @@ let authStore = createStore(
 						console.log('name change PL',payload);
 						// Update successful.
 						this.setState({
-							user: sanitizeUserData(firebase.auth().currentUser);
+							user: sanitizeUserData(firebase.auth().currentUser)
 						})
 					}, function(error) {
 						// An error happened.
