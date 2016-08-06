@@ -12,8 +12,7 @@
     "react-native": "0.30.0",
     "react-native-linear-gradient": "^1.5.12",
     "react-native-material-design": "^0.3.6",
-    "react-native-md-textinput": "^2.0.4",
-    "react-native-simple-modal": "^4.0.1"
+    "react-native-md-textinput": "^2.0.4"
   },
   "devDependencies": {
     "babel-preset-react-native-stage-0": "^1.0.1"

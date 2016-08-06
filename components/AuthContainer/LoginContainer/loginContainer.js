@@ -23,9 +23,9 @@ class LoginContainer extends Component{
 	render(){
 		return(
 			this.state.exist?
-				<Login signIn={this.props.signIn} click={this.userDoesntHaveAccount.bind(this)}/>
+				<Login error={this.props.error} signIn={this.props.signIn} click={this.userDoesntHaveAccount.bind(this)}/>
 				:
-				<SignUp signUp={this.props.signUp} click={this.userHasAccount.bind(this)}/>
+				<SignUp error={this.props.error} signUp={this.props.signUp} click={this.userHasAccount.bind(this)}/>
 		)
 	}
 }

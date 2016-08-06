@@ -71,6 +71,9 @@ class Login extends Component{
 							secureTextEntry={true}
 							ref="password"
 						/>
+						<View style={styles.errorContainer}>
+							<Text style={styles.errorMessage}>{this.props.error}</Text>
+						</View>
 						<View style={styles.signIn}>
 							<Button
 								text='Sign in'
@@ -118,6 +121,13 @@ const styles = StyleSheet.create({
 		marginTop:110,
 		justifyContent:'flex-end'
 	},
+	errorContainer:{
+		marginTop:20,
+		alignItems:'center',
+	},
+	errorMessage:{
+		color:'#DD0048'
+	}
 });
 
 export default Login

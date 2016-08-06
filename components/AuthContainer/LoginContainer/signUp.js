@@ -73,7 +73,7 @@ class SignUp extends Component{
 							secureTextEntry={true}
 							ref="password"
 						/>
-
+						<Text>{this.props.error}</Text>
 					</View>
 					<View style={styles.buttonContainer}>
 						<Button
@@ -100,12 +100,12 @@ var overrides = {
 	textColor: '#E741F0',
 	backgroundColor: '#Ffffff',
 	rippleColor: '#E741F0'
-}
+};
 const overridesSec = {
 	textColor: 'rgba(255, 255, 255, 0.8)',
 	backgroundColor: '#Ffffff',
 	rippleColor: '#E741F0'
-}
+};
 
 const styles = StyleSheet.create({
 	container: {
