@@ -6,7 +6,6 @@ import React, {Component} from "react";
 import {ScrollView, View, Text, StyleSheet} from "react-native";
 import TextField from "react-native-md-textinput";
 import Button from "apsl-react-native-button";
-// import { Button } from 'react-native-material-design'
 
 
 class SignUp extends Component{

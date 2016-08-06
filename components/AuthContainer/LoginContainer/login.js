@@ -5,7 +5,6 @@
 
 import React, {Component} from 'react'
 import { Text, View, ScrollView, StyleSheet } from 'react-native'
-// import { Button, Divider } from 'react-native-material-design'
 import TextField from 'react-native-md-textinput'
 
 import Button from 'apsl-react-native-button'
