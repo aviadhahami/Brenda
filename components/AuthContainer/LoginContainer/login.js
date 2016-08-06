@@ -122,11 +122,11 @@ const styles = StyleSheet.create({
 		justifyContent:'flex-end'
 	},
 	errorContainer:{
-		marginTop:20,
+		marginTop:10,
 		alignItems:'center',
 	},
 	errorMessage:{
-		color:'#DD0048'
+		color:'#FF6161'
 	}
 });
 

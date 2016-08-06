@@ -73,7 +73,9 @@ class SignUp extends Component{
 							secureTextEntry={true}
 							ref="password"
 						/>
-						<Text>{this.props.error}</Text>
+						<View style={styles.errorContainer}>
+							<Text style={styles.errorMessage}>{this.props.error}</Text>
+						</View>
 					</View>
 					<View style={styles.buttonContainer}>
 						<Button
@@ -113,7 +115,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	loginContainer:{
-		marginTop:50,
+		marginTop:0,
 		width:300,
 	},
 	titleContainer:{
@@ -135,6 +137,13 @@ const styles = StyleSheet.create({
 		marginTop:80,
 		justifyContent:'flex-end'
 	},
-})
+	errorContainer:{
+		marginTop:10,
+		alignItems:'center',
+	},
+	errorMessage:{
+		color:'#FF6161'
+	}
+});
 
 export default SignUp
