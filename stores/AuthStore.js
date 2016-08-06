@@ -82,19 +82,7 @@ let authStore = createStore(
 			console.log('create user',email,password);
 			firebaseRef.auth().createUserWithEmailAndPassword(email, password)
 				.then((payload)=>{
-					let user = firebase.auth().currentUser;
-					user.updateProfile({
-						displayName: displayName
-					}).then((payload)=>{
-						console.log('name change PL',payload);
-						// Update successful.
-						this.setState({
-							user: sanitizeUserData(firebase.auth().currentUser)
-						})
-					}, function(error) {
-						// An error happened.
-						console.log('error updating name', error);
-					});
+					this.updateUserInfo({displayName: displayName});
 				}).catch((error) =>{
 				// Handle Errors here.
 				var errorCode = error.code;
@@ -103,6 +91,23 @@ let authStore = createStore(
 				console.log('error', error);
 			});
 			
+		},
+		updateUserInfo(obj){
+			let user = firebase.auth().currentUser;
+			let purified = {
+				displayName: obj['displayName'] || user.displayName,
+				photoURL : obj['photoURL'] || user.photoURL
+			};
+			user.updateProfile(purified).then((payload)=>{
+				console.log('name change PL',payload);
+				// Update successful.
+				this.setState({
+					user: sanitizeUserData(firebase.auth().currentUser)
+				})
+			}, function(error) {
+				// An error happened.
+				console.log('error updating name', error);
+			});
 		},
 		signIn(email, password){
 			console.log('signin',email, password);
