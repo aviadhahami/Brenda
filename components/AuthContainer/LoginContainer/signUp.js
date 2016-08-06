@@ -14,7 +14,6 @@ class SignUp extends Component{
 		super(props);
 	}
 	signUp(){
-		console.log(this);
 		let email = this.refs.email.state.text;
 		let password = this.refs.password.state.text;
 		let displayName = this.refs.displayName.state.text;
