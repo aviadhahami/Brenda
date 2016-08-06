@@ -3,7 +3,7 @@
  */
 
 import React, {Component} from 'react'
-import {Text, StyleSheet, ActivityIndicator} from 'react-native'
+import {Text, StyleSheet, ActivityIndicator, View} from 'react-native'
 import LoginContainer from './LoginContainer/loginContainer'
 import LinearGradient from 'react-native-linear-gradient'
 
@@ -23,12 +23,17 @@ class AuthContainer extends Component{
 	render(){
 		return (
 			this.state.loading?
-				<ActivityIndicator
-					animating={this.state.animating}
-					style={[styles.centering, {height: 80}]}
-					size="large"
-					color="black"
-				/>
+				<View style={[styles.centering, {height: 450}]}>
+					<ActivityIndicator
+						animating={this.state.animating}
+						size="large"
+						color="black"
+					/>
+					<Text>
+						Loading..
+					</Text>
+				</View>
+				
 				:
 				!this.state.isAuth?
 					// Not authenticated
