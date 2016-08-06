@@ -15,10 +15,12 @@ class LoginContainer extends Component{
 		}
 	}
 	userHasAccount(){
-		this.setState({exist:true})
+		this.setState({exist:true});
+		this.props.clearErrors();
 	}
 	userDoesntHaveAccount(){
-		this.setState({exist:false})
+		this.setState({exist:false});
+		this.props.clearErrors();
 	}
 	render(){
 		return(

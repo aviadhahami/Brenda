@@ -45,7 +45,7 @@ class AuthContainer extends Component{
 					:
 					// Not authenticated
 					<LinearGradient colors={gradientColor} style={[styles.container]}>
-						<LoginContainer error={this.state.error} signIn={API.auth.signIn.bind(this)} signUp={API.auth.signUp.bind(this)}/>
+						<LoginContainer error={this.state.error} clearErrors={API.auth.clearErrors.bind(this)} signIn={API.auth.signIn.bind(this)} signUp={API.auth.signUp.bind(this)}/>
 					</LinearGradient>
 		)
 	}

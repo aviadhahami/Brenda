@@ -46,7 +46,7 @@ let authStore = createStore(
 		// when not provided, all methods starting with 'on' will get called
 		
 		// config.actions can either be an array of strings or a filter function.
-		actions: ['signUp','signIn','initFireBaseListener'], // specify methods that will get called when equivalent action triggered
+		actions: ['signUp','signIn','initFireBaseListener','clearErrors'], // specify methods that will get called when equivalent action triggered
 	},
 	{
 		/* this is the store definition: */
@@ -67,17 +67,25 @@ let authStore = createStore(
 					console.log(user);
 					this.setState({
 						user:sanitizedUser,
-						isAuth:true
+						isAuth:true,
+						error:false
 					});
 				} else {
 					// No user is signed in.
 					this.setState({
-						isAuth:false
+						isAuth:false,
+						error:false
+						
 					})
 				}
 			});
 			this.setState({loading:false});
 			
+		},
+		clearErrors(){
+		this.setState({
+			error:false
+		})
 		},
 		signUp(displayName, email, password){
 			console.log('create user',email,password);
@@ -117,8 +125,8 @@ let authStore = createStore(
 			console.log('signin',email, password);
 			this.setState({loading:true});
 			firebase.auth().signInWithEmailAndPassword(email, password).then((payload)=>{
-				
 				// Observer should notify about login so basically nothing...
+				
 			}).catch((error)=> {
 				// Handle Errors here.
 				var errorCode = error.code;
