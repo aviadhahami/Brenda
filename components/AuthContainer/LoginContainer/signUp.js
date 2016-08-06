@@ -7,9 +7,11 @@ import {ScrollView,
 	View,
 	Text,
 	StyleSheet} from 'react-native'
-
-import { Button } from 'react-native-material-design'
+// import { Button } from 'react-native-material-design'
 import TextField from 'react-native-md-textinput'
+
+import Button from 'apsl-react-native-button'
+
 
 
 class SignUp extends Component{
