@@ -27,11 +27,12 @@ const firebaseRef = firebase.initializeApp(firebaseConfig);
 
 
 function sanitizeUserData(user) {
+	console.log('user is', user);
 	let clearUser={};
 	user.providerData.forEach((profile) => {
-		clearUser['displayName'] = profile.displayName;
-		clearUser['email'] = profile.email;
-		clearUser['photoURL'] = profile.photoURL;
+		clearUser['displayName'] = profile.displayName || user.displayName;
+		clearUser['email'] = profile.email ||  user.email;
+		clearUser['photoURL'] = profile.photoURL || user.photoURL;
 	});
 	return clearUser;
 }
@@ -46,12 +47,11 @@ let authStore = createStore(
 		// when not provided, all methods starting with 'on' will get called
 		
 		// config.actions can either be an array of strings or a filter function.
-		actions: ['signUp','signIn'], // specify methods that will get called when equivalent action triggered
+		actions: ['signUp','signIn','initFireBaseListener'], // specify methods that will get called when equivalent action triggered
 	},
 	{
 		/* this is the store definition: */
 		getInitialState(){ // same as React!
-			this.initFireBaseListener();
 			return {
 				isAuth:false,
 				loading: false,
@@ -59,6 +59,7 @@ let authStore = createStore(
 			}
 		},
 		initFireBaseListener(){
+			this.setState({loading:true});
 			firebaseRef.auth().onAuthStateChanged((user)=>{
 				if (user) {
 					// User is signed in.
@@ -75,6 +76,8 @@ let authStore = createStore(
 					})
 				}
 			});
+			this.setState({loading:false});
+			
 		},
 		signUp(displayName, email, password){
 			console.log('create user',email,password);

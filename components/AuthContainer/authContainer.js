@@ -17,19 +17,27 @@ class AuthContainer extends Component{
 	constructor(props){
 		super(props);
 	}
+	componentWillMount(){
+		API.auth.initFireBaseListener();
+	}
 	render(){
 		console.log(this.state);
 		return (
-			!this.state.isAuth?
-				// Not authenticated
-				<LinearGradient colors={gradientColor} style={[styles.container]}>
-					<LoginContainer signIn={API.auth.signIn.bind(this)} signUp={API.auth.signUp.bind(this)}/>
-				</LinearGradient>
-				:
-				// Is authenticated
+			this.state.loading?
 				<Text>
-					welcome {this.state.user.displayName}
+					Loading...
 				</Text>
+				:
+				!this.state.isAuth?
+					// Not authenticated
+					<LinearGradient colors={gradientColor} style={[styles.container]}>
+						<LoginContainer signIn={API.auth.signIn.bind(this)} signUp={API.auth.signUp.bind(this)}/>
+					</LinearGradient>
+					:
+					// Is authenticated
+					<Text>
+						welcome {this.state.user.displayName}
+					</Text>
 		)
 	}
 }
