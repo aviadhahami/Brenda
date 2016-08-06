@@ -64,7 +64,6 @@ let authStore = createStore(
 				if (user) {
 					// User is signed in.
 					let sanitizedUser = sanitizeUserData(user);
-					console.log(user);
 					this.setState({
 						user:sanitizedUser,
 						isAuth:true,
