@@ -3,7 +3,7 @@
  */
 
 import React, {Component} from 'react'
-import {Text, StyleSheet, ActivityIndicator, View} from 'react-native'
+import {Text, StyleSheet, ActivityIndicator, View, ScrollView} from 'react-native'
 import LoginContainer from './LoginContainer/loginContainer'
 import LinearGradient from 'react-native-linear-gradient'
 
@@ -21,6 +21,10 @@ class AuthContainer extends Component{
 		API.auth.initFireBaseListener();
 	}
 	render(){
+		let errorModal;
+		if(this.state.error){
+			errorModal = <View><Text>Error</Text></View>
+		}
 		return (
 			this.state.loading?
 				<View style={[styles.centering, {height: 450}]}>
@@ -35,16 +39,20 @@ class AuthContainer extends Component{
 				</View>
 				
 				:
-				!this.state.isAuth?
-					// Not authenticated
-					<LinearGradient colors={gradientColor} style={[styles.container]}>
-						<LoginContainer signIn={API.auth.signIn.bind(this)} signUp={API.auth.signUp.bind(this)}/>
-					</LinearGradient>
-					:
+				this.state.isAuth?
+					
 					// Is authenticated
 					<Text>
 						welcome {this.state.user.displayName}
 					</Text>
+					:
+					// Not authenticated
+					<LinearGradient colors={gradientColor} style={[styles.container]}>
+						<LoginContainer signIn={API.auth.signIn.bind(this)} signUp={API.auth.signUp.bind(this)}/>
+						{errorModal}
+					</LinearGradient>
+		
+		
 		)
 	}
 }

@@ -54,6 +54,7 @@ let authStore = createStore(
 			return {
 				isAuth:false,
 				loading: false,
+				error:true,
 				user:null
 			}
 		},
@@ -87,7 +88,8 @@ let authStore = createStore(
 				// Handle Errors here.
 				var errorCode = error.code;
 				var errorMessage = error.message;
-				// ...
+				
+				this.setState({error:errorMessage});
 				console.log('error', error);
 			});
 			
@@ -104,8 +106,10 @@ let authStore = createStore(
 				this.setState({
 					user: sanitizeUserData(firebase.auth().currentUser)
 				})
-			}, function(error) {
+			}, (error) =>{
 				// An error happened.
+				
+				this.setState({error:error.message});
 				console.log('error updating name', error);
 			});
 		},
@@ -120,6 +124,7 @@ let authStore = createStore(
 				var errorCode = error.code;
 				var errorMessage = error.message;
 				// ...
+				this.setState({error:error.message});
 			});
 			this.setState({loading:false});
 			
