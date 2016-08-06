@@ -30,9 +30,9 @@ class SignUp extends Component{
 		console.log(this);
 		let email = this.refs.email.state.text;
 		let password = this.refs.password.state.text;
-		let displayname = this.refs.displayName.state.text;
+		let displayName = this.refs.displayName.state.text;
 		if (!!email && !!password){
-			this.props.signUp(email,password);
+			this.props.signUp(displayName, email,password);
 		}
 	}
 	render(){

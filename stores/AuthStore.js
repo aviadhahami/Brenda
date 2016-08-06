@@ -23,6 +23,19 @@ const firebaseConfig = {
 };
 const firebaseRef = firebase.initializeApp(firebaseConfig);
 
+
+
+
+function sanitizeUserData(user) {
+	let clearUser={};
+	user.providerData.forEach((profile) => {
+		clearUser['displayName'] = profile.displayName;
+		clearUser['email'] = profile.email;
+		clearUser['photoURL'] = profile.photoURL;
+	});
+	return clearUser;
+}
+
 let authStore = createStore(
 	{
 		/* this is the store config: */
@@ -41,28 +54,51 @@ let authStore = createStore(
 			this.initFireBaseListener();
 			return {
 				isAuth:false,
-				loading: false
+				loading: false,
+				user:null
 			}
 		},
 		initFireBaseListener(){
 			firebaseRef.auth().onAuthStateChanged((user)=>{
 				if (user) {
 					// User is signed in.
+					let sanitizedUser = sanitizeUserData(user);
 					console.log(user);
+					this.setState({
+						user:sanitizedUser,
+						isAuth:true
+					});
 				} else {
 					// No user is signed in.
+					this.setState({
+						isAuth:false
+					})
 				}
 			});
 		},
-		signUp(email, password){
+		signUp(displayName, email, password){
 			console.log('create user',email,password);
-			firebaseRef.auth().createUserWithEmailAndPassword(email, password).catch((error) =>{
+			firebaseRef.auth().createUserWithEmailAndPassword(email, password)
+				.then((payload)=>{
+					let user = firebase.auth().currentUser;
+					user.updateProfile({
+						displayName: displayName
+					}).then((payload)=>{
+						console.log('name change PL',payload);
+						// Update successful.
+					
+					}, function(error) {
+						// An error happened.
+						console.log('error updating name', error);
+					});
+				}).catch((error) =>{
 				// Handle Errors here.
 				var errorCode = error.code;
 				var errorMessage = error.message;
 				// ...
 				console.log('error', error);
 			});
+			
 		},
 		
 		signIn(email, password){

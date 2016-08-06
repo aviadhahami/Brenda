@@ -16,9 +16,9 @@ const connect = createConnector(React);
 class AuthContainer extends Component{
 	constructor(props){
 		super(props);
-		console.log(this);
 	}
 	render(){
+		console.log(this.state);
 		return (
 			!this.state.isAuth?
 				// Not authenticated
@@ -28,7 +28,7 @@ class AuthContainer extends Component{
 				:
 				// Is authenticated
 				<Text>
-					yes Auth
+					welcome {this.state.user.displayName}
 				</Text>
 		)
 	}
