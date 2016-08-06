@@ -6,8 +6,7 @@ import React, {Component} from 'react'
 import {ScrollView,
 	View,
 	Text,
-	StyleSheet,
-	Animated} from 'react-native'
+	StyleSheet} from 'react-native'
 
 import { Button } from 'react-native-material-design'
 import TextField from 'react-native-md-textinput'
@@ -16,15 +15,6 @@ import TextField from 'react-native-md-textinput'
 class SignUp extends Component{
 	constructor(props){
 		super(props);
-		this.state = {
-			fadeAnim: new Animated.Value(0.5), // init opacity 0
-		}
-	}
-	componentDidMount() {
-		Animated.timing(          // Uses easing functions
-			this.state.fadeAnim,    // The value to drive
-			{toValue: 1}            // Configuration
-		).start();                // Don't forget start!
 	}
 	signUp(){
 		console.log(this);
@@ -37,7 +27,6 @@ class SignUp extends Component{
 	}
 	render(){
 		return(
-			<Animated.View style={[styles.container,{opacity: this.state.fadeAnim}]}>
 				<ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
 					<View style={styles.titleContainer}>
 						<Text style={styles.title}>
@@ -93,7 +82,6 @@ class SignUp extends Component{
 							overrides={overridesSec}/>
 					</View>
 				</ScrollView>
-			</Animated.View>
 		)
 	}
 
