@@ -61,8 +61,7 @@ class Login extends Component{
 						<Button
 							onPress={this.signIn.bind(this)}
 							style={styles.mainButton}
-							textStyle={{color: 'rgba(231, 65, 240, 1)'}}
-						>
+							textStyle={{color: 'rgba(231, 65, 240, 1)'}}>
 							Sign in
 						</Button>
 					</View>
