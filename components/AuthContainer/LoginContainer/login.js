@@ -15,11 +15,6 @@ const overridesMain = {
 	backgroundColor: '#Ffffff',
 	rippleColor: '#E741F0'
 };
-const overridesSec = {
-	textColor: 'rgba(255, 255, 255, 0.8)',
-	backgroundColor: '#Ffffff',
-	rippleColor: '#E741F0'
-};
 
 class Login extends Component{
 	constructor(props) {
@@ -79,10 +74,10 @@ class Login extends Component{
 				</View>
 				<View style={styles.signupContainer}>
 					<Button
-						text="Don't have an account? Sign Up!"
-						onPress={this.props.click}
-						raised={false}
-						overrides={overridesSec}/>
+						style={styles.button}
+						onPress={this.props.click}>
+						Don't have an account? Sign Up!
+					</Button>
 				</View>
 			</ScrollView>
 		)
@@ -120,6 +115,10 @@ const styles = StyleSheet.create({
 	},
 	errorMessage:{
 		color:'#FF6161'
+	},
+	button:{
+		textColor: 'rgba(255, 255, 255, 0.8)',
+		backgroundColor: '#Ffffff',
 	}
 });
 
