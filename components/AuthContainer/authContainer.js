@@ -25,7 +25,7 @@ class AuthContainer extends Component{
 	render(){
 		let spinner;
 		if(this.state.loading){
-			spinner = <Text>Loading..</Text>//<Spinner visible={true}/>
+			spinner = <Spinner visible={true}/>
 		}
 		return (
 			this.state.isAuth?
@@ -35,10 +35,10 @@ class AuthContainer extends Component{
 				</Text>
 				:
 				// Not authenticated
+				
 				<LinearGradient colors={gradientColor} style={[styles.container]}>
-					
-					<LoginContainer error={this.state.error} clearErrors={API.auth.clearErrors.bind(this)} signIn={API.auth.signIn.bind(this)} signUp={API.auth.signUp.bind(this)}/>
 					{spinner}
+					<LoginContainer error={this.state.error} clearErrors={API.auth.clearErrors.bind(this)} signIn={API.auth.signIn.bind(this)} signUp={API.auth.signUp.bind(this)}/>
 				</LinearGradient>
 		)
 	}

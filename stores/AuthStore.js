@@ -53,8 +53,8 @@ let authStore = createStore(
 		getInitialState(){ // same as React!
 			return {
 				isAuth:false,
-				loading: false,
-				error:true,
+				loading: true,
+				error:false,
 				user:null
 			}
 		},
@@ -75,11 +75,11 @@ let authStore = createStore(
 					this.setState({
 						isAuth:false,
 						error:false
-						
 					});
 				}
+				this.setState({loading:false});
 			});
-			this.setState({loading:false});
+			
 			
 		},
 		clearErrors(){
@@ -100,9 +100,9 @@ let authStore = createStore(
 				
 				this.setState({error:errorMessage});
 				console.log('error', error);
+			}).then(()=>{
+				this.setState({loading:false});
 			});
-			this.setState({loading:false});
-			
 		},
 		updateUserInfo(obj){
 			this.setState({loading:true});
@@ -122,8 +122,9 @@ let authStore = createStore(
 				
 				this.setState({error:error.message});
 				console.log('error updating name', error);
+			}).then(()=>{
+				this.setState({loading:false});
 			});
-			this.setState({loading:false});
 		},
 		signIn(email, password){
 			console.log('signin',email, password);
@@ -137,8 +138,9 @@ let authStore = createStore(
 				var errorMessage = error.message;
 				// ...
 				this.setState({error:error.message});
+			}).then(()=>{
+				this.setState({loading:false});
 			});
-			this.setState({loading:false});
 			
 		}
 	});
