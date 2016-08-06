@@ -4,74 +4,76 @@
 
 
 import React, {Component} from 'react'
-import { Text, View, ScrollView, StyleSheet,Animated } from 'react-native'
-import { Button, Divider } from 'react-native-material-design'
+import { Text, View, ScrollView, StyleSheet } from 'react-native'
 import TextField from 'react-native-md-textinput'
 
-const overridesMain = {
-	textColor: '#E741F0',
-	backgroundColor: '#Ffffff',
-	rippleColor: '#E741F0'
-};
-const overridesSec = {
-	textColor: 'rgba(255, 255, 255, 0.8)',
-	backgroundColor: '#Ffffff',
-	rippleColor: '#E741F0'
-};
+import Button from 'apsl-react-native-button'
 
 class Login extends Component{
-	constructor(props){
+	constructor(props) {
 		super(props);
 		this.state = {
-			fadeAnim: new Animated.Value(0.5), // init opacity 0
+			// fadeAnim: new Animated.Value(0.5), // init opacity 0
+			email: '',
+			password: ''
 		}
 	}
-	componentDidMount() {
-		Animated.timing(          // Uses easing functions
-			this.state.fadeAnim,    // The value to drive
-			{toValue: 1}            // Configuration
-		).start();                // Don't forget start!
+	signIn(){
+		let email = this.refs.email.state.text;
+		let password =this.refs.password.state.text;
+		if(!!this.refs.email.state.text && !!this.refs.password.state.text){
+			this.props.signIn(email,password);
+		}
 	}
 	render(){
 		return(
-			<Animated.View style={[styles.container,{opacity: this.state.fadeAnim}]}>
-				<ScrollView>
-					<View style={styles.titleContainer}>
-						<Text style={styles.title}>
-							Welcome To Brenda!
-						</Text>
+			<ScrollView>
+				<View style={styles.titleContainer}>
+					<Text style={styles.title}>
+						Welcome To Brenda!
+					</Text>
+				</View>
+				<View style={styles.loginContainer}>
+					<TextField
+						dense={true}
+						label={'Email'}
+						highlightColor={'#ffffff'}
+						keyboardType={'default'}
+						textColor={'#ffffff'}
+						labelColor={'#ffffff'}
+						ref="email"
+					/>
+					<TextField
+						dense={true}
+						label={'Password'}
+						highlightColor={'#ffffff'}
+						keyboardType={'default'}
+						textColor={'#ffffff'}
+						labelColor={'#ffffff'}
+						secureTextEntry={true}
+						ref="password"
+					/>
+					<View style={styles.errorContainer}>
+						<Text style={styles.errorMessage}>{this.props.error}</Text>
 					</View>
-					<View style={styles.loginContainer}>
-						<TextField
-							dense={true}
-							label={'Username'}
-							highlightColor={'#ffffff'}
-							keyboardType={'default'}
-							textColor={'#ffffff'}
-							labelColor={'#ffffff'}
-						/>
-						<TextField
-							dense={true}
-							label={'Password'}
-							highlightColor={'#ffffff'}
-							keyboardType={'default'}
-							textColor={'#ffffff'}
-							labelColor={'#ffffff'}
-							secureTextEntry={true}
-						/>
-						<View style={styles.signIn}>
-							<Button text='Sign in' raised={true} overrides={overridesMain} />
-						</View>
-					</View>
-					<View style={styles.signupContainer}>
+					<View style={styles.signIn}>
 						<Button
-							text="Don't have an account? Sign Up!"
-							onPress={this.props.click}
-							raised={false}
-							overrides={overridesSec}/>
+							onPress={this.signIn.bind(this)}
+							style={styles.mainButton}
+							textStyle={{color: 'rgba(231, 65, 240, 1)'}}>
+							Sign in
+						</Button>
 					</View>
-				</ScrollView>
-			</Animated.View>
+				</View>
+				<View style={styles.signupContainer}>
+					<Button
+						style={styles.secondaryButton}
+						textStyle={{color: 'rgba(255, 255, 255, 0.8)'}}
+						onPress={this.props.click}>
+						Don't have an account? Sign Up!
+					</Button>
+				</View>
+			</ScrollView>
 		)
 		
 	}
@@ -98,9 +100,27 @@ const styles = StyleSheet.create({
 		marginTop:20
 	},
 	signupContainer:{
-		marginTop:110,
+		marginTop:100,
 		justifyContent:'flex-end'
 	},
+	errorContainer:{
+		marginTop:10,
+		alignItems:'center',
+	},
+	errorMessage:{
+		color:'#FF6161'
+	},
+	mainButton:{
+		backgroundColor: 'rgba(255, 255, 255, 1)',
+		borderWidth:1,
+		borderColor:'rgba(255, 255, 255, 1)'
+	},
+	secondaryButton:{
+		color: 'rgba(255, 255, 255, 0.8)',
+		backgroundColor: 'transparent',
+		borderWidth:0,
+		borderColor:'rgba(255, 255, 255, 1)'
+	}
 });
 
 export default Login

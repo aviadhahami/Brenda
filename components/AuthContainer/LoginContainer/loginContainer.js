@@ -9,23 +9,25 @@ import SignUp from './signUp'
 
 class LoginContainer extends Component{
 	constructor(props){
-		super(props)
+		super(props);
 		this.state = {
 			exist: true,
 		}
 	}
 	userHasAccount(){
-		this.setState({exist:true})
+		this.setState({exist:true});
+		this.props.clearErrors();
 	}
 	userDoesntHaveAccount(){
-		this.setState({exist:false})
+		this.setState({exist:false});
+		this.props.clearErrors();
 	}
 	render(){
 		return(
 			this.state.exist?
-				<Login click={this.userDoesntHaveAccount.bind(this)}/>
+				<Login error={this.props.error} signIn={this.props.signIn} click={this.userDoesntHaveAccount.bind(this)}/>
 				:
-				<SignUp click={this.userHasAccount.bind(this)}/>
+				<SignUp error={this.props.error} signUp={this.props.signUp} click={this.userHasAccount.bind(this)}/>
 		)
 	}
 }

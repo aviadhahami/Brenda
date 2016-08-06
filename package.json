@@ -1,16 +1,18 @@
 {
   "name": "Brenda",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "apsl-react-native-button": "^3.0.0",
+    "cartiv": "^0.2.0",
+    "firebase": "^3.2.1",
     "react": "15.2.1",
     "react-native": "0.30.0",
-    "cartiv": "^0.2.0",
     "react-native-linear-gradient": "^1.5.12",
-    "react-native-material-design": "^0.3.6",
+    "react-native-loading-spinner-overlay": "^0.3.0",
     "react-native-md-textinput": "^2.0.4"
   },
   "devDependencies": {
