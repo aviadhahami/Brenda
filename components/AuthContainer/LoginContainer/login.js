@@ -5,19 +5,10 @@
 
 import React, {Component} from 'react'
 import { Text, View, ScrollView, StyleSheet } from 'react-native'
-import { Button, Divider } from 'react-native-material-design'
+// import { Button, Divider } from 'react-native-material-design'
 import TextField from 'react-native-md-textinput'
 
-const overridesMain = {
-	textColor: '#E741F0',
-	backgroundColor: '#Ffffff',
-	rippleColor: '#E741F0'
-};
-const overridesSec = {
-	textColor: 'rgba(255, 255, 255, 0.8)',
-	backgroundColor: '#Ffffff',
-	rippleColor: '#E741F0'
-};
+import Button from 'apsl-react-native-button'
 
 class Login extends Component{
 	constructor(props) {
@@ -68,19 +59,20 @@ class Login extends Component{
 					</View>
 					<View style={styles.signIn}>
 						<Button
-							text='Sign in'
-							raised={true}
 							onPress={this.signIn.bind(this)}
-							overrides={overridesMain}
-						/>
+							style={styles.mainButton}
+							textStyle={{color: 'rgba(231, 65, 240, 1)'}}>
+							Sign in
+						</Button>
 					</View>
 				</View>
 				<View style={styles.signupContainer}>
 					<Button
-						text="Don't have an account? Sign Up!"
-						onPress={this.props.click}
-						raised={false}
-						overrides={overridesSec}/>
+						style={styles.secondaryButton}
+						textStyle={{color: 'rgba(255, 255, 255, 0.8)'}}
+						onPress={this.props.click}>
+						Don't have an account? Sign Up!
+					</Button>
 				</View>
 			</ScrollView>
 		)
@@ -118,6 +110,17 @@ const styles = StyleSheet.create({
 	},
 	errorMessage:{
 		color:'#FF6161'
+	},
+	mainButton:{
+		backgroundColor: 'rgba(255, 255, 255, 1)',
+		borderWidth:1,
+		borderColor:'rgba(255, 255, 255, 1)'
+	},
+	secondaryButton:{
+		color: 'rgba(255, 255, 255, 0.8)',
+		backgroundColor: 'transparent',
+		borderWidth:0,
+		borderColor:'rgba(255, 255, 255, 1)'
 	}
 });
 
