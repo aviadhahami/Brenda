@@ -10,12 +10,6 @@ import TextField from 'react-native-md-textinput'
 
 import Button from 'apsl-react-native-button'
 
-const overridesMain = {
-	textColor: '#E741F0',
-	backgroundColor: '#Ffffff',
-	rippleColor: '#E741F0'
-};
-
 class Login extends Component{
 	constructor(props) {
 		super(props);
@@ -65,16 +59,18 @@ class Login extends Component{
 					</View>
 					<View style={styles.signIn}>
 						<Button
-							text='Sign in'
-							raised={true}
 							onPress={this.signIn.bind(this)}
-							overrides={overridesMain}
-						/>
+							style={styles.mainButton}
+							textStyle={{color: 'rgba(231, 65, 240, 1)'}}
+						>
+							Sign in
+						</Button>
 					</View>
 				</View>
 				<View style={styles.signupContainer}>
 					<Button
-						style={styles.button}
+						style={styles.secondaryButton}
+						textStyle={{color: 'rgba(255, 255, 255, 0.8)'}}
 						onPress={this.props.click}>
 						Don't have an account? Sign Up!
 					</Button>
@@ -116,9 +112,16 @@ const styles = StyleSheet.create({
 	errorMessage:{
 		color:'#FF6161'
 	},
-	button:{
-		textColor: 'rgba(255, 255, 255, 0.8)',
-		backgroundColor: '#Ffffff',
+	mainButton:{
+		backgroundColor: 'rgba(255, 255, 255, 1)',
+		borderWidth:1,
+		borderColor:'rgba(255, 255, 255, 1)'
+	},
+	secondaryButton:{
+		color: 'rgba(255, 255, 255, 0.8)',
+		backgroundColor: 'transparent',
+		borderWidth:0,
+		borderColor:'rgba(255, 255, 255, 1)'
 	}
 });
 
