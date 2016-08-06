@@ -76,16 +76,16 @@ let authStore = createStore(
 						isAuth:false,
 						error:false
 						
-					})
+					});
 				}
 			});
 			this.setState({loading:false});
 			
 		},
 		clearErrors(){
-		this.setState({
-			error:false
-		})
+			this.setState({
+				error:false
+			});
 		},
 		signUp(displayName, email, password){
 			console.log('create user',email,password);
