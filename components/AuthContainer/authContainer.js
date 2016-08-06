@@ -27,6 +27,7 @@ class AuthContainer extends Component{
 					animating={this.state.animating}
 					style={[styles.centering, {height: 80}]}
 					size="large"
+					color="black"
 				/>
 				:
 				!this.state.isAuth?
