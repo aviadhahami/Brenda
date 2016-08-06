@@ -6,6 +6,7 @@ import React, {Component} from 'react'
 import {Text, StyleSheet, ActivityIndicator, View} from 'react-native'
 import LoginContainer from './LoginContainer/loginContainer'
 import LinearGradient from 'react-native-linear-gradient'
+import Spinner from 'react-native-loading-spinner-overlay';
 
 
 import authStore from './../../stores/AuthStore';
@@ -22,31 +23,23 @@ class AuthContainer extends Component{
 		API.auth.initFireBaseListener();
 	}
 	render(){
+		let spinner;
+		if(this.state.loading){
+			spinner = <Text>Loading..</Text>//<Spinner visible={true}/>
+		}
 		return (
-			this.state.loading?
-				<View style={[styles.centering, {height: 450}]}>
-					<ActivityIndicator
-						animating={this.state.animating}
-						size="large"
-						color="black"
-					/>
-					<Text>
-						Loading..
-					</Text>
-				</View>
-				
+			this.state.isAuth?
+				// Is authenticated
+				<Text>
+					welcome {this.state.user.displayName}
+				</Text>
 				:
-				this.state.isAuth?
+				// Not authenticated
+				<LinearGradient colors={gradientColor} style={[styles.container]}>
 					
-					// Is authenticated
-					<Text>
-						welcome {this.state.user.displayName}
-					</Text>
-					:
-					// Not authenticated
-					<LinearGradient colors={gradientColor} style={[styles.container]}>
-						<LoginContainer error={this.state.error} clearErrors={API.auth.clearErrors.bind(this)} signIn={API.auth.signIn.bind(this)} signUp={API.auth.signUp.bind(this)}/>
-					</LinearGradient>
+					<LoginContainer error={this.state.error} clearErrors={API.auth.clearErrors.bind(this)} signIn={API.auth.signIn.bind(this)} signUp={API.auth.signUp.bind(this)}/>
+					{spinner}
+				</LinearGradient>
 		)
 	}
 }
