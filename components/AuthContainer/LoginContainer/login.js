@@ -4,7 +4,7 @@
 
 
 import React, {Component} from 'react'
-import { Text, View, ScrollView, StyleSheet,Animated } from 'react-native'
+import { Text, View, ScrollView, StyleSheet } from 'react-native'
 import { Button, Divider } from 'react-native-material-design'
 import TextField from 'react-native-md-textinput'
 
@@ -20,78 +20,69 @@ const overridesSec = {
 };
 
 class Login extends Component{
-	constructor(props){
+	constructor(props) {
 		super(props);
 		this.state = {
-			fadeAnim: new Animated.Value(0.5), // init opacity 0
-			email:'',
-			password:''
+			// fadeAnim: new Animated.Value(0.5), // init opacity 0
+			email: '',
+			password: ''
 		}
 	}
-	componentDidMount() {
-		Animated.timing(          // Uses easing functions
-			this.state.fadeAnim,    // The value to drive
-			{toValue: 1}            // Configuration
-		).start();                // Don't forget start!
-	}
-	
 	signIn(){
-		let email = this.refs.email.state.text
-		let password =this.refs.password.state.text
+		let email = this.refs.email.state.text;
+		let password =this.refs.password.state.text;
 		if(!!this.refs.email.state.text && !!this.refs.password.state.text){
 			this.props.signIn(email,password);
 		}
 	}
 	render(){
 		return(
-			<Animated.View style={[styles.container,{opacity: this.state.fadeAnim}]}>
-				<ScrollView>
-					<View style={styles.titleContainer}>
-						<Text style={styles.title}>
-							Welcome To Brenda!
-						</Text>
+			<ScrollView>
+				<View style={styles.titleContainer}>
+					<Text style={styles.title}>
+						Welcome To Brenda!
+					</Text>
+				</View>
+				<View style={styles.loginContainer}>
+					<TextField
+						dense={true}
+						label={'Email'}
+						highlightColor={'#ffffff'}
+						keyboardType={'default'}
+						textColor={'#ffffff'}
+						labelColor={'#ffffff'}
+						ref="email"
+					/>
+					<TextField
+						dense={true}
+						label={'Password'}
+						highlightColor={'#ffffff'}
+						keyboardType={'default'}
+						textColor={'#ffffff'}
+						labelColor={'#ffffff'}
+						secureTextEntry={true}
+						ref="password"
+					/>
+					<View style={styles.errorContainer}>
+						<Text style={styles.errorMessage}>{this.props.error}</Text>
 					</View>
-					<View style={styles.loginContainer}>
-						<TextField
-							dense={true}
-							label={'Email'}
-							highlightColor={'#ffffff'}
-							keyboardType={'default'}
-							textColor={'#ffffff'}
-							labelColor={'#ffffff'}
-							ref="email"
-						/>
-						<TextField
-							dense={true}
-							label={'Password'}
-							highlightColor={'#ffffff'}
-							keyboardType={'default'}
-							textColor={'#ffffff'}
-							labelColor={'#ffffff'}
-							secureTextEntry={true}
-							ref="password"
-						/>
-						<View style={styles.errorContainer}>
-							<Text style={styles.errorMessage}>{this.props.error}</Text>
-						</View>
-						<View style={styles.signIn}>
-							<Button
-								text='Sign in'
-								raised={true}
-								onPress={this.signIn.bind(this)}
-								overrides={overridesMain}
-							/>
-						</View>
-					</View>
-					<View style={styles.signupContainer}>
+					<View style={styles.signIn}>
 						<Button
-							text="Don't have an account? Sign Up!"
-							onPress={this.props.click}
-							raised={false}
-							overrides={overridesSec}/>
+							text='Sign in'
+							raised={true}
+							onPress={this.signIn.bind(this)}
+							overrides={overridesMain}
+						/>
 					</View>
-				</ScrollView>
-			</Animated.View>
+				</View>
+				<View style={styles.signupContainer}>
+					<Button
+						text="Don't have an account? Sign Up!"
+						onPress={this.props.click}
+						raised={false}
+						overrides={overridesSec}/>
+				</View>
+			</ScrollView>
 		)
 		
 	}
