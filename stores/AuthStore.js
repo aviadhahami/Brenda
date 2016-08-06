@@ -88,7 +88,9 @@ let authStore = createStore(
 					}).then((payload)=>{
 						console.log('name change PL',payload);
 						// Update successful.
-						
+						this.setState({
+							user: sanitizeUserData(firebase.auth().currentUser);
+						})
 					}, function(error) {
 						// An error happened.
 						console.log('error updating name', error);
@@ -102,7 +104,6 @@ let authStore = createStore(
 			});
 			
 		},
-		
 		signIn(email, password){
 			console.log('signin',email, password);
 			this.setState({loading:true});
