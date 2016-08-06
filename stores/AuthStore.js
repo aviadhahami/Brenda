@@ -88,6 +88,7 @@ let authStore = createStore(
 			});
 		},
 		signUp(displayName, email, password){
+			this.setState({loading:true});
 			console.log('create user',email,password);
 			firebaseRef.auth().createUserWithEmailAndPassword(email, password)
 				.then((payload)=>{
@@ -100,9 +101,11 @@ let authStore = createStore(
 				this.setState({error:errorMessage});
 				console.log('error', error);
 			});
+			this.setState({loading:false});
 			
 		},
 		updateUserInfo(obj){
+			this.setState({loading:true});
 			let user = firebase.auth().currentUser;
 			let purified = {
 				displayName: obj['displayName'] || user.displayName,
@@ -120,6 +123,7 @@ let authStore = createStore(
 				this.setState({error:error.message});
 				console.log('error updating name', error);
 			});
+			this.setState({loading:false});
 		},
 		signIn(email, password){
 			console.log('signin',email, password);
