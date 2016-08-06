@@ -29,72 +29,67 @@ class SignUp extends Component{
 	}
 	render(){
 		return(
-				<ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-					<View style={styles.titleContainer}>
-						<Text style={styles.title}>
-							Sign up to use Brenda!
-						</Text>
+			<ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+				<View style={styles.titleContainer}>
+					<Text style={styles.title}>
+						Sign up to use Brenda!
+					</Text>
+				</View>
+				<View style={styles.loginContainer}>
+					<TextField
+						dense={true}
+						label={'Display name'}
+						highlightColor={'#ffffff'}
+						keyboardType={'default'}
+						textColor={'#ffffff'}
+						labelColor={'#ffffff'}
+						ref="displayName"
+					/>
+					<TextField
+						dense={true}
+						label={'Email'}
+						highlightColor={'#ffffff'}
+						keyboardType={'email-address'}
+						textColor={'#ffffff'}
+						labelColor={'#ffffff'}
+						ref="email"
+					/>
+					<TextField
+						dense={true}
+						label={'Password'}
+						highlightColor={'#ffffff'}
+						keyboardType={'default'}
+						textColor={'#ffffff'}
+						labelColor={'#ffffff'}
+						secureTextEntry={true}
+						ref="password"
+					/>
+					<View style={styles.errorContainer}>
+						<Text style={styles.errorMessage}>{this.props.error}</Text>
 					</View>
-					<View style={styles.loginContainer}>
-						<TextField
-							dense={true}
-							label={'Display name'}
-							highlightColor={'#ffffff'}
-							keyboardType={'default'}
-							textColor={'#ffffff'}
-							labelColor={'#ffffff'}
-							ref="displayName"
-						/>
-						<TextField
-							dense={true}
-							label={'Email'}
-							highlightColor={'#ffffff'}
-							keyboardType={'email-address'}
-							textColor={'#ffffff'}
-							labelColor={'#ffffff'}
-							ref="email"
-						/>
-						<TextField
-							dense={true}
-							label={'Password'}
-							highlightColor={'#ffffff'}
-							keyboardType={'default'}
-							textColor={'#ffffff'}
-							labelColor={'#ffffff'}
-							secureTextEntry={true}
-							ref="password"
-						/>
-						<View style={styles.errorContainer}>
-							<Text style={styles.errorMessage}>{this.props.error}</Text>
-						</View>
-					</View>
-					<View style={styles.buttonContainer}>
-						<Button
-							text='Sign up'
-							raised={true}
-							onPress={this.signUp.bind(this)}
-							overrides={overrides}/>
-					</View>
-
-					<View style={styles.signupContainer}>
-						<Button
-							text='Already have an account? Sign In!'
-							onPress={this.props.click}
-							raised={false}
-							overrides={overridesSec}/>
-					</View>
-				</ScrollView>
+				</View>
+				<View style={styles.buttonContainer}>
+					<Button
+						style={styles.button}
+						onPress={this.signUp.bind(this)}
+					>
+						Sign up
+					</Button>
+				</View>
+				<View style={styles.signupContainer}>
+					<Button
+						text='Already have an account? Sign In!'
+						onPress={this.props.click}
+						raised={false}
+						overrides={overridesSec}/>
+				</View>
+			</ScrollView>
 		)
 	}
-
+	
 }
 var overrides = {
 	textColor: '#E741F0',
-	backgroundColor: '#Ffffff',
-	rippleColor: '#E741F0'
-};
-const overridesSec = {
-	textColor: 'rgba(255, 255, 255, 0.8)',
 	backgroundColor: '#Ffffff',
 	rippleColor: '#E741F0'
 };
@@ -133,6 +128,10 @@ const styles = StyleSheet.create({
 	},
 	errorMessage:{
 		color:'#FF6161'
+	},
+	button:{
+		textColor: 'rgba(255, 255, 255, 0.8)',
+		backgroundColor: '#Ffffff',
 	}
 });
 
