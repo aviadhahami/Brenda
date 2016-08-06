@@ -6,6 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "apsl-react-native-button": "^3.0.0",
     "cartiv": "^0.2.0",
     "firebase": "^3.2.1",
     "react": "15.2.1",
