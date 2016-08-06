@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
 		marginTop:20
 	},
 	signupContainer:{
-		marginTop:110,
+		marginTop:100,
 		justifyContent:'flex-end'
 	},
 	errorContainer:{
