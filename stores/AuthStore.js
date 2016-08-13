@@ -4,16 +4,6 @@
 import {createStore} from 'cartiv';
 import API from './API'
 import * as firebase from 'firebase';
-// FireBase.createUser({
-// 	email    : "bobtony@firebase.com",
-// 	password : "correcthorsebatterystaple"
-// }, function(error, userData) {
-// 	if (error) {
-// 		console.log("Error creating user:", error);
-// 	} else {
-// 		console.log("Successfully created user account with uid:", userData.uid);
-// 	}
-// });
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDvHAflY3tpYWmqL3tYxTUZ29TDV17mHUM",
@@ -130,11 +120,10 @@ let authStore = createStore(
 			this.setState({loading:true});
 			firebase.auth().signInWithEmailAndPassword(email, password).then((payload)=>{
 				// Observer should notify about login so basically nothing...
-				
 			}).catch((error)=> {
 				// Handle Errors here.
-				var errorCode = error.code;
-				var errorMessage = error.message;
+				let errorCode = error.code;
+				let errorMessage = error.message;
 				// ...
 				this.setState({error:error.message});
 			}).then(()=>{
