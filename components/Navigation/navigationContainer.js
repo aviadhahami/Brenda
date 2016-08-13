@@ -33,10 +33,16 @@ class NavigationContainer extends Component{
 		return <Text style={styles.navTitle}>{route.title}</Text>
 	}
 	_leftNavButton(route, navigator, index, navState){
-		return <Text style={styles.leftNavButton}>Left</Text>
+		return
+		<View style={styles.navButtonContainer}>
+			<Text style={styles.leftNavButton}>Left</Text>
+		</View>
 	}
 	_rightNavButtonConfig(route, navigator, index, navState){
-		return <Text style={styles.rightNavButton}>Right</Text>
+		return
+		<View style={styles.navButtonContainer}>
+			<Text style={styles.rightNavButton}>Right</Text>
+		</View>
 	}
 	
 	render(){
@@ -53,6 +59,8 @@ class NavigationContainer extends Component{
 
 const styles= StyleSheet.create({
 	navigationBar:{
+		flex:1,
+		flexDirection:'row',
 		backgroundColor: '#D81B60',
 		height: 60,
 		shadowColor: 'black',
@@ -62,21 +70,23 @@ const styles= StyleSheet.create({
 		borderBottomRightRadius:2
 	},
 	leftNavButton:{
-		width:50,
-		backgroundColor:'blue'
 	},
 	rightNavButton:{
-		width:50,
+	},
+	navButtonContainer:{
+		flex:1,
 		backgroundColor:'yellow'
 	},
 	navTitle:{
-		margin:10,
-		fontWeight:'400',
-		fontSize:24,
-		color:'white',
-		width:200,
+		flex:1,
+		alignSelf:'stretch',
 		backgroundColor:'black',
-		textAlign:'center'
+		marginTop:10,
+		fontWeight:'400',
+		fontSize:26,
+		color:'white',
+		textAlign:'center',
+		elevation:2,
 	}
 });
 export default NavigationContainer
