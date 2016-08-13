@@ -50,7 +50,7 @@ let authStore = createStore(
 		},
 		initFireBaseListener(){
 			this.setState({loading:true});
-			firebase.auth().onAuthStateChanged((user)=>{
+			firebaseRef.auth().onAuthStateChanged((user)=>{
 				if (user) {
 					// User is signed in.
 					let sanitizedUser = sanitizeUserData(user);
