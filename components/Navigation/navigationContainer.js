@@ -17,7 +17,7 @@ class NavigationContainer extends Component{
 	_sceneLogic(route, navigator){
 			console.log('route', route);
 			console.log('navigator', navigator);
-			return <Text>Hello {route.title}!</Text>
+			return route.component
 	}
 	render(){
 		return(
