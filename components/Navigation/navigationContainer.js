@@ -15,8 +15,6 @@ class NavigationContainer extends Component{
 		super(props)
 	}
 	_sceneLogic(route, navigator){
-			console.log('route', route);
-			console.log('navigator', navigator);
 			return route.component
 	}
 	render(){
@@ -24,7 +22,6 @@ class NavigationContainer extends Component{
 			<Navigator
 				initialRoute={componentsConfig.getInitialComponent}
 				renderScene={this._sceneLogic.bind(this)}
-				style={{padding: 100}}
 			/>
 		)
 	}

@@ -2,6 +2,7 @@
  * Created by aviad on 8/13/2016.
  */
 
+import React from 'react'
 
 import PetSelection from './../PetSelection/PetSelection'
 class componentsConfig{

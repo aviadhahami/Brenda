@@ -3,14 +3,14 @@
  */
 
 
-import React, { Componenet } from 'react'
+import React, { Component } from 'react'
 import {Text} from 'react-native'
 
-class PetSelection extends Componenet{
-	
+class PetSelection extends Component{
 	constructor(props){
 		super(props)
 	}
+	
 	render(){
 		return(
 			<Text>PetSelection</Text>
