@@ -3,9 +3,10 @@
  */
 
 import React from 'react'
+import Route from './Route'
 
 import PetSelection from './../PetSelection/PetSelection'
-let initialRoute = { component: <PetSelection />, title:'Pet Selection', index: 0 }
+let initialRoute = new Route(0,'Pet Selection', <PetSelection />);
 
 class componentsConfig{
 	static get getInitialComponent(){
