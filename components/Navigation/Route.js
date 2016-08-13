@@ -5,10 +5,15 @@
 import React from 'react'
 
 class Route{
-	constructor(index,title,component){
+	constructor(index,title,name,component){
 		this._index = index;
 		this._title = title;
+		this._name = name;
 		this._component = component;
+		
+	}
+	get name(){
+		return this._name;
 	}
 	get index(){
 		return this._index;

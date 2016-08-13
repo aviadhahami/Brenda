@@ -6,7 +6,7 @@ import React from 'react'
 import Route from './Route'
 
 import PetSelection from './../PetSelection/PetSelection'
-let initialRoute = new Route(0,'Pet Selection', <PetSelection />);
+let initialRoute = new Route(0,'Pet Selection','petSelection', <PetSelection />);
 
 class componentsConfig{
 	static get getInitialComponent(){

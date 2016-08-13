@@ -8,7 +8,9 @@ import {
 	Text,
 	Navigator,
 	StyleSheet} from 'react-native'
+import {Button} from 'apsl-react-native-button'
 import componentsConfig from './componentsConfig'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 class NavigationContainer extends Component{
 	
@@ -38,22 +40,22 @@ class NavigationContainer extends Component{
 	}
 	_leftNavButton(route, navigator, index, navState){
 		let res;
-		if(route.index == 1){
+		if(route.name == 'petSelection'){
 			// Main route
-			
+			res = (<Icon name="bars" size={30} color="white" />)
 		}else{
-			res =(<View style={styles.navButtonContainer}>
-				<Text style={styles.leftNavButton}>Left</Text>
-			</View>)
+			res =(<Text style={styles.leftNavButton}>Left</Text>)
 		}
-		return res;
+		return <View style={styles.navButtonContainer}>{res}</View>;
 	}
 	_rightNavButtonConfig(route, navigator, index, navState){
-		return(
-			<View style={styles.navButtonContainer}>
-				<Text style={styles.rightNavButton}>Right</Text>
-			</View>
-		)
+		let res;
+		if(route.name == 'petSelection'){
+			res = <Icon name="plus-circle" size={30} color="white" />
+		}else{
+			<Text style={styles.rightNavButton}>Right</Text>
+		}
+		return <View style={styles.navButtonContainer}>{res}</View>;
 	}
 	
 	render(){
@@ -90,16 +92,17 @@ const styles= StyleSheet.create({
 	},
 	navButtonContainer:{
 		flex:1,
-		backgroundColor:'blue'
+		width:50,
+		alignItems:'center',
+		justifyContent:'center'
 	},
 	navTitleContainer:{
 		flex:1,
 		flexDirection:'row',
 		width:220,
-		backgroundColor:'black',
 		justifyContent: 'center',
 		// alignItems: 'center',
-		marginTop:10,
+		marginTop:5,
 	},
 	navTitle:{
 		textAlign:'center',
