@@ -19,6 +19,7 @@ class PetSelection extends Component{
 	render(){
 		return(
 			<Drawer
+				open={true}
 				type="static"
 				content={<ControlPanel />}
 				openDrawerOffset={100}
@@ -28,7 +29,6 @@ class PetSelection extends Component{
 				<ScrollView style={{backgroundColor:'#424242', marginTop:60,height:height}}>
 					<Text>PetSelection</Text>
 				</ScrollView>
-				
 			</Drawer>
 		)
 	}
@@ -36,21 +36,15 @@ class PetSelection extends Component{
 }
 
 function leftButtonFunc(route, navigator, index, navState) {
-	let that = this;
-	return (
-	<TouchableHighlight onPress={that._drawer.open.bind(this)}>
-		<Icon name="bars" size={30} color="white"></Icon>
-	</TouchableHighlight>
-)
+	return(
+		<TouchableHighlight onPress={()=>{drawerOpen = true;}}>
+			<Icon name="bars" size={30} color="white"></Icon>
+		</TouchableHighlight>
+	)
 }
 function rightButtonFunc(route, navigator, index, navState) {
 	return <Icon name="plus" size={30} color="white"></Icon>
 }
-const styles = StyleSheet.create({
-	navBarStyle:{
-		backgroundColor:'green'
-	}
-});
 
 const drawerStyles = {
 	drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
