@@ -25,13 +25,6 @@ class Route{
 	get component(){
 		return this._component
 	}
-	// generateLeftButton(route, navigator, index, navState) {
-	//
-	// }
-	//
-	// generateRightButton(route, navigator, index, navState){
-	//
-	// }
 }
 
 export default Route;
