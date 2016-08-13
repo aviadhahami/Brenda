@@ -36,4 +36,3 @@ const styles = StyleSheet.create({
 });
 let petSelectionRoute = new Route(0,'Pet Selection','petSelection', <PetSelection />,leftButtonFunc, rightButtonFunc);
 export {petSelectionRoute};
-
