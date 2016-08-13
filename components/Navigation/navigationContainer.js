@@ -37,16 +37,11 @@ class NavigationContainer extends Component{
 		)
 	}
 	_leftNavButton(route, navigator, index, navState){
-		let res;
-		if(route.index == 1){
-			// Main route
-			
-		}else{
-			res =(<View style={styles.navButtonContainer}>
-					<Text style={styles.leftNavButton}>Left</Text>
-				</View>)
-		}
-		return res;
+		return(
+			<View style={styles.navButtonContainer}>
+				<Text style={styles.leftNavButton}>Left</Text>
+			</View>
+		)
 	}
 	_rightNavButtonConfig(route, navigator, index, navState){
 		return(
@@ -96,7 +91,7 @@ const styles= StyleSheet.create({
 		flex:1,
 		flexDirection:'row',
 		width:220,
-		// backgroundColor:'black',
+		backgroundColor:'black',
 		justifyContent: 'center',
 		// alignItems: 'center',
 		marginTop:10,
