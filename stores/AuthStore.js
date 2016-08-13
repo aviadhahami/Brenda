@@ -79,7 +79,7 @@ let authStore = createStore(
 		signUp(displayName, email, password){
 			this.setState({loading:true});
 			console.log('create user',email,password);
-			firebase.auth().createUserWithEmailAndPassword(email, password)
+			firebaseRef.auth().createUserWithEmailAndPassword(email, password)
 				.then((payload)=>{
 					this.updateUserInfo({displayName: displayName});
 				}).catch((error) =>{
