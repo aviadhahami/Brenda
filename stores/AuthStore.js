@@ -50,7 +50,7 @@ let authStore = createStore(
 		},
 		initFireBaseListener(){
 			this.setState({loading:true});
-			firebaseRef.auth().onAuthStateChanged((user)=>{
+			firebase.auth().onAuthStateChanged((user)=>{
 				if (user) {
 					// User is signed in.
 					let sanitizedUser = sanitizeUserData(user);
@@ -120,11 +120,10 @@ let authStore = createStore(
 			this.setState({loading:true});
 			firebase.auth().signInWithEmailAndPassword(email, password).then((payload)=>{
 				// Observer should notify about login so basically nothing...
-				
 			}).catch((error)=> {
 				// Handle Errors here.
-				var errorCode = error.code;
-				var errorMessage = error.message;
+				let errorCode = error.code;
+				let errorMessage = error.message;
 				// ...
 				this.setState({error:error.message});
 			}).then(()=>{
