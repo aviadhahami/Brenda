@@ -8,10 +8,7 @@ import {Text} from 'react-native'
 
 class PetSelection extends Component{
 	constructor(props){
-		super(props)
-	}
-	get title(){
-		return 'Pet Selection'
+		super(props);
 	}
 	render(){
 		return(

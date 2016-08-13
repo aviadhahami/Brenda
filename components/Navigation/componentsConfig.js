@@ -5,7 +5,7 @@
 import React from 'react'
 
 import PetSelection from './../PetSelection/PetSelection'
-let initialRoute = { component: <PetSelection />, index: 0 }
+let initialRoute = { component: <PetSelection />, title:'Pet Selection', index: 0 }
 
 class componentsConfig{
 	static get getInitialComponent(){
