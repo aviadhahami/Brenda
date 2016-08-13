@@ -11,7 +11,7 @@ class Route{
 		this._name = name;
 		this._component = component;
 		this.generateLeftButton = generateLeftButtonFunc;
-		this.generateRightButton = generateRightButtonFunc
+		this.generateRightButton = generateRightButtonFunc;
 	}
 	get name(){
 		return this._name;
@@ -23,7 +23,7 @@ class Route{
 		return this._title;
 	}
 	get component(){
-		return this._component
+		return this._component;
 	}
 }
 

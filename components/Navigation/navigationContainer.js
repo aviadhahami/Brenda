@@ -10,9 +10,9 @@ import {
 	StyleSheet} from 'react-native'
 import {Button} from 'apsl-react-native-button'
 import componentsConfig from './componentsConfig'
+import navBarGlobalStyle from './../../stores/navBarGlobalStyle'
 
 class NavigationContainer extends Component{
-	
 	constructor(props){
 		super(props)
 	}
@@ -26,11 +26,10 @@ class NavigationContainer extends Component{
 				RightButton: this._rightNavButtonConfig.bind(this),
 				Title: this._titleNavConfig.bind(this)
 			}}
-			style={styles.navigationBar}
+			style={[styles.navigationBar, navBarGlobalStyle]}
 		/>
 	}
 	_titleNavConfig(route, navigator, index, navState){
-		console.log(route);
 		return (
 			<View style={styles.navTitleContainer}>
 				<Text style={styles.navTitle}>{route.title}</Text>
