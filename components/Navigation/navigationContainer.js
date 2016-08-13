@@ -73,11 +73,10 @@ class NavigationContainer extends Component{
 const styles= StyleSheet.create({
 	navigationBar:{
 		flex:1,
-		flexDirection:'row',
+		// flexDirection:'row',
 		padding:0,
-		margin:0,
 		backgroundColor: '#D81B60',
-		height: 60,
+		// height: 60,
 		shadowColor: 'black',
 		shadowOpacity: 1.0,
 		elevation:8,

@@ -4,7 +4,7 @@
 
 
 import React, { Component } from 'react'
-import {Text} from 'react-native'
+import {View, Text} from 'react-native'
 
 class PetSelection extends Component{
 	constructor(props){
@@ -12,7 +12,9 @@ class PetSelection extends Component{
 	}
 	render(){
 		return(
-			<Text>PetSelection</Text>
+			<View style={{backgroundColor:'green', marginTop:55,height:300}}>
+				<Text>PetSelection</Text>
+			</View>
 		)
 	}
 	
