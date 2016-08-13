@@ -10,7 +10,6 @@ import {
 	StyleSheet} from 'react-native'
 import {Button} from 'apsl-react-native-button'
 import componentsConfig from './componentsConfig'
-import navBarGlobalStyle from './../../stores/navBarGlobalStyle'
 
 class NavigationContainer extends Component{
 	constructor(props){
