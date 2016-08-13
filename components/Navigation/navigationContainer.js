@@ -10,7 +10,6 @@ import {
 	StyleSheet} from 'react-native'
 import {Button} from 'apsl-react-native-button'
 import componentsConfig from './componentsConfig'
-import Icon from 'react-native-vector-icons/FontAwesome'
 
 class NavigationContainer extends Component{
 	
@@ -39,23 +38,10 @@ class NavigationContainer extends Component{
 		)
 	}
 	_leftNavButton(route, navigator, index, navState){
-		let res;
-		if(route.name == 'petSelection'){
-			// Main route
-			res = (<Icon name="bars" size={30} color="white" />)
-		}else{
-			res =(<Text style={styles.leftNavButton}>Left</Text>)
-		}
-		return <View style={styles.navButtonContainer}>{res}</View>;
+		return <View style={styles.navButtonContainer}>{route.generateLeftButton(route, navigator, index, navState)}</View>
 	}
 	_rightNavButtonConfig(route, navigator, index, navState){
-		let res;
-		if(route.name == 'petSelection'){
-			res = <Icon name="plus-circle" size={30} color="white" />
-		}else{
-			<Text style={styles.rightNavButton}>Right</Text>
-		}
-		return <View style={styles.navButtonContainer}>{res}</View>;
+		return <View style={styles.navButtonContainer}>{route.generateRightButton(route, navigator, index, navState)}</View>
 	}
 	
 	render(){
@@ -76,7 +62,7 @@ const styles= StyleSheet.create({
 		// flexDirection:'row',
 		padding:0,
 		backgroundColor: '#D81B60',
-		// height: 60,
+		height: 61,
 		shadowColor: 'black',
 		shadowOpacity: 1.0,
 		elevation:8,
