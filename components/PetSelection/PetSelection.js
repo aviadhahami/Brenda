@@ -8,15 +8,10 @@ import {ScrollView, Text, StyleSheet, Dimensions} from 'react-native'
 import Route from './../Navigation/Route'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-import navBarGlobalStyle from './../../stores/navBarGlobalStyle'
-
 let {height} = Dimensions.get('window');
 class PetSelection extends Component{
 	constructor(props){
 		super(props);
-	}
-	componentWillMount(){
-		navBarGlobalStyle.set(styles.navBarStyle);
 	}
 	render(){
 		return(
@@ -36,7 +31,7 @@ function rightButtonFunc(route, navigator, index, navState) {
 }
 const styles = StyleSheet.create({
 	navBarStyle:{
-		backgroundColor:'black'
+		backgroundColor:'green'
 	}
 });
 let petSelectionRoute = new Route(0,'Pet Selection','petSelection', <PetSelection />,leftButtonFunc, rightButtonFunc);

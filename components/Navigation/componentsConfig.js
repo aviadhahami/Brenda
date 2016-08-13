@@ -3,7 +3,6 @@
  */
 
 import React from 'react'
-import Route from './Route'
 import {petSelectionRoute} from './../PetSelection/PetSelection'
 
 let initialRoute = petSelectionRoute;

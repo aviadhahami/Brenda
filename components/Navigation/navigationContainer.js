@@ -26,7 +26,7 @@ class NavigationContainer extends Component{
 				RightButton: this._rightNavButtonConfig.bind(this),
 				Title: this._titleNavConfig.bind(this)
 			}}
-			style={[styles.navigationBar, navBarGlobalStyle]}
+			style={styles.navigationBar}
 		/>
 	}
 	_titleNavConfig(route, navigator, index, navState){
