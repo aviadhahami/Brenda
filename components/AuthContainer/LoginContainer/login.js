@@ -27,7 +27,7 @@ class Login extends Component{
 	}
 	render(){
 		return(
-			<ScrollView>
+			<ScrollView showsVerticalScrollIndicator={false}>
 				<View style={styles.titleContainer}>
 					<Text style={styles.title}>
 						Welcome To Brenda!

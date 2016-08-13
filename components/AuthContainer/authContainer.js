@@ -7,7 +7,7 @@ import {Text, StyleSheet, ActivityIndicator, View} from 'react-native'
 import LoginContainer from './LoginContainer/loginContainer'
 import LinearGradient from 'react-native-linear-gradient'
 import Spinner from 'react-native-loading-spinner-overlay';
-
+import NavigationContainer from './../Navigation/navigationContainer'
 
 import authStore from './../../stores/AuthStore';
 import API from './../../stores/API'
@@ -30,9 +30,7 @@ class AuthContainer extends Component{
 		return (
 			this.state.isAuth?
 				// Is authenticated
-				<Text>
-					welcome {this.state.user.displayName}
-				</Text>
+				<NavigationContainer user={this.state.user}/>
 				:
 				// Not authenticated
 				
