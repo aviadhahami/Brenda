@@ -15,12 +15,14 @@ class NavigationContainer extends Component{
 		super(props)
 	}
 	_sceneLogic(route, navigator){
-			return route.component
+		console.log(navigator);
+		return route.component
 	}
 	render(){
 		return(
 			<Navigator
 				initialRoute={componentsConfig.getInitialComponent}
+				initialRouteStack={componentsConfig.getComponents}
 				renderScene={this._sceneLogic.bind(this)}
 			/>
 		)

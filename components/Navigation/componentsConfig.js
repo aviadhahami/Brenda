@@ -5,13 +5,15 @@
 import React from 'react'
 
 import PetSelection from './../PetSelection/PetSelection'
+let initialRoute = { component: <PetSelection />, index: 0 }
+
 class componentsConfig{
 	static get getInitialComponent(){
-		return { title: 'Awesome Scene', index: 0, component: <PetSelection /> }
+		return initialRoute
 	}
 	static get getComponents(){
 		return [
-			
+			initialRoute,
 		]
 	}
 }

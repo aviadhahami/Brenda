@@ -10,7 +10,9 @@ class PetSelection extends Component{
 	constructor(props){
 		super(props)
 	}
-	
+	get title(){
+		return 'Pet Selection'
+	}
 	render(){
 		return(
 			<Text>PetSelection</Text>
