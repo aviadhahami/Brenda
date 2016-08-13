@@ -30,19 +30,25 @@ class NavigationContainer extends Component{
 	}
 	_titleNavConfig(route, navigator, index, navState){
 		console.log(route);
-		return <Text style={styles.navTitle}>{route.title}</Text>
+		return (
+			<View style={styles.navTitleContainer}>
+				<Text style={styles.navTitle}>{route.title}</Text>
+			</View>
+		)
 	}
 	_leftNavButton(route, navigator, index, navState){
-		return
-		<View style={styles.navButtonContainer}>
-			<Text style={styles.leftNavButton}>Left</Text>
-		</View>
+		return(
+			<View style={styles.navButtonContainer}>
+				<Text style={styles.leftNavButton}>Left</Text>
+			</View>
+		)
 	}
 	_rightNavButtonConfig(route, navigator, index, navState){
-		return
-		<View style={styles.navButtonContainer}>
-			<Text style={styles.rightNavButton}>Right</Text>
-		</View>
+		return(
+			<View style={styles.navButtonContainer}>
+				<Text style={styles.rightNavButton}>Right</Text>
+			</View>
+		)
 	}
 	
 	render(){
@@ -61,6 +67,8 @@ const styles= StyleSheet.create({
 	navigationBar:{
 		flex:1,
 		flexDirection:'row',
+		padding:0,
+		margin:0,
 		backgroundColor: '#D81B60',
 		height: 60,
 		shadowColor: 'black',
@@ -70,23 +78,29 @@ const styles= StyleSheet.create({
 		borderBottomRightRadius:2
 	},
 	leftNavButton:{
+		color:'white'
 	},
 	rightNavButton:{
+		color:'white',
 	},
 	navButtonContainer:{
 		flex:1,
-		backgroundColor:'yellow'
+		backgroundColor:'blue'
+	},
+	navTitleContainer:{
+		flex:1,
+		flexDirection:'row',
+		width:220,
+		backgroundColor:'black',
+		justifyContent: 'center',
+		// alignItems: 'center',
+		marginTop:10,
 	},
 	navTitle:{
-		flex:1,
-		alignSelf:'stretch',
-		backgroundColor:'black',
-		marginTop:10,
+		textAlign:'center',
 		fontWeight:'400',
 		fontSize:26,
 		color:'white',
-		textAlign:'center',
-		elevation:2,
 	}
 });
 export default NavigationContainer
