@@ -74,7 +74,7 @@ class SignUp extends Component{
 						style={styles.secondaryButton}
 						textStyle={{color: 'rgba(255, 255, 255, 0.8)'}}
 						onPress={this.props.click}>
-						Don't have an account? Sign Up!
+						Already have an account? Sign in!
 					</Button>
 				</View>
 			</ScrollView>
