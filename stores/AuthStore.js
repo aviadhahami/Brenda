@@ -36,7 +36,7 @@ let authStore = createStore(
 		// when not provided, all methods starting with 'on' will get called
 		
 		// config.actions can either be an array of strings or a filter function.
-		actions: ['signUp','signIn','initFireBaseListener','clearErrors'], // specify methods that will get called when equivalent action triggered
+		actions: ['signUp','signIn','initFireBaseListener','clearErrors','signOut'], // specify methods that will get called when equivalent action triggered
 	},
 	{
 		/* this is the store definition: */
@@ -129,7 +129,15 @@ let authStore = createStore(
 			}).then(()=>{
 				this.setState({loading:false});
 			});
-			
+		},
+		signOut(){
+			console.log('sign out');
+			firebase.auth().signOut().then(()=>{
+				// Success
+			}, (err)=>{
+				// Err
+				console.log(err);
+			});
 		}
 	});
 // createStore.allowHMR(module, authStore);

@@ -6,6 +6,8 @@ import React, {Component} from "react";
 import {Text, View, StyleSheet, ScrollView, TouchableHighlight} from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
+import API from './../../stores/API'
+
 class ControlPanel extends Component{
 	constructor(props){
 		super(props);
@@ -25,7 +27,8 @@ class ControlPanel extends Component{
 						<Text style={styles.controlPanelText}>User Settings</Text>
 					</View>
 				</TouchableHighlight>
-				<TouchableHighlight underlayColor='transparent' onPress={()=>{alert('logout!')}}>
+				<TouchableHighlight underlayColor='transparent' onPress={()=>{
+					console.log('attemptOut');;API.auth.signOut()}}>
 					<View style={styles.row}>
 						<Icon style={styles.controlPanelIcon} name="sign-out" size={30} color="black"></Icon>
 						<Text style={styles.controlPanelText}>Logout</Text>
