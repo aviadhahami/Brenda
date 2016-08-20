@@ -33,7 +33,7 @@ function leftButtonFunc(route, navigator, index, navState) {
 	return null;
 }
 function rightButtonFunc(route, navigator, index, navState) {
-	return <TouchableHighlight onPress={()=>{navigator.push(PetCreationRoute)}}><Icon name="plus" size={30} color="white"></Icon></TouchableHighlight>
+	return <TouchableHighlight underlayColor={'transparent'} onPress={()=>{navigator.push(PetCreationRoute)}}><Icon name="plus" size={30} color="white"></Icon></TouchableHighlight>
 }
 
 const styles = StyleSheet.create({

@@ -22,7 +22,7 @@ class PetCreation extends Component{
 }
 
 function leftButtonFunc(route, navigator, index, navState) {
-	return <TouchableHighlight onPress={()=>{navigator.pop()}}><Icon name="chevron-left" color="white" size={30}></Icon></TouchableHighlight>
+	return <TouchableHighlight underlayColor={'transparent'} onPress={()=>{navigator.pop()}}><Icon name="chevron-left" color="white" size={30}></Icon></TouchableHighlight>
 }
 function rightButtonFunc(route, navigator, index, navState) {
 	{/*return <TouchableHighlight><Icon name="plus" size={30} color="white"></Icon></TouchableHighlight>*/}

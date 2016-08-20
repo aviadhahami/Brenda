@@ -33,32 +33,33 @@ class NavigationContainer extends Component{
 			this.setState({drawerOpen:true});
 		}
 	}
+	_generateDrawer(component){
+		return (<Drawer
+			open={this.state.drawerOpen}
+			type="static"
+			onOpen={()=> {
+				this.setState({drawerOpen: true})
+			}}
+			onClose={()=> {
+				this.setState({drawerOpen: false})
+			}}
+			content={<ControlPanel user={this.props.user} navigator={this.props.navigator}/>}
+			tapToClose={true}
+			openDrawerOffset={0.2} // 20% gap on the right side of drawer
+			panCloseMask={0.2}
+			closedDrawerOffset={-3}
+			styles={drawerStyles}
+			tweenHandler={Drawer.tweenPresets.parallax}>
+			{component}
+		</Drawer>)
+	}
 	_sceneLogic(route, navigator){
 		// return route.component
 		let boundedRoute = React.cloneElement(route.component,{user:this.props.user, navigator:navigator});
 		if(route.name == 'petCreation') {
 			return boundedRoute
 		}else{
-			return (
-				<Drawer
-					open={this.state.drawerOpen}
-					type="static"
-					onOpen={()=> {
-						this.setState({drawerOpen: true})
-					}}
-					onClose={()=> {
-						this.setState({drawerOpen: false})
-					}}
-					content={<ControlPanel user={this.props.user} navigator={this.props.navigator}/>}
-					tapToClose={true}
-					openDrawerOffset={0.2} // 20% gap on the right side of drawer
-					panCloseMask={0.2}
-					closedDrawerOffset={-3}
-					styles={drawerStyles}
-					tweenHandler={Drawer.tweenPresets.parallax}>
-					{boundedRoute}
-				</Drawer>
-			)
+			return this._generateDrawer(boundedRoute);
 		}
 	}
 	get _navigationBar(){
