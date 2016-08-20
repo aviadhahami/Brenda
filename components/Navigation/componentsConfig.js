@@ -4,6 +4,7 @@
 
 import React from 'react'
 import {petSelectionRoute} from './../PetSelection/PetSelection'
+import {PetCreationRoute} from './../PetCreation/PetCreation'
 
 let initialRoute = petSelectionRoute;
 
@@ -14,8 +15,10 @@ class componentsConfig{
 	static get getComponents(){
 		return [
 			initialRoute,
+			PetCreationRoute
 		]
 	}
 }
 
+export {petSelectionRoute}
 export default componentsConfig

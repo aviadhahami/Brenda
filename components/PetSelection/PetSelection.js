@@ -4,11 +4,15 @@
 
 
 import React, { Component } from 'react'
-import {ScrollView, Text, StyleSheet, Dimensions} from 'react-native'
+import {ScrollView, Text, StyleSheet, Dimensions, TouchableHighlight} from 'react-native'
 import Route from './../Navigation/Route'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import Button from 'apsl-react-native-button'
+import {PetCreationRoute} from './../PetCreation/PetCreation'
+
 
 let {height} = Dimensions.get('window');
+
 class PetSelection extends Component{
 	constructor(props){
 		super(props);
@@ -16,7 +20,9 @@ class PetSelection extends Component{
 	render(){
 		return(
 			<ScrollView style={{backgroundColor:'#424242', marginTop:60,height:height}}>
-				<Text>PetSelection</Text>
+				<Button onPress={()=>{console.log('Pressed me')}}>
+					<Text>WTF</Text>
+				</Button>
 			</ScrollView>
 		)
 	}
@@ -24,15 +30,17 @@ class PetSelection extends Component{
 }
 
 function leftButtonFunc(route, navigator, index, navState) {
-	return <Icon name="bars" size={30} color="white"></Icon>
+	return null;
 }
 function rightButtonFunc(route, navigator, index, navState) {
-	return <Icon name="plus" size={30} color="white"></Icon>
+	return <TouchableHighlight underlayColor={'transparent'} onPress={()=>{navigator.push(PetCreationRoute)}}><Icon name="plus" size={30} color="white"></Icon></TouchableHighlight>
 }
+
 const styles = StyleSheet.create({
-	navBarStyle:{
-		backgroundColor:'green'
+	button:{
+		backgroundColor: 'transparent',
 	}
 });
+
 let petSelectionRoute = new Route(0,'Pet Selection','petSelection', <PetSelection />,leftButtonFunc, rightButtonFunc);
 export {petSelectionRoute};

@@ -7,16 +7,58 @@ import {
 	View,
 	Text,
 	Navigator,
-	StyleSheet} from 'react-native'
+	StyleSheet,
+	TouchableHighlight} from 'react-native'
 import {Button} from 'apsl-react-native-button'
 import componentsConfig from './componentsConfig'
+
+import Icon from 'react-native-vector-icons/FontAwesome'
+import Drawer from 'react-native-drawer'
+import ControlPanel from './../Navigation/controlPanel'
 
 class NavigationContainer extends Component{
 	constructor(props){
 		super(props)
+		this.state = {
+			drawerOpen: false
+		};
+	}
+	_handleDrawer(){
+		// alert(`drawer is now ${this.state.drawerOpen?'open, will close':'closed, will open'}`)
+		if(this.state.drawerOpen){
+			this.setState({drawerOpen:false});
+		}else{
+			this.setState({drawerOpen:true});
+		}
+	}
+	// TODO: FIX THIS! GETS CALLED TOO MANY TIMES
+	_generateDrawer(component){
+		return (<Drawer
+			open={this.state.drawerOpen}
+			type="static"
+			onOpen={()=> {
+				this.setState({drawerOpen: true})
+			}}
+			onClose={()=> {
+				this.setState({drawerOpen: false})
+			}}
+			content={<ControlPanel user={this.props.user} navigator={this.props.navigator}/>}
+			tapToClose={true}
+			openDrawerOffset={0.2} // 20% gap on the right side of drawer
+			panCloseMask={0.2}
+			closedDrawerOffset={-3}
+			styles={drawerStyles}
+			tweenHandler={Drawer.tweenPresets.parallax}>
+			{component}
+		</Drawer>)
 	}
 	_sceneLogic(route, navigator){
-		return route.component
+		let boundedRoute = React.cloneElement(route.component,{user:this.props.user, navigator:navigator});
+		if(route.name == 'petSelection'){
+			return this._generateDrawer(boundedRoute);
+		}else if (route.name == 'petCreation'){
+			return boundedRoute
+		}
 	}
 	get _navigationBar(){
 		return 	<Navigator.NavigationBar
@@ -36,7 +78,15 @@ class NavigationContainer extends Component{
 		)
 	}
 	_leftNavButton(route, navigator, index, navState){
-		return <View style={styles.navButtonContainer}>{route.generateLeftButton(route, navigator, index, navState)}</View>
+		
+		let defaultButton = (<TouchableHighlight
+			underlayColor="transparent"
+			style={styles.button}
+			onPress={this._handleDrawer.bind(this)}>
+			<Icon name="bars" size={30} color="white"></Icon>
+		</TouchableHighlight>);
+		let routeGeneratedButton = route.generateLeftButton(route, navigator, index, navState);
+		return <View style={styles.navButtonContainer}>{routeGeneratedButton == null ? defaultButton : routeGeneratedButton}</View>
 	}
 	_rightNavButtonConfig(route, navigator, index, navState){
 		return <View style={styles.navButtonContainer}>{route.generateRightButton(route, navigator, index, navState)}</View>
@@ -49,11 +99,17 @@ class NavigationContainer extends Component{
 				initialRouteStack={componentsConfig.getComponents}
 				renderScene={this._sceneLogic.bind(this)}
 				navigationBar={this._navigationBar}
+				configureScene={(route, routeStack) => Navigator.SceneConfigs.HorizontalSwipeJump}
 			/>
 		)
 	}
 }
+// {/*configureScene={(route, routeStack) => Navigator.SceneConfigs.PushFromRight}*/}
 
+
+const drawerStyles = {
+	drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+};
 const styles= StyleSheet.create({
 	navigationBar:{
 		flex:1,
