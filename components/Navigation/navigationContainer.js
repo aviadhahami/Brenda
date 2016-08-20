@@ -33,7 +33,9 @@ class NavigationContainer extends Component{
 			this.setState({drawerOpen:true});
 		}
 	}
+	// TODO: FIX THIS! GETS CALLED TOO MANY TIMES
 	_generateDrawer(component){
+		alert('render drawer');
 		return (<Drawer
 			open={this.state.drawerOpen}
 			type="static"

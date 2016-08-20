@@ -6,11 +6,9 @@ import Route from './../Navigation/Route'
 import {Text,View, TouchableHighlight} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-let navigator;
 class PetCreation extends Component{
 	constructor(props){
 		super(props);
-		navigator = this.props.navigator;
 	}
 	render(){
 		return(
