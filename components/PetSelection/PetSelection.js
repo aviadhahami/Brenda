@@ -4,13 +4,15 @@
 
 
 import React, { Component } from 'react'
-import {ScrollView, Text, View, StyleSheet, Dimensions, TouchableHighlight, TouchableNativeFeedback} from 'react-native'
+import {ScrollView, Text, StyleSheet, Dimensions, TouchableHighlight} from 'react-native'
 import Route from './../Navigation/Route'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Button from 'apsl-react-native-button'
+import {PetCreationRoute} from './../PetCreation/PetCreation'
+
 
 let {height} = Dimensions.get('window');
-let drawerHandlerPtr,petSelectionContext;
+
 class PetSelection extends Component{
 	constructor(props){
 		super(props);
@@ -18,7 +20,7 @@ class PetSelection extends Component{
 	render(){
 		return(
 			<ScrollView style={{backgroundColor:'#424242', marginTop:60,height:height}}>
-				<Button onPress={()=>{console.log('Pressedme')}}>
+				<Button onPress={()=>{console.log('Pressed me')}}>
 					<Text>WTF</Text>
 				</Button>
 			</ScrollView>
@@ -31,7 +33,7 @@ function leftButtonFunc(route, navigator, index, navState) {
 	return null;
 }
 function rightButtonFunc(route, navigator, index, navState) {
-	return <Icon name="plus" size={30} color="white"></Icon>
+	return <TouchableHighlight onPress={()=>{navigator.push(PetCreationRoute)}}><Icon name="plus" size={30} color="white"></Icon></TouchableHighlight>
 }
 
 const styles = StyleSheet.create({

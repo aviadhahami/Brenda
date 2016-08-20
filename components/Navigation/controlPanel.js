@@ -16,8 +16,8 @@ class ControlPanel extends Component{
 	}
 	_handleNavigation(route){
 		// let routeStack = this.props.navigator.getCurrentRoutes();
-	
-			// this.props.navigator.push(route);
+		
+		// this.props.navigator.push(route);
 		// if()
 	}
 	render(){
