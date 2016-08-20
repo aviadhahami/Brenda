@@ -44,13 +44,14 @@ class ControlPanel extends Component{
 						<Text style={[styles.controlPanelText,SettingsFlag? styles.activeItem:null]}>Settings</Text>
 					</View>
 				</TouchableHighlight>
-				<TouchableHighlight underlayColor='transparent' onPress={()=>{API.auth.signOut()}}>
+				<TouchableHighlight underlayColor='transparent' onPress={()=>{
+						API.auth.signOut()
+				}}>
 					<View style={styles.row}>
 						<Icon style={styles.controlPanelIcon} name="sign-out" size={30}></Icon>
 						<Text style={styles.controlPanelText}>Logout</Text>
 					</View>
 				</TouchableHighlight>
-			
 			</ScrollView>
 		)
 	}
