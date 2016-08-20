@@ -8,7 +8,8 @@ import {
 	Text,
 	Navigator,
 	StyleSheet,
-	TouchableHighlight} from 'react-native'
+	TouchableHighlight,
+	Dimensions} from 'react-native'
 import {Button} from 'apsl-react-native-button'
 import componentsConfig from './componentsConfig'
 
@@ -16,9 +17,12 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import Drawer from 'react-native-drawer'
 import ControlPanel from './../Navigation/controlPanel'
 
+let {height, width} = Dimensions.get('window');
+
+
 class NavigationContainer extends Component{
 	constructor(props){
-		super(props)
+		super(props);
 		this.state = {
 			drawerOpen: false
 		};
@@ -118,7 +122,7 @@ const styles= StyleSheet.create({
 		// flexDirection:'row',
 		padding:0,
 		backgroundColor: 'rgba(216, 27, 96, 1)',
-		height: 61,
+		height: height*0.1,
 		shadowColor: 'black',
 		shadowOpacity: 1.0,
 		elevation:8,
@@ -133,14 +137,14 @@ const styles= StyleSheet.create({
 	},
 	navButtonContainer:{
 		flex:1,
-		width:50,
+		width:width*0.1,
 		alignItems:'center',
 		justifyContent:'center'
 	},
 	navTitleContainer:{
 		flex:1,
 		flexDirection:'row',
-		width:220,
+		width:width*0.6,
 		justifyContent: 'center',
 		// alignItems: 'center',
 		marginTop:5,
