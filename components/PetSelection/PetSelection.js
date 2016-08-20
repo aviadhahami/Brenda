@@ -17,63 +17,26 @@ let drawerHandlerPtr,petSelectionContext;
 class PetSelection extends Component{
 	constructor(props){
 		super(props);
-		this.state = {
-			drawerOpen: false
-		};
-		drawerHandlerPtr = this._handleDrawer;
-		petSelectionContext = this;
-	}
-	_handleDrawer(){
-		if(this.state.drawerOpen){
-			this.setState({drawerOpen:false});
-		}else{
-			this.setState({drawerOpen:true});
-		}
 	}
 	render(){
 		return(
-			<Drawer
-				open={this.state.drawerOpen}
-				onOpen={()=>{this.setState({drawerOpen:true})}}
-				onClose={()=>{this.setState({drawerOpen:false})}}
-				type="static"
-				content={<ControlPanel user={this.props.user}/>}
-				tapToClose={true}
-				openDrawerOffset={0.2} // 20% gap on the right side of drawer
-				panCloseMask={0.2}
-				closedDrawerOffset={-3}
-				styles={drawerStyles}
-				tweenHandler={Drawer.tweenPresets.parallax}>
-				
-				<ScrollView style={{backgroundColor:'#424242', marginTop:60,height:height}}>
-					
-					<Button onPress={()=>{console.log('Pressedme')}}>
-						<Text>WTF</Text>
-					</Button>
-				</ScrollView>
-			</Drawer>
+			<ScrollView style={{backgroundColor:'#424242', marginTop:60,height:height}}>
+				<Button onPress={()=>{console.log('Pressedme')}}>
+					<Text>WTF</Text>
+				</Button>
+			</ScrollView>
 		)
 	}
 	
 }
 
 function leftButtonFunc(route, navigator, index, navState) {
-	return(
-		<TouchableHighlight
-			underlayColor="transparent"
-			style={styles.button}
-			onPress={drawerHandlerPtr.bind(petSelectionContext)}>
-			<Icon name="bars" size={30} color="white"></Icon>
-		</TouchableHighlight>
-	)
+	return null;
 }
 function rightButtonFunc(route, navigator, index, navState) {
 	return <Icon name="plus" size={30} color="white"></Icon>
 }
 
-const drawerStyles = {
-	drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
-};
 const styles = StyleSheet.create({
 	button:{
 		backgroundColor: 'transparent',

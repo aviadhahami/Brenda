@@ -14,11 +14,37 @@ import componentsConfig from './componentsConfig'
 class NavigationContainer extends Component{
 	constructor(props){
 		super(props)
+		this.state = {
+			drawerOpen: false
+		};
+	}
+	_handleDrawer(){
+		if(this.state.drawerOpen){
+			this.setState({drawerOpen:false});
+		}else{
+			this.setState({drawerOpen:true});
+		}
 	}
 	_sceneLogic(route, navigator){
 		// return route.component
-		let newUser = React.cloneElement(route.component,{user:this.props.user});
-		return newUser;
+		let boundedRoute = React.cloneElement(route.component,{user:this.props.user, navigator:navigator});
+		
+		return (
+			<Drawer
+				open={this.state.drawerOpen}
+				onOpen={()=>{this.setState({drawerOpen:true})}}
+				onClose={()=>{this.setState({drawerOpen:false})}}
+				type="static"
+				content={<ControlPanel user={this.props.user} navigator={this.props.navigator}/>}
+				tapToClose={true}
+				openDrawerOffset={0.2} // 20% gap on the right side of drawer
+				panCloseMask={0.2}
+				closedDrawerOffset={-3}
+				styles={drawerStyles}
+				tweenHandler={Drawer.tweenPresets.parallax}>
+				{boundedRoute}
+				</Drawer>
+		);
 	}
 	get _navigationBar(){
 		return 	<Navigator.NavigationBar
@@ -38,7 +64,15 @@ class NavigationContainer extends Component{
 		)
 	}
 	_leftNavButton(route, navigator, index, navState){
-		return <View style={styles.navButtonContainer}>{route.generateLeftButton(route, navigator, index, navState)}</View>
+		
+		let defaultButton = (<TouchableHighlight
+			underlayColor="transparent"
+			style={styles.button}
+			onPress={this._handleDrawer.bind(this)}>
+			<Icon name="bars" size={30} color="white"></Icon>
+		</TouchableHighlight>);
+		let routeGeneratedButton = route.generateLeftButton(route, navigator, index, navState);
+		return <View style={styles.navButtonContainer}>{routeGeneratedButton == null ? defaultButton : routeGeneratedButton}</View>
 	}
 	_rightNavButtonConfig(route, navigator, index, navState){
 		return <View style={styles.navButtonContainer}>{route.generateRightButton(route, navigator, index, navState)}</View>
@@ -56,6 +90,9 @@ class NavigationContainer extends Component{
 	}
 }
 
+const drawerStyles = {
+	drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+};
 const styles= StyleSheet.create({
 	navigationBar:{
 		flex:1,

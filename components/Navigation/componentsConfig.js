@@ -18,4 +18,5 @@ class componentsConfig{
 	}
 }
 
+export {petSelectionRoute}
 export default componentsConfig

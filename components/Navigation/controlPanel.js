@@ -6,19 +6,30 @@ import React, {Component} from "react";
 import {Text, View, StyleSheet, ScrollView, TouchableHighlight} from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
+import {petSelectionRoute} from './componentsConfig'
+
 import API from './../../stores/API'
 
 class ControlPanel extends Component{
 	constructor(props){
 		super(props);
 	}
+	_handleNavigation(route){
+		let routeStack = this.props.navigator.getCurrentRoutes();
+	
+			// this.props.navigator.push(route);
+		// if()
+	}
 	render(){
+		console.log('pop',this.props.navigator.getCurrentRoutes());
 		return(
 			<ScrollView style={styles.controlPanel}>
-				<TouchableHighlight underlayColor='transparent' onPress={()=>{alert('pets menu!')}}>
+				<TouchableHighlight underlayColor='transparent' onPress={()=>{
+					this._handleNavigation(petSelectionRoute);
+				}}>
 					<View style={styles.row}>
 						<Icon style={styles.controlPanelIcon} name="paw" size={30} color="black"></Icon>
-						<Text style={styles.controlPanelText}>Pets Menu</Text>
+						<Text style={styles.controlPanelText}>My Pets</Text>
 					</View>
 				</TouchableHighlight>
 				<TouchableHighlight underlayColor='transparent' onPress={()=>{alert('settings!')}}>
