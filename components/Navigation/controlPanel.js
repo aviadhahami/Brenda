@@ -2,9 +2,9 @@
  * Created by aviad on 8/13/2016.
  */
 
-import React, {Component} from 'react'
-import {Text, View, StyleSheet, ScrollView } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import React, {Component} from "react";
+import {Text, View, StyleSheet, ScrollView, TouchableHighlight} from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 class ControlPanel extends Component{
 	constructor(props){
@@ -13,18 +13,25 @@ class ControlPanel extends Component{
 	render(){
 		return(
 			<ScrollView style={styles.controlPanel}>
-				<View style={styles.row}>
-					<Icon style={styles.controlPanelIcon} name="paw" size={30} color="black"></Icon>
-					<Text style={styles.controlPanelText}>Pets Menu</Text>
-				</View>
-				<View style={styles.row}>
-					<Icon style={styles.controlPanelIcon} name="cogs" size={30} color="black"></Icon>
-					<Text style={styles.controlPanelText}>User Settings</Text>
-				</View>
-				<View style={styles.row}>
-					<Icon style={styles.controlPanelIcon} name="sign-out" size={30} color="black"></Icon>
-					<Text style={styles.controlPanelText}>Logout</Text>
-				</View>
+				<TouchableHighlight underlayColor='transparent' onPress={()=>{alert('pets menu!')}}>
+					<View style={styles.row}>
+						<Icon style={styles.controlPanelIcon} name="paw" size={30} color="black"></Icon>
+						<Text style={styles.controlPanelText}>Pets Menu</Text>
+					</View>
+				</TouchableHighlight>
+				<TouchableHighlight underlayColor='transparent' onPress={()=>{alert('settings!')}}>
+					<View style={styles.row}>
+						<Icon style={styles.controlPanelIcon} name="cogs" size={30} color="black"></Icon>
+						<Text style={styles.controlPanelText}>User Settings</Text>
+					</View>
+				</TouchableHighlight>
+				<TouchableHighlight underlayColor='transparent' onPress={()=>{alert('logout!')}}>
+					<View style={styles.row}>
+						<Icon style={styles.controlPanelIcon} name="sign-out" size={30} color="black"></Icon>
+						<Text style={styles.controlPanelText}>Logout</Text>
+					</View>
+				</TouchableHighlight>
+			
 			</ScrollView>
 		)
 	}
