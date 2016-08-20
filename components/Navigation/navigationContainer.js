@@ -16,8 +16,6 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import Drawer from 'react-native-drawer'
 import ControlPanel from './../Navigation/controlPanel'
 
-
-
 class NavigationContainer extends Component{
 	constructor(props){
 		super(props)
@@ -35,7 +33,6 @@ class NavigationContainer extends Component{
 	}
 	// TODO: FIX THIS! GETS CALLED TOO MANY TIMES
 	_generateDrawer(component){
-		alert('render drawer');
 		return (<Drawer
 			open={this.state.drawerOpen}
 			type="static"
@@ -56,12 +53,11 @@ class NavigationContainer extends Component{
 		</Drawer>)
 	}
 	_sceneLogic(route, navigator){
-		// return route.component
 		let boundedRoute = React.cloneElement(route.component,{user:this.props.user, navigator:navigator});
-		if(route.name == 'petCreation') {
-			return boundedRoute
-		}else{
+		if(route.name == 'petSelection'){
 			return this._generateDrawer(boundedRoute);
+		}else if (route.name == 'petCreation'){
+			return boundedRoute
 		}
 	}
 	get _navigationBar(){
@@ -103,7 +99,7 @@ class NavigationContainer extends Component{
 				initialRouteStack={componentsConfig.getComponents}
 				renderScene={this._sceneLogic.bind(this)}
 				navigationBar={this._navigationBar}
-				configureScene={(route, routeStack) => Navigator.SceneConfigs.PushFromRight}
+				configureScene={(route, routeStack) => Navigator.SceneConfigs.HorizontalSwipeJump}
 			/>
 		)
 	}
