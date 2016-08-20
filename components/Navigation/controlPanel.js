@@ -3,22 +3,19 @@
  */
 
 import React, {Component} from "react";
-import {Text, View, StyleSheet, ScrollView, TouchableHighlight} from "react-native";
+import {Text, View, StyleSheet, ScrollView, TouchableHighlight, Dimensions} from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import {petSelectionRoute} from './componentsConfig'
 
 import API from './../../stores/API'
+let {height,width} = Dimensions.get('window');
 
 class ControlPanel extends Component{
 	constructor(props){
 		super(props);
 	}
 	_handleNavigation(route){
-		// let routeStack = this.props.navigator.getCurrentRoutes();
-		
-		// this.props.navigator.push(route);
-		// if()
 	}
 	render(){
 		// console.log('pop',this.props.navigator.getCurrentRoutes());
@@ -53,28 +50,29 @@ class ControlPanel extends Component{
 
 const styles = StyleSheet.create({
 	controlPanel: {
-		marginTop:60,
-		width:300,
+		marginTop:height*0.1,
+		width:width*0.6,
 		flex: 1,
+		elevation:8,
 		// justifyContent:'flex-end',
-		backgroundColor:'rgba(255,255,255,0.85)',
+		backgroundColor:'rgba(255,255,255,1)',
 	},
 	row:{
 		flexDirection:'row',
-		borderBottomWidth:1,
+		// borderBottomWidth:1,
 		borderColor:'rgba(0,0,0,0.3)',
-		height:65,
+		height:height*0.11,
 	},
 	controlPanelIcon:{
-		marginTop:15,
-		marginLeft:10,
-		lineHeight:10
+		marginTop:height*0.03,
+		marginLeft:width*0.03,
+		width:width*0.1
 	},
 	controlPanelText: {
-		color:'rgba(0,0,0,0.9)',
+		color:'rgba(0,0,0,0.8)',
 		fontSize: 20,
-		marginLeft: 20,
-		marginTop:20,
+		marginLeft: width*0.05,
+		marginTop:height*0.03,
 		borderWidth:1,
 		borderColor:'rgba(255, 255, 0, 1)',
 		fontWeight:'bold',
