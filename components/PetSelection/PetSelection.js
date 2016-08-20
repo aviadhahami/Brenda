@@ -13,29 +13,28 @@ import Drawer from 'react-native-drawer'
 import ControlPanel from './../Navigation/controlPanel'
 
 let {height} = Dimensions.get('window');
-let openDrawerPtr,petSelectionContext;
+let drawerHandlerPtr,petSelectionContext;
 class PetSelection extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
 			drawerOpen: true
 		};
-		openDrawerPtr = this.openDrawer;
+		drawerHandlerPtr = this._handleDrawer;
 		petSelectionContext = this;
-			
 	}
-	openDrawer(){
-		console.log('open');
-		this.setState({drawerOpen:true})
+	_handleDrawer(){
+		if(this.state.drawerOpen){
+			this.setState({drawerOpen:false});
+		}else{
+			this.setState({drawerOpen:true});
+		}
 	}
-	closeDrawer(){
-		this.setState({drawerOpen:false})
-	}
-	
 	render(){
 		return(
 			<Drawer
 				open={this.state.drawerOpen}
+				onOpen={()=>{this.setState({drawerOpen:true})}}
 				onClose={()=>{this.setState({drawerOpen:false})}}
 				type="static"
 				content={<ControlPanel />}
@@ -60,7 +59,7 @@ class PetSelection extends Component{
 
 function leftButtonFunc(route, navigator, index, navState) {
 	return(
-		<Button onPress={openDrawerPtr.bind(petSelectionContext)}>
+		<Button onPress={drawerHandlerPtr.bind(petSelectionContext)}>
 			<Icon name="bars" size={30} color="white"></Icon>
 		</Button>
 	)
