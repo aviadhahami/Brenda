@@ -15,13 +15,13 @@ class ControlPanel extends Component{
 		super(props);
 	}
 	_handleNavigation(route){
-		let routeStack = this.props.navigator.getCurrentRoutes();
+		// let routeStack = this.props.navigator.getCurrentRoutes();
 	
 			// this.props.navigator.push(route);
 		// if()
 	}
 	render(){
-		console.log('pop',this.props.navigator.getCurrentRoutes());
+		// console.log('pop',this.props.navigator.getCurrentRoutes());
 		return(
 			<ScrollView style={styles.controlPanel}>
 				<TouchableHighlight underlayColor='transparent' onPress={()=>{

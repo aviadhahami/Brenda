@@ -7,9 +7,16 @@ import {
 	View,
 	Text,
 	Navigator,
-	StyleSheet} from 'react-native'
+	StyleSheet,
+	TouchableHighlight} from 'react-native'
 import {Button} from 'apsl-react-native-button'
 import componentsConfig from './componentsConfig'
+
+import Icon from 'react-native-vector-icons/FontAwesome'
+import Drawer from 'react-native-drawer'
+import ControlPanel from './../Navigation/controlPanel'
+
+
 
 class NavigationContainer extends Component{
 	constructor(props){

@@ -9,9 +9,6 @@ import Route from './../Navigation/Route'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Button from 'apsl-react-native-button'
 
-import Drawer from 'react-native-drawer'
-import ControlPanel from './../Navigation/controlPanel'
-
 let {height} = Dimensions.get('window');
 let drawerHandlerPtr,petSelectionContext;
 class PetSelection extends Component{
