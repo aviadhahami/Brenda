@@ -15,7 +15,7 @@ import componentsConfig from './componentsConfig'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Drawer from 'react-native-drawer'
-import ControlPanel from './../Navigation/controlPanel'
+import ControlPanel from './ControlPanel'
 
 let {height, width} = Dimensions.get('window');
 
@@ -36,7 +36,7 @@ class NavigationContainer extends Component{
 		}
 	}
 	// TODO: FIX THIS! GETS CALLED TOO MANY TIMES
-	_generateDrawer(component){
+	_generateDrawer(component,route,navigator){
 		return (<Drawer
 			open={this.state.drawerOpen}
 			type="overlay"
@@ -46,7 +46,7 @@ class NavigationContainer extends Component{
 			onClose={()=> {
 				this.setState({drawerOpen: false})
 			}}
-			content={<ControlPanel user={this.props.user} navigator={this.props.navigator}/>}
+			content={<ControlPanel user={this.props.user} navigator={navigator} route={route}/>}
 			tapToClose={true}
 			openDrawerOffset={0.2} // 20% gap on the right side of drawer
 			panCloseMask={0.2}
@@ -59,9 +59,9 @@ class NavigationContainer extends Component{
 		</Drawer>)
 	}
 	_sceneLogic(route, navigator){
-		let boundedRoute = React.cloneElement(route.component,{user:this.props.user, navigator:navigator});
+		let boundedRoute = React.cloneElement(route.component,{user:this.props.user, navigator:navigator, route:route});
 		if(route.name == 'petSelection'){
-			return this._generateDrawer(boundedRoute);
+			return this._generateDrawer(boundedRoute,route,navigator);
 		}else if (route.name == 'petCreation'){
 			return boundedRoute
 		}
