@@ -4,30 +4,53 @@
 
 
 import React, { Component } from 'react'
-import {ScrollView, Text, StyleSheet, Dimensions, TouchableHighlight} from 'react-native'
+import {ScrollView, Text, View, StyleSheet, Dimensions, TouchableHighlight, TouchableNativeFeedback} from 'react-native'
 import Route from './../Navigation/Route'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import Button from 'apsl-react-native-button'
 
 import Drawer from 'react-native-drawer'
 import ControlPanel from './../Navigation/controlPanel'
 
 let {height} = Dimensions.get('window');
+let openDrawerPtr,petSelectionContext;
 class PetSelection extends Component{
 	constructor(props){
 		super(props);
+		this.state = {
+			drawerOpen: true
+		};
+		openDrawerPtr = this.openDrawer;
+		petSelectionContext = this;
+			
 	}
+	openDrawer(){
+		console.log('open');
+		this.setState({drawerOpen:true})
+	}
+	closeDrawer(){
+		this.setState({drawerOpen:false})
+	}
+	
 	render(){
 		return(
 			<Drawer
-				open={true}
+				open={this.state.drawerOpen}
+				onClose={()=>{this.setState({drawerOpen:false})}}
 				type="static"
 				content={<ControlPanel />}
-				openDrawerOffset={100}
+				tapToClose={true}
+				openDrawerOffset={0.2} // 20% gap on the right side of drawer
+				panCloseMask={0.2}
+				closedDrawerOffset={-3}
 				styles={drawerStyles}
 				tweenHandler={Drawer.tweenPresets.parallax}>
 				
 				<ScrollView style={{backgroundColor:'#424242', marginTop:60,height:height}}>
-					<Text>PetSelection</Text>
+					
+					<Button onPress={()=>{console.log('Pressedme')}}>
+						<Text>WTF</Text>
+					</Button>
 				</ScrollView>
 			</Drawer>
 		)
@@ -37,9 +60,9 @@ class PetSelection extends Component{
 
 function leftButtonFunc(route, navigator, index, navState) {
 	return(
-		<TouchableHighlight onPress={()=>{drawerOpen = true;}}>
+		<Button onPress={openDrawerPtr.bind(petSelectionContext)}>
 			<Icon name="bars" size={30} color="white"></Icon>
-		</TouchableHighlight>
+		</Button>
 	)
 }
 function rightButtonFunc(route, navigator, index, navState) {
