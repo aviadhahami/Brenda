@@ -37,7 +37,7 @@ class PetSelection extends Component{
 				onOpen={()=>{this.setState({drawerOpen:true})}}
 				onClose={()=>{this.setState({drawerOpen:false})}}
 				type="static"
-				content={<ControlPanel />}
+				content={<ControlPanel user={this.props.user}/>}
 				tapToClose={true}
 				openDrawerOffset={0.2} // 20% gap on the right side of drawer
 				panCloseMask={0.2}

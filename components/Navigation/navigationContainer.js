@@ -16,7 +16,9 @@ class NavigationContainer extends Component{
 		super(props)
 	}
 	_sceneLogic(route, navigator){
-		return route.component
+		// return route.component
+		let newUser = React.cloneElement(route.component,{user:this.props.user});
+		return newUser;
 	}
 	get _navigationBar(){
 		return 	<Navigator.NavigationBar

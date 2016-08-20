@@ -24,11 +24,10 @@ class ControlPanel extends Component{
 				<TouchableHighlight underlayColor='transparent' onPress={()=>{alert('settings!')}}>
 					<View style={styles.row}>
 						<Icon style={styles.controlPanelIcon} name="cogs" size={30} color="black"></Icon>
-						<Text style={styles.controlPanelText}>User Settings</Text>
+						<Text style={styles.controlPanelText}>Settings</Text>
 					</View>
 				</TouchableHighlight>
-				<TouchableHighlight underlayColor='transparent' onPress={()=>{
-					console.log('attemptOut');;API.auth.signOut()}}>
+				<TouchableHighlight underlayColor='transparent' onPress={()=>{API.auth.signOut()}}>
 					<View style={styles.row}>
 						<Icon style={styles.controlPanelIcon} name="sign-out" size={30} color="black"></Icon>
 						<Text style={styles.controlPanelText}>Logout</Text>
