@@ -38,7 +38,7 @@ class Login extends Component{
 						dense={true}
 						label={'Email'}
 						highlightColor={'#ffffff'}
-						keyboardType={'default'}
+						keyboardType={'email-address'}
 						textColor={'#ffffff'}
 						labelColor={'#ffffff'}
 						ref="email"
