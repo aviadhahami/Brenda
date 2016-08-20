@@ -35,7 +35,7 @@ class NavigationContainer extends Component{
 	_generateDrawer(component){
 		return (<Drawer
 			open={this.state.drawerOpen}
-			type="static"
+			type="overlay"
 			onOpen={()=> {
 				this.setState({drawerOpen: true})
 			}}
@@ -48,7 +48,9 @@ class NavigationContainer extends Component{
 			panCloseMask={0.2}
 			closedDrawerOffset={-3}
 			styles={drawerStyles}
-			tweenHandler={Drawer.tweenPresets.parallax}>
+			tweenHandler={(ratio) => ({
+				main: { opacity:(2-ratio)/2 }
+			})}>
 			{component}
 		</Drawer>)
 	}

@@ -19,7 +19,7 @@ class PetSelection extends Component{
 	}
 	render(){
 		return(
-			<ScrollView style={{backgroundColor:'#424242', marginTop:60,height:height}}>
+			<ScrollView style={{backgroundColor:'rgba(0,0,0,0.4)', marginTop:60,height:height}}>
 				<Button onPress={()=>{console.log('Pressed me')}}>
 					<Text>WTF</Text>
 				</Button>

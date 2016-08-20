@@ -3,8 +3,10 @@
  */
 import React, { Component } from 'react';
 import Route from './../Navigation/Route'
-import {Text,View, TouchableHighlight} from 'react-native'
+import {Text,View, TouchableHighlight, ScrollView, Dimensions} from 'react-native'
+import Button from 'apsl-react-native-button'
 import Icon from 'react-native-vector-icons/FontAwesome'
+let {height} = Dimensions.get('window');
 
 class PetCreation extends Component{
 	constructor(props){
@@ -12,9 +14,12 @@ class PetCreation extends Component{
 	}
 	render(){
 		return(
-			<View>
-				<Text>Pet Creation</Text>
-			</View>
+			
+			<ScrollView style={{backgroundColor:'#4242', marginTop:60,height:height}}>
+				<Button onPress={()=>{console.log('Pressed me')}}>
+					<Text>New screen</Text>
+				</Button>
+			</ScrollView>
 		)
 	}
 }
