@@ -100,7 +100,7 @@ class NavigationContainer extends Component{
 				initialRouteStack={componentsConfig.getComponents}
 				renderScene={this._sceneLogic.bind(this)}
 				navigationBar={this._navigationBar}
-				configureScene={(route, routeStack) => Navigator.SceneConfigs.FloatFromRight}
+				configureScene={(route, routeStack) => Navigator.SceneConfigs.PushFromRight}
 			/>
 		)
 	}
