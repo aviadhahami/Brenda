@@ -18,7 +18,7 @@ class PetSelection extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			drawerOpen: true
+			drawerOpen: false
 		};
 		drawerHandlerPtr = this._handleDrawer;
 		petSelectionContext = this;
@@ -59,9 +59,12 @@ class PetSelection extends Component{
 
 function leftButtonFunc(route, navigator, index, navState) {
 	return(
-		<Button onPress={drawerHandlerPtr.bind(petSelectionContext)}>
+		<TouchableHighlight
+			underlayColor="transparent"
+			style={styles.button}
+			onPress={drawerHandlerPtr.bind(petSelectionContext)}>
 			<Icon name="bars" size={30} color="white"></Icon>
-		</Button>
+		</TouchableHighlight>
 	)
 }
 function rightButtonFunc(route, navigator, index, navState) {
@@ -71,6 +74,11 @@ function rightButtonFunc(route, navigator, index, navState) {
 const drawerStyles = {
 	drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
 };
+const styles = StyleSheet.create({
+	button:{
+		backgroundColor: 'transparent',
+	}
+});
 
 let petSelectionRoute = new Route(0,'Pet Selection','petSelection', <PetSelection />,leftButtonFunc, rightButtonFunc);
 export {petSelectionRoute};
