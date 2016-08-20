@@ -14,30 +14,39 @@ let {height,width} = Dimensions.get('window');
 class ControlPanel extends Component{
 	constructor(props){
 		super(props);
+		console.log(this.props.route);
 	}
 	_handleNavigation(route){
+		this.props.navigator.push(route);
 	}
 	render(){
-		// console.log('pop',this.props.navigator.getCurrentRoutes());
+		let MyPetsFlag = false, SettingsFlag = false;
+		switch(this.props.route.name){
+			case 'petSelection':
+				MyPetsFlag = true;
+				break;
+			case 'settings':
+				break;
+		}
 		return(
 			<ScrollView style={styles.controlPanel}>
 				<TouchableHighlight underlayColor='transparent' onPress={()=>{
-					this._handleNavigation(petSelectionRoute);
+					{/*this._handleNavigation(petSelectionRoute);*/}
 				}}>
-					<View style={styles.row}>
-						<Icon style={styles.controlPanelIcon} name="paw" size={30} color="black"></Icon>
-						<Text style={styles.controlPanelText}>My Pets</Text>
+					<View style={[styles.row,MyPetsFlag? styles.activeRow : null]}>
+						<Icon style={[styles.controlPanelIcon,MyPetsFlag? styles.activeItem:null]} name="paw" size={30}></Icon>
+						<Text style={[styles.controlPanelText,MyPetsFlag? styles.activeItem:null]}>My Pets</Text>
 					</View>
 				</TouchableHighlight>
 				<TouchableHighlight underlayColor='transparent' onPress={()=>{alert('settings!')}}>
-					<View style={styles.row}>
-						<Icon style={styles.controlPanelIcon} name="cogs" size={30} color="black"></Icon>
-						<Text style={styles.controlPanelText}>Settings</Text>
+					<View style={[styles.row,SettingsFlag? styles.activeRow : null]}>
+						<Icon style={[styles.controlPanelIcon,,SettingsFlag? styles.activeItem:null]} name="cogs" size={30}></Icon>
+						<Text style={[styles.controlPanelText,SettingsFlag? styles.activeItem:null]}>Settings</Text>
 					</View>
 				</TouchableHighlight>
 				<TouchableHighlight underlayColor='transparent' onPress={()=>{API.auth.signOut()}}>
 					<View style={styles.row}>
-						<Icon style={styles.controlPanelIcon} name="sign-out" size={30} color="black"></Icon>
+						<Icon style={styles.controlPanelIcon} name="sign-out" size={30}></Icon>
 						<Text style={styles.controlPanelText}>Logout</Text>
 					</View>
 				</TouchableHighlight>
@@ -66,7 +75,8 @@ const styles = StyleSheet.create({
 	controlPanelIcon:{
 		marginTop:height*0.03,
 		marginLeft:width*0.03,
-		width:width*0.1
+		width:width*0.1,
+		color:'rgba(0,0,0,0.8)'
 	},
 	controlPanelText: {
 		color:'rgba(0,0,0,0.8)',
@@ -77,6 +87,12 @@ const styles = StyleSheet.create({
 		borderColor:'rgba(255, 255, 0, 1)',
 		fontWeight:'bold',
 	},
+	activeRow:{
+		backgroundColor:'#E0E0E0',
+	},
+	activeItem:{
+		color:'#448AFF'
+	}
 });
 
 export default ControlPanel
