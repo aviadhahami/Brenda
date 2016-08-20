@@ -95,7 +95,7 @@ let authStore = createStore(
 		},
 		updateUserInfo(obj){
 			this.setState({loading:true});
-			let user = firebase.auth().currentUser;
+			let user = firebaseRef.auth().currentUser;
 			let purified = {
 				displayName: obj['displayName'] || user.displayName,
 				photoURL : obj['photoURL'] || user.photoURL
@@ -104,7 +104,7 @@ let authStore = createStore(
 				console.log('name change PL',payload);
 				// Update successful.
 				this.setState({
-					user: sanitizeUserData(firebase.auth().currentUser)
+					user: sanitizeUserData(firebaseRef.auth().currentUser)
 				})
 			}, (error) =>{
 				// An error happened.
@@ -118,7 +118,7 @@ let authStore = createStore(
 		signIn(email, password){
 			console.log('signin',email, password);
 			this.setState({loading:true});
-			firebase.auth().signInWithEmailAndPassword(email, password).then((payload)=>{
+			firebaseRef.auth().signInWithEmailAndPassword(email, password).then((payload)=>{
 				// Observer should notify about login so basically nothing...
 			}).catch((error)=> {
 				// Handle Errors here.
@@ -132,7 +132,7 @@ let authStore = createStore(
 		},
 		signOut(){
 			console.log('sign out');
-			firebase.auth().signOut().then(()=>{
+			firebaseRef.auth().signOut().then(()=>{
 				// Success
 			}, (err)=>{
 				// Err
