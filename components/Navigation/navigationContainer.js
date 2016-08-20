@@ -42,7 +42,7 @@ class NavigationContainer extends Component{
 			return (
 				<Drawer
 					open={this.state.drawerOpen}
-					type="overlay"
+					type="static"
 					onOpen={()=> {
 						this.setState({drawerOpen: true})
 					}}
