@@ -29,6 +29,16 @@ class UserSettings extends Component{
 		}
 		return newName;
 	}
+	_updateInfo() {
+		let email = this.refs.email.state.text;
+		let displayName = this.refs.displayName.state.text;
+		if(email != this.props.user.email){
+			API.auth.updateUserEmail(email);
+		}
+		if (displayName != this.props.user.displayName){
+			API.auth.updateUserGeneralInfo({displayName:displayName});
+		}
+	}
 	render(){
 		let displayName = this._shrinkDisplayName(this.props.user.displayName);
 		let src= !this.props.user.photoURL ? {uri: 'https://goo.gl/OHBNPr'} : require('./../../assets/stubs/userImage.png')
@@ -82,8 +92,8 @@ class UserSettings extends Component{
 									ref="email"
 								/>
 							</View>
-							<View style={{flexDirection:'row', backgroundColors:'blue', alignSelf:'center'}}>
-								<Button style={styles.button}>
+							<View style={styles.buttonContainer}>
+								<Button style={styles.button} onPress={ () =>{ this._updateInfo()}}>
 									<Text style={styles.buttonText}>Update</Text>
 								</Button>
 							</View>
@@ -101,7 +111,7 @@ class UserSettings extends Component{
 			</ScrollView>
 		)
 	}
-	
+
 }
 
 function leftButtonFunc(route, navigator, index, navState) {
@@ -112,7 +122,7 @@ function rightButtonFunc(route, navigator, index, navState) {
 }
 
 const styles = StyleSheet.create({
-
+	
 	container:{
 		backgroundColor:'rgba(255,255,255,0.1)',
 	},
@@ -171,7 +181,7 @@ const styles = StyleSheet.create({
 		color: 'rgba(0,0,0,0.65)',
 	},
 	editSectionFooter:{
-		marginTop:20
+		marginTop:height*0.18
 	},
 	buttonText:{
 		marginTop:10,
@@ -183,6 +193,11 @@ const styles = StyleSheet.create({
 		width:width*0.8,
 		borderWidth:0,
 	},
+	buttonContainer:{
+		flexDirection:'row',
+		alignSelf:'center',
+		marginTop: height*0.05
+	}
 });
 
 let userSettingsRoute = new Route(2,'Settings','userSettings', <UserSettings />,leftButtonFunc, rightButtonFunc);
