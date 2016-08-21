@@ -4,10 +4,9 @@
 
 
 import React, { Component } from 'react'
-import {ScrollView, View, Text, StyleSheet, Dimensions, TouchableOpacity} from 'react-native'
+import {ScrollView, View, Text, StyleSheet, Dimensions, TouchableOpacity, Image} from 'react-native'
 import Route from './../Navigation/Route'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import Button from 'apsl-react-native-button'
 
 import API from './../../stores/API'
 
@@ -27,20 +26,21 @@ class UserSettings extends Component{
 		return newName;
 	}
 	render(){
-		console.log(this.refs.scrollView.additionalScrollOffset);
 		let displayName = this._shrinkDisplayName(this.props.user.displayName);
+		let src= !this.props.user.photoURL ? {uri: 'https://goo.gl/OHBNPr'} : require('./../../assets/stubs/userImage.png')
+		console.log(this.props.user);
 		return(
 			<ScrollView contentContainerStyle={styles.container} ref="scrollView" scrollEnabled={false}>
 				<View style={styles.content}>
-						<View style={styles.photoContainer}>
-							<Image source={require('./../../assets/stubs/userImage.png')} />
-						</View>
-						<View style={styles.textContainer}>
-							<Text style={styles.userText}>{displayName}</Text>
-						</View>
-						<View style={styles.textContainer}>
-							<Text style={styles.userMailText}>{this.props.user.email}</Text>
-						</View>
+					<View style={styles.photoContainer}>
+						<Image source={src} style={styles.photoStyles}></Image>
+					</View>
+					<View style={styles.textContainer}>
+						<Text style={styles.userText}>{displayName}</Text>
+					</View>
+					<View style={styles.textContainer}>
+						<Text style={styles.userMailText}>{this.props.user.email}</Text>
+					</View>
 					<View style={styles.dividerContainer}>
 						<TouchableOpacity style={{alignItems:'center'}}onPress={()=>{
 							console.log(this.refs.scrollView.add);
@@ -98,8 +98,12 @@ const styles = StyleSheet.create({
 	photoContainer:{
 		width:200,
 		height:200,
+		alignItems:'center'
+	},
+	photoStyles:{
+		width:200,
+		height:200,
 		borderRadius:100,
-		backgroundColor:'green'
 	},
 	textContainer:{
 		flexDirection:'column',

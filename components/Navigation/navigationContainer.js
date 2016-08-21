@@ -106,7 +106,6 @@ class NavigationContainer extends Component{
 		return(
 			<Navigator
 				initialRoute={componentsConfig.getInitialComponent}
-				initialRouteStack={componentsConfig.getComponents}
 				renderScene={this._sceneLogic.bind(this)}
 				navigationBar={this._navigationBar}
 				configureScene={(route, routeStack) => {
