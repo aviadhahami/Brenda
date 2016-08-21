@@ -60,7 +60,7 @@ class NavigationContainer extends Component{
 	}
 	_sceneLogic(route, navigator){
 		let boundedRoute = React.cloneElement(route.component,{user:this.props.user, navigator:navigator, route:route});
-		if(route.name == 'petSelection'){
+		if(route.name == 'petSelection' || route.name == 'userSettings'){
 			return this._generateDrawer(boundedRoute,route,navigator);
 		}else if (route.name == 'petCreation'){
 			return boundedRoute
@@ -105,7 +105,12 @@ class NavigationContainer extends Component{
 				initialRouteStack={componentsConfig.getComponents}
 				renderScene={this._sceneLogic.bind(this)}
 				navigationBar={this._navigationBar}
-				configureScene={(route, routeStack) => Navigator.SceneConfigs.HorizontalSwipeJump}
+				configureScene={(route, routeStack) => {
+				return {
+					...Navigator.SceneConfigs.HorizontalSwipeJump,
+					gestures:null
+				}
+				}}
 			/>
 		)
 	}

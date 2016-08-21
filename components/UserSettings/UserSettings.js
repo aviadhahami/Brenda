@@ -41,5 +41,5 @@ const styles = StyleSheet.create({
 	}
 });
 
-let userSettingsRoute = new Route(0,'Settings','userSettings', <UserSettings />,leftButtonFunc, rightButtonFunc);
+let userSettingsRoute = new Route(2,'Settings','userSettings', <UserSettings />,leftButtonFunc, rightButtonFunc);
 export {userSettingsRoute};

@@ -6,7 +6,7 @@ import React, {Component} from "react";
 import {Text, View, StyleSheet, ScrollView, TouchableHighlight, Dimensions} from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-import {petSelectionRoute} from './componentsConfig'
+import {petSelectionRoute, userSettingsRoute} from './componentsConfig'
 
 import API from './../../stores/API'
 let {height,width} = Dimensions.get('window');
@@ -17,7 +17,9 @@ class ControlPanel extends Component{
 		console.log(this.props.route);
 	}
 	_handleNavigation(route){
-		this.props.navigator.push(route);
+		if(this.props.route.name != route.name) {
+			this.props.navigator.push(route);
+		}
 	}
 	render(){
 		let MyPetsFlag = false, SettingsFlag = false;
@@ -31,21 +33,23 @@ class ControlPanel extends Component{
 		return(
 			<ScrollView style={styles.controlPanel}>
 				<TouchableHighlight underlayColor='transparent' onPress={()=>{
-					{/*this._handleNavigation(petSelectionRoute);*/}
+					this._handleNavigation(petSelectionRoute);
 				}}>
 					<View style={[styles.row,MyPetsFlag? styles.activeRow : null]}>
 						<Icon style={[styles.controlPanelIcon,MyPetsFlag? styles.activeItem:null]} name="paw" size={30}></Icon>
 						<Text style={[styles.controlPanelText,MyPetsFlag? styles.activeItem:null]}>My Pets</Text>
 					</View>
 				</TouchableHighlight>
-				<TouchableHighlight underlayColor='transparent' onPress={()=>{alert('settings!')}}>
+				<TouchableHighlight underlayColor='transparent' onPress={()=>{
+					this._handleNavigation(userSettingsRoute);
+				}}>
 					<View style={[styles.row,SettingsFlag? styles.activeRow : null]}>
 						<Icon style={[styles.controlPanelIcon,,SettingsFlag? styles.activeItem:null]} name="cogs" size={30}></Icon>
 						<Text style={[styles.controlPanelText,SettingsFlag? styles.activeItem:null]}>Settings</Text>
 					</View>
 				</TouchableHighlight>
 				<TouchableHighlight underlayColor='transparent' onPress={()=>{
-						API.auth.signOut()
+					API.auth.signOut()
 				}}>
 					<View style={styles.row}>
 						<Icon style={styles.controlPanelIcon} name="sign-out" size={30}></Icon>

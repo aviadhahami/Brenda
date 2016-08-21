@@ -5,6 +5,7 @@
 import React from 'react'
 import {petSelectionRoute} from './../PetSelection/PetSelection'
 import {PetCreationRoute} from './../PetCreation/PetCreation'
+import {userSettingsRoute} from './../UserSettings/UserSettings'
 
 let initialRoute = petSelectionRoute;
 
@@ -15,10 +16,11 @@ class componentsConfig{
 	static get getComponents(){
 		return [
 			initialRoute,
-			PetCreationRoute
+			PetCreationRoute,
+			userSettingsRoute
 		]
 	}
 }
 
-export {petSelectionRoute}
+export {petSelectionRoute, userSettingsRoute}
 export default componentsConfig
