@@ -59,7 +59,11 @@ class NavigationContainer extends Component{
 		</Drawer>)
 	}
 	_sceneLogic(route, navigator){
-		let boundedRoute = React.cloneElement(route.component,{user:this.props.user, navigator:navigator, route:route});
+		let props = {navigator:navigator, route:route};
+		if(route.name == 'userSettings'){
+			Object.assign(props,{user:this.props.user});
+		}
+		let boundedRoute = React.cloneElement(route.component,props);
 		if(route.name == 'petSelection' || route.name == 'userSettings'){
 			return this._generateDrawer(boundedRoute,route,navigator);
 		}else if (route.name == 'petCreation'){
