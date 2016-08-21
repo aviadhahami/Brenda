@@ -29,11 +29,14 @@ class UserSettings extends Component{
 		}
 		return newName;
 	}
-	_updateInfo() {
+	 _updateInfo() {
 		let email = this.refs.email.state.text;
 		let displayName = this.refs.displayName.state.text;
+		let res;
+		 
+		 // TODO: User need to re-authenticate here, should pop dialog or someshit
 		if(email != this.props.user.email){
-			API.auth.updateUserEmail(email);
+			res = API.auth.updateUserEmail(email);
 		}
 		if (displayName != this.props.user.displayName){
 			API.auth.updateUserGeneralInfo({displayName:displayName});
