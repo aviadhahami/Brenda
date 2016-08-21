@@ -4,7 +4,6 @@
 import ImageAPI from './APIs/ImageAPI'
 import {createStore} from 'cartiv'
 
-
 let imageStore = createStore(
 	{
 		/* this is the store config: */
@@ -20,7 +19,9 @@ let imageStore = createStore(
 	{
 		/* this is the store definition: */
 		getInitialState(){ // same as React!
-			return {}
+			return {
+				dummy:1
+			}
 		},
 		uploadImageToProfile(base64Image){
 			let uri = 'https://api.imgur.com/3/image?image='+base64Image;
@@ -29,4 +30,5 @@ let imageStore = createStore(
 			});
 		}
 	});
+
 export default imageStore;

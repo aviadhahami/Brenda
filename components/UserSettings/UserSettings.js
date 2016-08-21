@@ -16,6 +16,7 @@ import ImagePicker from 'react-native-image-picker'
 // Store related
 import AuthAPI from './../../stores/APIs/AuthAPI'
 import ImageAPI from './../../stores/APIs/ImageAPI'
+import imageStore from './../../stores/ImageStore' // <-- IMPORTANT! This is here in order to init the store function!
 
 let {height,width} = Dimensions.get('window');
 let inputTextColor = 'rgba(0,0,0,0.6)', inputHighlightColor = '#E040FB';
