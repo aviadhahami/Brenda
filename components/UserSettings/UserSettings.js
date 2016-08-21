@@ -32,6 +32,7 @@ class UserSettings extends Component{
 		super(props);
 		console.log(this.props.user);
 		console.log('api', AuthAPI);
+		console.log('api2', ImageAPI);
 	}
 	_shrinkDisplayName(name){
 		let newName = name;
