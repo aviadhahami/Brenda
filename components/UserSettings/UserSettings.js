@@ -4,26 +4,28 @@
 
 
 import React, { Component } from 'react'
-import {ScrollView, Text, StyleSheet, Dimensions, TouchableHighlight} from 'react-native'
+import {ScrollView, View, Text, StyleSheet, Dimensions, TouchableHighlight} from 'react-native'
 import Route from './../Navigation/Route'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Button from 'apsl-react-native-button'
 
+import API from './../../stores/API'
 
-let {height} = Dimensions.get('window');
+
+let {height,width} = Dimensions.get('window');
 
 class UserSettings extends Component{
 	constructor(props){
 		super(props);
-	}
-	componentWillUnmount(){
+		console.log(this.props.user);
 	}
 	render(){
 		return(
-			<ScrollView style={{backgroundColor:'rgba(0,0,0,0)', marginTop:height*0.1,height:height}}>
-				<Button onPress={()=>{console.log('Pressed me')}}>
-					<Text>User settings</Text>
-				</Button>
+			<ScrollView contentContainerStyle={styles.container}>
+				<View style={styles.photoContainer}>
+					
+				</View>
+				<Text>{`Username: ${this.props.user.displayName}`}</Text>
 			</ScrollView>
 		)
 	}
@@ -40,6 +42,21 @@ function rightButtonFunc(route, navigator, index, navState) {
 const styles = StyleSheet.create({
 	button:{
 		backgroundColor: 'transparent',
+	},
+	container:{
+		backgroundColor:'rgba(0,0,0,0.4)',
+		marginTop:height*0.1,
+		paddingTop:height*0.05,
+		// height:height,
+		// width:width,
+		flex:1,
+		alignItems:'center'
+	},
+	photoContainer:{
+		width:200,
+		height:200,
+		borderRadius:100,
+		backgroundColor:'green'
 	}
 });
 
