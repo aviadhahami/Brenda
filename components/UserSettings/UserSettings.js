@@ -10,11 +10,22 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import TextField from 'react-native-md-textinput'
 import Button from 'apsl-react-native-button'
 
+
+// Picture manager
+import ImagePicker from 'react-native-image-picker'
+// Store related
 import API from './../../stores/API'
 
 
 let {height,width} = Dimensions.get('window');
 let inputTextColor = 'rgba(0,0,0,0.6)', inputHighlightColor = '#E040FB';
+let imagePickerOption =  {
+	title: 'Select Avatar',
+	storageOptions: {
+		skipBackup: true,
+		path: 'images'
+	}
+};
 
 class UserSettings extends Component{
 	constructor(props){
@@ -29,19 +40,42 @@ class UserSettings extends Component{
 		}
 		return newName;
 	}
-	 _updateInfo() {
+	_updateInfo() {
 		let email = this.refs.email.state.text;
 		let displayName = this.refs.displayName.state.text;
 		let res;
-		 
-		 // TODO: User need to re-authenticate here, should pop dialog or someshit
-		 // TODO: handle errors properly
+		
+		// TODO: User need to re-authenticate here, should pop dialog or someshit
+		// TODO: handle errors properly
 		if(email != this.props.user.email){
 			res = API.auth.updateUserEmail(email);
 		}
 		if (displayName != this.props.user.displayName){
 			API.auth.updateUserGeneralInfo({displayName:displayName});
 		}
+	}
+	_popImagePicker(){
+		ImagePicker.showImagePicker(imagePickerOption, (response) => {
+			console.log('Response = ', response);
+			
+			if (response.didCancel) {
+				console.log('User cancelled image picker');
+			}
+			else if (response.error) {
+				console.log('ImagePicker Error: ', response.error);
+			}
+			else if (response.customButton) {
+				console.log('User tapped custom button: ', response.customButton);
+			}
+			else {
+				// You can display the image using either data...
+				const source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
+				
+				this.setState({
+					avatarSource: source
+				});
+			}
+		});
 	}
 	render(){
 		let displayName = this._shrinkDisplayName(this.props.user.displayName);
@@ -50,9 +84,14 @@ class UserSettings extends Component{
 		return(
 			<ScrollView contentContainerStyle={styles.container} ref="scrollView" scrollEnabled={false}>
 				<View style={styles.content}>
-					<View style={styles.photoContainer}>
-						<Image resizeMode="contain" source={src} style={styles.photoStyles}></Image>
-					</View>
+					<TouchableOpacity onPress={()=>{
+						this._popImagePicker();
+					}}>
+						<View style={styles.photoContainer}>
+							<Image resizeMode="contain" source={src} style={styles.photoStyles}></Image>
+						</View>
+					</TouchableOpacity>
+					
 					<View style={styles.textContainer}>
 						<Text style={styles.userText}>{displayName}</Text>
 					</View>
@@ -115,7 +154,7 @@ class UserSettings extends Component{
 			</ScrollView>
 		)
 	}
-
+	
 }
 
 function leftButtonFunc(route, navigator, index, navState) {
