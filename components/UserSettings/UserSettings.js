@@ -4,7 +4,7 @@
 
 
 import React, { Component } from 'react'
-import {ScrollView, View, Text, StyleSheet, Dimensions, TouchableHighlight} from 'react-native'
+import {ScrollView, View, Text, StyleSheet, Dimensions, TouchableOpacity} from 'react-native'
 import Route from './../Navigation/Route'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Button from 'apsl-react-native-button'
@@ -19,13 +19,24 @@ class UserSettings extends Component{
 		super(props);
 		console.log(this.props.user);
 	}
+	_shrinkDisplayName(name){
+		let newName = name;
+		if(newName.length>20){
+			newName = newName.substr(0,17) + '...'
+		}
+		return newName;
+	}
 	render(){
+		let displayName = this._shrinkDisplayName(this.props.user.displayName);
+		
 		return(
 			<ScrollView contentContainerStyle={styles.container}>
 				<View style={styles.photoContainer}>
-					
+				
 				</View>
-				<Text>{`Username: ${this.props.user.displayName}`}</Text>
+				<View style={styles.displayNameContainer}>
+					<Text style={styles.displayNameText}>{displayName}</Text>
+				</View>
 			</ScrollView>
 		)
 	}
@@ -47,8 +58,6 @@ const styles = StyleSheet.create({
 		backgroundColor:'rgba(0,0,0,0.4)',
 		marginTop:height*0.1,
 		paddingTop:height*0.05,
-		// height:height,
-		// width:width,
 		flex:1,
 		alignItems:'center'
 	},
@@ -57,7 +66,17 @@ const styles = StyleSheet.create({
 		height:200,
 		borderRadius:100,
 		backgroundColor:'green'
-	}
+	},
+	displayNameContainer:{
+		flex:1,
+		flexDirection:'row',
+		height:100,
+		
+	},
+	displayNameText:{
+		color: 'rgba(255,255,255,0.9)',
+		fontSize:30,
+	},
 });
 
 let userSettingsRoute = new Route(2,'Settings','userSettings', <UserSettings />,leftButtonFunc, rightButtonFunc);
