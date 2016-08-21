@@ -30,23 +30,29 @@ class UserSettings extends Component{
 		let displayName = this._shrinkDisplayName(this.props.user.displayName);
 		
 		return(
-			<ScrollView contentContainerStyle={styles.container}>
-				<View style={styles.photoContainer}>
+			<ScrollView contentContainerStyle={styles.container} ref="scrollView">
+				<View style={styles.content}>
+					<View style={styles.photoContainer}>
 					
-				</View>
-				<View style={styles.textContainer}>
-					<Text style={styles.userText}>{displayName}</Text>
 					</View>
-				<View style={styles.textContainer}>
-					<Text style={styles.userMailText}>{this.props.user.email}</Text>
-				</View>
-				<View style={styles.dividerContainer}>
-					<Text>Scroll down to edit info</Text>
-					<Icon name="chevron-down"></Icon>
-				</View>
-				<View style={styles.editSectionContainer}>
-					<Text>Scroll down to edit info</Text>
-					<Icon name="chevron-down"></Icon>
+					<View style={styles.textContainer}>
+						<Text style={styles.userText}>{displayName}</Text>
+					</View>
+					<View style={styles.textContainer}>
+						<Text style={styles.userMailText}>{this.props.user.email}</Text>
+					</View>
+					<View style={styles.dividerContainer}>
+						<TouchableOpacity style={{alignItems:'center'}}onPress={()=>{
+							this.refs.scrollView.scrollTo({y:height*0.9,animated:true});
+						}}>
+							<Text>Scroll down to edit info</Text>
+							<Icon name="chevron-down"></Icon>
+						</TouchableOpacity>
+					</View>
+					<View style={styles.editSectionContainer}>
+						<Text>Scroll down to edit info</Text>
+						<Icon name="chevron-down"></Icon>
+					</View>
 				</View>
 			</ScrollView>
 		)
@@ -67,6 +73,8 @@ const styles = StyleSheet.create({
 	},
 	container:{
 		backgroundColor:'rgba(255,255,255,0.1)',
+	},
+	content:{
 		marginTop:height*0.1,
 		paddingTop:height*0.05,
 		alignItems:'center',
@@ -97,7 +105,7 @@ const styles = StyleSheet.create({
 	},
 	editSectionContainer:{
 		backgroundColor:'blue',
-		height:height*0.5,
+		height:height,
 		borderBottomWidth:10,
 		borderColor:'yellow'
 	}
