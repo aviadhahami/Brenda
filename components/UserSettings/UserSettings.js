@@ -8,6 +8,7 @@ import {ScrollView, View, Text, StyleSheet, Dimensions, TouchableOpacity, Image}
 import Route from './../Navigation/Route'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import TextField from 'react-native-md-textinput'
+import Button from 'apsl-react-native-button'
 
 import API from './../../stores/API'
 
@@ -19,7 +20,7 @@ class UserSettings extends Component{
 	constructor(props){
 		super(props);
 		console.log(this.props.user);
-	
+		
 	}
 	_shrinkDisplayName(name){
 		let newName = name;
@@ -60,20 +61,35 @@ class UserSettings extends Component{
 							<Text style={styles.editSectionTitleText}>Update user info</Text>
 						</View>
 						<View style={styles.editSectionContent}>
-							<TextField
-								value={this.props.user.email}
-								dense={true}
-								label={'Email'}
-								keyboardType={'email-address'}
-								highlightColor={inputHighlightColor}
-								textColor={inputTextColor}
-								labelColor={inputTextColor}
-								ref="email"
-							/>
+							<View style={styles.inputContainer}>
+								<TextField
+									value={this.props.user.displayName}
+									dense={true}
+									label={'Display Name'}
+									highlightColor={inputHighlightColor}
+									textColor={inputTextColor}
+									labelColor={inputTextColor}
+									ref="displayName"
+								/>
+								<TextField
+									value={this.props.user.email}
+									dense={true}
+									label={'Email'}
+									keyboardType={'email-address'}
+									highlightColor={inputHighlightColor}
+									textColor={inputTextColor}
+									labelColor={inputTextColor}
+									ref="email"
+								/>
+							</View>
+							<View style={{flexDirection:'row', backgroundColors:'blue', alignSelf:'center'}}>
+								<Button style={styles.button}>
+									<Text style={styles.buttonText}>Update</Text>
+								</Button>
+							</View>
 						</View>
 						<View style={styles.editSectionFooter}>
 							<TouchableOpacity style={{alignItems:'center'}}onPress={()=>{
-								console.log(this.refs.scrollView.add);
 								this.refs.scrollView.scrollTo({y:0,animated:true});
 							}}>
 								<Icon name="chevron-up"></Icon>
@@ -96,9 +112,7 @@ function rightButtonFunc(route, navigator, index, navState) {
 }
 
 const styles = StyleSheet.create({
-	button:{
-		backgroundColor: 'transparent',
-	},
+
 	container:{
 		backgroundColor:'rgba(255,255,255,0.1)',
 	},
@@ -147,15 +161,28 @@ const styles = StyleSheet.create({
 	},
 	editSectionContent:{
 		marginTop:height*0.05,
+	},
+	inputContainer:{
 		width:width*0.8,
+		alignSelf:'center'
 	},
 	inputBox:{
 		fontSize:15,
 		color: 'rgba(0,0,0,0.65)',
 	},
 	editSectionFooter:{
-		marginTop:height*0.5
-	}
+		marginTop:20
+	},
+	buttonText:{
+		marginTop:10,
+		color:'rgba(0,0,0,0.6)'
+	},
+	button:{
+		backgroundColor: '#FFEB3B',
+		margin:10,
+		width:width*0.8,
+		borderWidth:0,
+	},
 });
 
 let userSettingsRoute = new Route(2,'Settings','userSettings', <UserSettings />,leftButtonFunc, rightButtonFunc);
