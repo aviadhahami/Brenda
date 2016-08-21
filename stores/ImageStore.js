@@ -4,6 +4,8 @@
 import ImageAPI from './APIs/ImageAPI'
 import {createStore} from 'cartiv'
 
+let assign = require('object.assign/polyfill')();
+Object.assign = assign;
 
 const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
 	const byteCharacters = atob(b64Data);
