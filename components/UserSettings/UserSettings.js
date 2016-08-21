@@ -32,10 +32,21 @@ class UserSettings extends Component{
 		return(
 			<ScrollView contentContainerStyle={styles.container}>
 				<View style={styles.photoContainer}>
-				
+					
 				</View>
-				<View style={styles.displayNameContainer}>
-					<Text style={styles.displayNameText}>{displayName}</Text>
+				<View style={styles.textContainer}>
+					<Text style={styles.userText}>{displayName}</Text>
+					</View>
+				<View style={styles.textContainer}>
+					<Text style={styles.userMailText}>{this.props.user.email}</Text>
+				</View>
+				<View style={styles.dividerContainer}>
+					<Text>Scroll down to edit info</Text>
+					<Icon name="chevron-down"></Icon>
+				</View>
+				<View style={styles.editSectionContainer}>
+					<Text>Scroll down to edit info</Text>
+					<Icon name="chevron-down"></Icon>
 				</View>
 			</ScrollView>
 		)
@@ -55,11 +66,11 @@ const styles = StyleSheet.create({
 		backgroundColor: 'transparent',
 	},
 	container:{
-		backgroundColor:'rgba(0,0,0,0.4)',
+		backgroundColor:'rgba(255,255,255,0.1)',
 		marginTop:height*0.1,
 		paddingTop:height*0.05,
-		flex:1,
-		alignItems:'center'
+		alignItems:'center',
+		// height:height*2
 	},
 	photoContainer:{
 		width:200,
@@ -67,16 +78,29 @@ const styles = StyleSheet.create({
 		borderRadius:100,
 		backgroundColor:'green'
 	},
-	displayNameContainer:{
-		flex:1,
-		flexDirection:'row',
-		height:100,
-		
+	textContainer:{
+		flexDirection:'column',
 	},
-	displayNameText:{
-		color: 'rgba(255,255,255,0.9)',
-		fontSize:30,
+	userText:{
+		color: 'rgba(0,0,0,0.65)',
+		fontSize:35,
 	},
+	userMailText:{
+		fontSize:20,
+		color: 'rgba(0,0,0,0.5)',
+	},
+	dividerContainer:{
+		alignItems:'center',
+		width:width,
+		marginTop:height*0.25,
+		marginBottom:height*0.1
+	},
+	editSectionContainer:{
+		backgroundColor:'blue',
+		height:height*0.5,
+		borderBottomWidth:10,
+		borderColor:'yellow'
+	}
 });
 
 let userSettingsRoute = new Route(2,'Settings','userSettings', <UserSettings />,leftButtonFunc, rightButtonFunc);
