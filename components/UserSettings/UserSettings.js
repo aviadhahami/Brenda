@@ -32,8 +32,6 @@ class UserSettings extends Component{
 	constructor(props){
 		super(props);
 		console.log(this.props.user);
-		console.log('api', AuthAPI);
-		console.log('api2', ImageAPI);
 	}
 	_shrinkDisplayName(name){
 		let newName = name;
@@ -77,7 +75,7 @@ class UserSettings extends Component{
 					avatarSource: source
 				});
 				
-				ImageAPI.imageStore.uploadImageToProfile(source);
+				ImageAPI.images.uploadImageToProfile(response.data);
 			}
 		});
 	}
