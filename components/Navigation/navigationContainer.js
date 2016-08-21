@@ -109,23 +109,24 @@ class NavigationContainer extends Component{
 				renderScene={this._sceneLogic.bind(this)}
 				navigationBar={this._navigationBar}
 				configureScene={(route, routeStack) => {
-				return {
-					...Navigator.SceneConfigs.HorizontalSwipeJump,
-					gestures:null
-				}
+					let gesture = Navigator.SceneConfigs.HorizontalSwipeJump;
+					if (route.name == 'userSettings' || route.name == 'petSelection'){
+						gesture = Navigator.SceneConfigs.VerticalUpSwipeJump;
+					}
+					return gesture
 				}}
-			/>
-		)
-	}
+					/>
+					)
+				}
 }
-// {/*configureScene={(route, routeStack) => Navigator.SceneConfigs.PushFromRight}*/}
-
-
-const drawerStyles = {
-	drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
-};
-const styles= StyleSheet.create({
-	navigationBar:{
+	// {/*configureScene={(route, routeStack) => Navigator.SceneConfigs.PushFromRight}*/}
+	
+	
+	const drawerStyles = {
+		drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+	};
+	const styles= StyleSheet.create({
+		navigationBar:{
 		flex:1,
 		// flexDirection:'row',
 		padding:0,
@@ -137,19 +138,19 @@ const styles= StyleSheet.create({
 		borderBottomLeftRadius:2,
 		borderBottomRightRadius:2
 	},
-	leftNavButton:{
+		leftNavButton:{
 		color:'white'
 	},
-	rightNavButton:{
+		rightNavButton:{
 		color:'white',
 	},
-	navButtonContainer:{
+		navButtonContainer:{
 		flex:1,
 		width:width*0.1,
 		alignItems:'center',
 		justifyContent:'center'
 	},
-	navTitleContainer:{
+		navTitleContainer:{
 		flex:1,
 		flexDirection:'row',
 		width:width*0.6,
@@ -157,11 +158,11 @@ const styles= StyleSheet.create({
 		// alignItems: 'center',
 		marginTop:5,
 	},
-	navTitle:{
+		navTitle:{
 		textAlign:'center',
 		fontWeight:'400',
 		fontSize:26,
 		color:'white',
 	}
-});
-export default NavigationContainer
+	});
+	export default NavigationContainer

@@ -17,7 +17,13 @@ class ControlPanel extends Component{
 	}
 	_handleNavigation(route){
 		if(this.props.route.name != route.name) {
-			this.props.navigator.replace(route);
+			let routes = this.props.navigator.getCurrentRoutes();
+			console.log('curr routes',routes);
+			if(routes[routes.length-2] && routes[routes.length-2].name == route.name){
+				this.props.navigator.pop();
+			}else{
+				this.props.navigator.push(route);
+			}
 		}
 		this.props.drawerToggle();
 	}
