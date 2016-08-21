@@ -36,7 +36,7 @@ let authStore = createStore(
 		// when not provided, all methods starting with 'on' will get called
 		
 		// config.actions can either be an array of strings or a filter function.
-		actions: ['signUp','signIn','initFireBaseListener','clearErrors','signOut'], // specify methods that will get called when equivalent action triggered
+		actions: ['signUp','signIn','initFireBaseListener','clearErrors','signOut','updateUserEmail','updateUserGeneralInfo'], // specify methods that will get called when equivalent action triggered
 	},
 	{
 		/* this is the store definition: */
@@ -81,7 +81,7 @@ let authStore = createStore(
 			console.log('create user',email,password);
 			firebaseRef.auth().createUserWithEmailAndPassword(email, password)
 				.then((payload)=>{
-					this.updateUserInfo({displayName: displayName});
+					this.updateUserGeneralInfo({displayName: displayName});
 				}).catch((error) =>{
 				// Handle Errors here.
 				var errorCode = error.code;
@@ -93,7 +93,7 @@ let authStore = createStore(
 				this.setState({loading:false});
 			});
 		},
-		updateUserInfo(obj){
+		updateUserGeneralInfo(obj){
 			this.setState({loading:true});
 			let user = firebaseRef.auth().currentUser;
 			let purified = {
@@ -112,6 +112,18 @@ let authStore = createStore(
 				this.setState({error:error.message});
 				console.log('error updating name', error);
 			}).then(()=>{
+				this.setState({loading:false});
+			});
+		},
+		updateUserEmail(email){
+			this.setState({loading:true});
+			let user = firebaseRef.auth().currentUser;
+			user.updateEmail(email).then(()=>{
+				// Success
+			}, (err)=>{
+				console.log(err);
+				return err;
+			}).then( ()=>{
 				this.setState({loading:false});
 			});
 		},
