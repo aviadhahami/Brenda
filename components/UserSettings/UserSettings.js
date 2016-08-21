@@ -75,7 +75,7 @@ class UserSettings extends Component{
 					avatarSource: source
 				});
 				
-				ImageAPI.images.uploadImageToProfile(response.data);
+				ImageAPI.images.uploadImageToProfile(response);
 			}
 		});
 	}

@@ -3,6 +3,8 @@
  */
 import ImageAPI from './APIs/ImageAPI'
 import {createStore} from 'cartiv'
+import RNFetchBlob from 'react-native-fetch-blob'
+
 
 const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
 	const byteCharacters = atob(b64Data);
@@ -50,11 +52,26 @@ let imageStore = createStore(
 			}
 		},
 		uploadImageToProfile(base64Image){
-			
+			console.log(base64Image);
+			// return;
 			const auth = 'Client-ID fd9dc27ce22f620';
 			const url = 'https://api.imgur.com/3/image';
-			const img = new File([b64toBlob(base64Image)],"my-image.png");
+			// const img = new File([b64toBlob(base64Image)],"my-image.png");
 			
+			RNFetchBlob.fetch('POST', url, {
+				Authorization : auth,
+				'Content-Type' : 'multipart/form-data',
+				// Change BASE64 encoded data to a file path with prefix `RNFetchBlob-file://`.
+				// Or simply wrap the file path with RNFetchBlob.wrap().
+			}, [
+				{data:{image:'RNFetchBlob-file://'+base64Image.uri,type:'image'}}
+				])
+				.then((res) => {
+					console.log(res)
+				})
+				.catch((err) => {
+					// error handling ..
+				})
 		}
 	});
 
