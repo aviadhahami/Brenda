@@ -61,7 +61,7 @@ class UserSettings extends Component{
 						</View>
 						<View style={styles.editSectionContent}>
 							<TextField
-								value={this.props.user.email}
+								value={'text'}
 								dense={true}
 								label={'Email'}
 								keyboardType={'email-address'}
