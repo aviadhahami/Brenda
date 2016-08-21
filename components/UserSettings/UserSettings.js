@@ -35,6 +35,7 @@ class UserSettings extends Component{
 		let res;
 		 
 		 // TODO: User need to re-authenticate here, should pop dialog or someshit
+		 // TODO: handle errors properly
 		if(email != this.props.user.email){
 			res = API.auth.updateUserEmail(email);
 		}
