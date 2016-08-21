@@ -41,13 +41,13 @@ class UserSettings extends Component{
 	}
 	render(){
 		let displayName = this._shrinkDisplayName(this.props.user.displayName);
-		let src= !this.props.user.photoURL ? {uri: 'https://goo.gl/OHBNPr'} : require('./../../assets/stubs/userImage.png')
+		let src= this.props.user.photoURL ? {uri: 'https://goo.gl/OHBNPr'} : require('./../../assets/stubs/userImage.png')
 		console.log(this.props.user);
 		return(
 			<ScrollView contentContainerStyle={styles.container} ref="scrollView" scrollEnabled={false}>
 				<View style={styles.content}>
 					<View style={styles.photoContainer}>
-						<Image source={src} style={styles.photoStyles}></Image>
+						<Image resizeMode="contain" source={src} style={styles.photoStyles}></Image>
 					</View>
 					<View style={styles.textContainer}>
 						<Text style={styles.userText}>{displayName}</Text>
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
 	photoStyles:{
 		width:200,
 		height:200,
-		borderRadius:100,
+		borderRadius:1000,
 	},
 	textContainer:{
 		flexDirection:'column',
