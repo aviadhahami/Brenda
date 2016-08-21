@@ -14,8 +14,8 @@ import Button from 'apsl-react-native-button'
 // Picture manager
 import ImagePicker from 'react-native-image-picker'
 // Store related
-import API from './../../stores/API'
-
+import AuthAPI from './../../stores/APIs/AuthAPI'
+import ImageAPI from './../../stores/APIs/ImageAPI'
 
 let {height,width} = Dimensions.get('window');
 let inputTextColor = 'rgba(0,0,0,0.6)', inputHighlightColor = '#E040FB';
@@ -31,7 +31,7 @@ class UserSettings extends Component{
 	constructor(props){
 		super(props);
 		console.log(this.props.user);
-		
+		console.log('api', AuthAPI);
 	}
 	_shrinkDisplayName(name){
 		let newName = name;
@@ -48,10 +48,10 @@ class UserSettings extends Component{
 		// TODO: User need to re-authenticate here, should pop dialog or someshit
 		// TODO: handle errors properly
 		if(email != this.props.user.email){
-			res = API.auth.updateUserEmail(email);
+			res = AuthAPI.auth.updateUserEmail(email);
 		}
 		if (displayName != this.props.user.displayName){
-			API.auth.updateUserGeneralInfo({displayName:displayName});
+			AuthAPI.auth.updateUserGeneralInfo({displayName:displayName});
 		}
 	}
 	_popImagePicker(){
@@ -74,6 +74,8 @@ class UserSettings extends Component{
 				this.setState({
 					avatarSource: source
 				});
+				
+				ImageAPI.imageStore.uploadImageToProfile(source);
 			}
 		});
 	}

@@ -2,7 +2,7 @@
  * Created by aviad on 8/2/2016.
  */
 import {createStore} from 'cartiv';
-import API from './API'
+import AuthAPI from './APIs/AuthAPI'
 import * as firebase from 'firebase';
 
 const firebaseConfig = {
@@ -12,8 +12,6 @@ const firebaseConfig = {
 	storageBucket: "",
 };
 const firebaseRef = firebase.initializeApp(firebaseConfig);
-
-
 
 
 function sanitizeUserData(user) {
@@ -29,7 +27,7 @@ function sanitizeUserData(user) {
 let authStore = createStore(
 	{
 		/* this is the store config: */
-		api: API, // listen to actions coming from api
+		api: AuthAPI, // listen to actions coming from api
 		name: 'auth', // actions under 'auth' property, e.g: api.auth.smthn
 		
 		// config.actions is optional,

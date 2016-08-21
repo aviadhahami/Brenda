@@ -10,7 +10,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import NavigationContainer from './../Navigation/navigationContainer'
 
 import authStore from './../../stores/AuthStore';
-import API from './../../stores/API'
+import AuthAPI from '../../stores/APIs/AuthAPI'
 import {createConnector} from 'cartiv';
 const connect = createConnector(React);
 
@@ -20,7 +20,7 @@ class AuthContainer extends Component{
 		super(props);
 	}
 	componentWillMount(){
-		API.auth.initFireBaseListener();
+		AuthAPI.auth.initFireBaseListener();
 	}
 	render(){
 		let spinner;
@@ -36,7 +36,7 @@ class AuthContainer extends Component{
 				
 				<LinearGradient colors={gradientColor} style={[styles.container]}>
 					{spinner}
-					<LoginContainer error={this.state.error} clearErrors={API.auth.clearErrors.bind(this)} signIn={API.auth.signIn.bind(this)} signUp={API.auth.signUp.bind(this)}/>
+					<LoginContainer error={this.state.error} clearErrors={AuthAPI.auth.clearErrors.bind(this)} signIn={AuthAPI.auth.signIn.bind(this)} signUp={AuthAPI.auth.signUp.bind(this)}/>
 				</LinearGradient>
 		)
 	}

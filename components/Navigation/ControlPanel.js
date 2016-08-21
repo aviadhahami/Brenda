@@ -8,7 +8,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 import {petSelectionRoute, userSettingsRoute} from './componentsConfig'
 
-import API from './../../stores/API'
+import AuthAPI from '../../stores/APIs/AuthAPI'
 let {height,width} = Dimensions.get('window');
 
 class ControlPanel extends Component{
@@ -56,7 +56,7 @@ class ControlPanel extends Component{
 					</View>
 				</TouchableHighlight>
 				<TouchableHighlight underlayColor='transparent' onPress={()=>{
-					API.auth.signOut()
+					AuthAPI.auth.signOut()
 				}}>
 					<View style={styles.row}>
 						<Icon style={styles.controlPanelIcon} name="sign-out" size={30}></Icon>
