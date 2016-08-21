@@ -138,7 +138,10 @@ const styles = StyleSheet.create({
 	photoContainer:{
 		width:200,
 		height:200,
-		alignItems:'center'
+		alignItems:'center',
+		borderWidth:1,
+		borderRadius:1000,
+		borderColor:'rgba(0,0,0,0.05)'
 	},
 	photoStyles:{
 		width:200,
