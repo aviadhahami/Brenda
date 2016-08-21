@@ -52,42 +52,9 @@ let imageStore = createStore(
 		uploadImageToProfile(base64Image){
 			
 			const auth = 'Client-ID fd9dc27ce22f620';
-			let xhr = new XMLHttpRequest();
 			const url = 'https://api.imgur.com/3/image';
-			let fd = new FormData();
-			fd.append('image',new File([b64toBlob(base64Image)],"my-image.png"));
-			fd.append('type','base64');
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState == 4 && xhr.status == 200) {
-					console.log(xhr.responseText);
-					// var myArr = JSON.parse();
-					// myFunction(myArr);
-				}else{
-					console.log(xhr);
-				}
-			};
+			const img = new File([b64toBlob(base64Image)],"my-image.png");
 			
-			xhr.open('POST',url,true);
-			// xhr.setRequestHeader('Authorization',auth);
-			xhr.setRequestHeader('Content-Type','multipart/form-data');
-			xhr.send(fd);
-			
-			// let request = new Request('https://api.imgur.com/3/upload', {
-			// 	method: 'POST',
-			// 	body:JSON.stringify({
-			// 		image:	base64Image.uri,
-			// 		type:'base64'
-			// 	}),
-			// 	headers: {
-			// 		Authorization: auth
-			// 	}
-			// });
-			// fetch(request).then((res)=>{
-			// 	console.log(res);
-			// 	}
-			// ).then((data)=>{
-			// 	console.log(data);
-			// });
 		}
 	});
 

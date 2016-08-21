@@ -13,6 +13,7 @@
     "react-native": "0.30.0",
     "react-native-dialogbox": "^0.6.0",
     "react-native-drawer": "^2.2.6",
+    "react-native-fetch-blob": "^0.9.1",
     "react-native-image-picker": "^0.21.5",
     "react-native-linear-gradient": "^1.5.12",
     "react-native-loading-spinner-overlay": "^0.3.0",
