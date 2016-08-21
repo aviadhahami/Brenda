@@ -46,7 +46,7 @@ class NavigationContainer extends Component{
 			onClose={()=> {
 				this.setState({drawerOpen: false})
 			}}
-			content={<ControlPanel user={this.props.user} navigator={navigator} route={route}/>}
+			content={<ControlPanel user={this.props.user} navigator={navigator} route={route} drawerToggle={this._handleDrawer.bind(this)}/>}
 			tapToClose={true}
 			openDrawerOffset={0.2} // 20% gap on the right side of drawer
 			panCloseMask={0.2}

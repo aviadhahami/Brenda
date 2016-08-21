@@ -16,6 +16,8 @@ class UserSettings extends Component{
 	constructor(props){
 		super(props);
 	}
+	componentWillUnmount(){
+	}
 	render(){
 		return(
 			<ScrollView style={{backgroundColor:'rgba(0,0,0,0)', marginTop:height*0.1,height:height}}>

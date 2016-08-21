@@ -14,12 +14,12 @@ let {height,width} = Dimensions.get('window');
 class ControlPanel extends Component{
 	constructor(props){
 		super(props);
-		console.log(this.props.route);
 	}
 	_handleNavigation(route){
 		if(this.props.route.name != route.name) {
-			this.props.navigator.push(route);
+			this.props.navigator.replace(route);
 		}
+		this.props.drawerToggle();
 	}
 	render(){
 		let MyPetsFlag = false, SettingsFlag = false;
@@ -27,7 +27,8 @@ class ControlPanel extends Component{
 			case 'petSelection':
 				MyPetsFlag = true;
 				break;
-			case 'settings':
+			case 'userSettings':
+				SettingsFlag = true;
 				break;
 		}
 		return(
