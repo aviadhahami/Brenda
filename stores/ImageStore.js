@@ -25,6 +25,12 @@ const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
 	const blob = new Blob(byteArrays, {type: contentType});
 	return blob;
 };
+function blobToFile(theBlob, fileName){
+	//A Blob() is almost a File() - it's just missing the two properties below which we will add
+	theBlob.lastModifiedDate = new Date();
+	theBlob.name = fileName;
+	return theBlob;
+}
 
 let imageStore = createStore(
 	{
@@ -46,19 +52,43 @@ let imageStore = createStore(
 		},
 		uploadImageToProfile(base64Image){
 			
-			// Relevant path : base64Image.path
-			const contentType = 'image/png';
-			const b64Data = base64Image;
-			const blob = b64toBlob(b64Data, contentType);
+			const auth = 'Client-ID fd9dc27ce22f620';
+			let xhr = new XMLHttpRequest();
+			const url = 'https://api.imgur.com/3/image';
+			let fd = new FormData();
+			fd.append('image',new File([b64toBlob(base64Image)],"my-image.png"));
+			fd.append('type','base64');
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					console.log(xhr.responseText);
+					// var myArr = JSON.parse();
+					// myFunction(myArr);
+				}else{
+					console.log(xhr);
+				}
+			};
 			
-			console.log(blob);
-			let request = new Request('http://uploads.im/api', {
-				method: 'POST',
-				body:blob
-			});
-			fetch(request).then((res)=>res.json()).then((data)=>{
-				console.log(data);
-			});
+			xhr.open('POST',url,true);
+			// xhr.setRequestHeader('Authorization',auth);
+			xhr.setRequestHeader('Content-Type','multipart/form-data');
+			xhr.send(fd);
+			
+			// let request = new Request('https://api.imgur.com/3/upload', {
+			// 	method: 'POST',
+			// 	body:JSON.stringify({
+			// 		image:	base64Image.uri,
+			// 		type:'base64'
+			// 	}),
+			// 	headers: {
+			// 		Authorization: auth
+			// 	}
+			// });
+			// fetch(request).then((res)=>{
+			// 	console.log(res);
+			// 	}
+			// ).then((data)=>{
+			// 	console.log(data);
+			// });
 		}
 	});
 
