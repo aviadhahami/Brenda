@@ -27,22 +27,23 @@ class UserSettings extends Component{
 		return newName;
 	}
 	render(){
+		console.log(this.refs.scrollView.additionalScrollOffset);
 		let displayName = this._shrinkDisplayName(this.props.user.displayName);
-		
 		return(
-			<ScrollView contentContainerStyle={styles.container} ref="scrollView">
+			<ScrollView contentContainerStyle={styles.container} ref="scrollView" scrollEnabled={false}>
 				<View style={styles.content}>
-					<View style={styles.photoContainer}>
-					
-					</View>
-					<View style={styles.textContainer}>
-						<Text style={styles.userText}>{displayName}</Text>
-					</View>
-					<View style={styles.textContainer}>
-						<Text style={styles.userMailText}>{this.props.user.email}</Text>
-					</View>
+						<View style={styles.photoContainer}>
+						
+						</View>
+						<View style={styles.textContainer}>
+							<Text style={styles.userText}>{displayName}</Text>
+						</View>
+						<View style={styles.textContainer}>
+							<Text style={styles.userMailText}>{this.props.user.email}</Text>
+						</View>
 					<View style={styles.dividerContainer}>
 						<TouchableOpacity style={{alignItems:'center'}}onPress={()=>{
+							console.log(this.refs.scrollView.add);
 							this.refs.scrollView.scrollTo({y:height*0.9,animated:true});
 						}}>
 							<Text>Scroll down to edit info</Text>
@@ -50,8 +51,23 @@ class UserSettings extends Component{
 						</TouchableOpacity>
 					</View>
 					<View style={styles.editSectionContainer}>
-						<Text>Scroll down to edit info</Text>
-						<Icon name="chevron-down"></Icon>
+						<View style={styles.editSectionTitleContainer}>
+							<Icon name="wrench" style={styles.editSectionTitleText}></Icon>
+							<Text style={{width:width*0.02}}></Text>
+							<Text style={styles.editSectionTitleText}>Update user info</Text>
+						</View>
+						<View style={styles.editSectionContent}>
+							<Text> Content</Text>
+						</View>
+						<View style={styles.editSectionFooter}>
+							<TouchableOpacity style={{alignItems:'center'}}onPress={()=>{
+								console.log(this.refs.scrollView.add);
+								this.refs.scrollView.scrollTo({y:0,animated:true});
+							}}>
+								<Icon name="chevron-up"></Icon>
+								<Text>Back to top</Text>
+							</TouchableOpacity>
+						</View>
 					</View>
 				</View>
 			</ScrollView>
@@ -78,7 +94,6 @@ const styles = StyleSheet.create({
 		marginTop:height*0.1,
 		paddingTop:height*0.05,
 		alignItems:'center',
-		// height:height*2
 	},
 	photoContainer:{
 		width:200,
@@ -104,10 +119,21 @@ const styles = StyleSheet.create({
 		marginBottom:height*0.1
 	},
 	editSectionContainer:{
-		backgroundColor:'blue',
-		height:height,
-		borderBottomWidth:10,
-		borderColor:'yellow'
+		height:height*0.8,
+		alignItems:'center',
+	},
+	editSectionTitleContainer:{
+		flexDirection:'row'
+	},
+	editSectionTitleText:{
+		fontSize:35,
+		color: 'rgba(0,0,0,0.65)',
+	},
+	editSectionContent:{
+		marginTop:height*0.05
+	},
+	editSectionFooter:{
+		marginTop:height*0.2
 	}
 });
 
