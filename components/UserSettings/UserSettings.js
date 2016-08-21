@@ -7,16 +7,19 @@ import React, { Component } from 'react'
 import {ScrollView, View, Text, StyleSheet, Dimensions, TouchableOpacity, Image} from 'react-native'
 import Route from './../Navigation/Route'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import TextField from 'react-native-md-textinput'
 
 import API from './../../stores/API'
 
 
 let {height,width} = Dimensions.get('window');
+let inputTextColor = 'rgba(0,0,0,0.6)', inputHighlightColor = '#E040FB';
 
 class UserSettings extends Component{
 	constructor(props){
 		super(props);
 		console.log(this.props.user);
+	
 	}
 	_shrinkDisplayName(name){
 		let newName = name;
@@ -57,7 +60,16 @@ class UserSettings extends Component{
 							<Text style={styles.editSectionTitleText}>Update user info</Text>
 						</View>
 						<View style={styles.editSectionContent}>
-							<Text> Content</Text>
+							<TextField
+								value={this.props.user.email}
+								dense={true}
+								label={'Email'}
+								keyboardType={'email-address'}
+								highlightColor={inputHighlightColor}
+								textColor={inputTextColor}
+								labelColor={inputTextColor}
+								ref="email"
+							/>
 						</View>
 						<View style={styles.editSectionFooter}>
 							<TouchableOpacity style={{alignItems:'center'}}onPress={()=>{
@@ -134,7 +146,12 @@ const styles = StyleSheet.create({
 		color: 'rgba(0,0,0,0.65)',
 	},
 	editSectionContent:{
-		marginTop:height*0.05
+		marginTop:height*0.05,
+		width:width*0.8,
+	},
+	inputBox:{
+		fontSize:15,
+		color: 'rgba(0,0,0,0.65)',
 	},
 	editSectionFooter:{
 		marginTop:height*0.5
