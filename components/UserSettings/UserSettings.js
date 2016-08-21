@@ -33,7 +33,7 @@ class UserSettings extends Component{
 			<ScrollView contentContainerStyle={styles.container} ref="scrollView" scrollEnabled={false}>
 				<View style={styles.content}>
 						<View style={styles.photoContainer}>
-						
+							<Image source={require('./../../assets/stubs/userImage.png')} />
 						</View>
 						<View style={styles.textContainer}>
 							<Text style={styles.userText}>{displayName}</Text>
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
 		marginTop:height*0.05
 	},
 	editSectionFooter:{
-		marginTop:height*0.2
+		marginTop:height*0.5
 	}
 });
 
