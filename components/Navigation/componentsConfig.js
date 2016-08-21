@@ -16,8 +16,8 @@ class componentsConfig{
 	static get getComponents(){
 		return [
 			initialRoute,
-			PetCreationRoute,
-			userSettingsRoute
+			// PetCreationRoute,
+			// userSettingsRoute
 		]
 	}
 }
