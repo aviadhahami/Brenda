@@ -6,25 +6,15 @@
  * Created by aviad on 8/2/2016.
  */
 import {createStore} from 'cartiv';
-import AuthAPI from './APIs/AuthAPI'
+import PetsApi from './APIs/PetsAPI'
 import firebaseRef from './firebase'
 
 
-function sanitizeUserData(user) {
-	let clearUser={};
-	user.providerData.forEach((profile) => {
-		clearUser['displayName'] = profile.displayName || user.displayName;
-		clearUser['email'] = profile.email ||  user.email;
-		clearUser['photoURL'] = profile.photoURL || user.photoURL;
-	});
-	return clearUser;
-}
-
-let authStore = createStore(
+let petsStore = createStore(
 	{
 		/* this is the store config: */
-		api: AuthAPI, // listen to actions coming from api
-		name: 'auth', // actions under 'auth' property, e.g: api.auth.smthn
+		api: PetsApi, // listen to actions coming from api
+		name: 'pets', // actions under 'auth' property, e.g: api.auth.smthn
 		
 		// config.actions is optional,
 		// when not provided, all methods starting with 'on' will get called
@@ -36,12 +26,18 @@ let authStore = createStore(
 		/* this is the store definition: */
 		getInitialState(){ // same as React!
 			return {
-				pets:[]
+				pets: []
 			}
 		},
 		createPet(pet){
-			
+			alert('creating pet - store');
+			let petKey = firebaseRef.database().ref('pets').push().key;
+			firebaseRef.database().ref(`pets/${petKey}`).set(pet.toJSON()).then(res=> {
+				console.log('res frm pet creation', res);
+			}, err=> {
+				console.log('err from pet', err);
+			});
 		}
 	});
 // createStore.allowHMR(module, authStore);
-export default authStore;
+export default petsStore;

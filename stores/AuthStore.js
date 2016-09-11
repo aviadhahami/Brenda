@@ -12,6 +12,7 @@ function sanitizeUserData(user) {
 		clearUser['displayName'] = profile.displayName || user.displayName;
 		clearUser['email'] = profile.email ||  user.email;
 		clearUser['photoURL'] = profile.photoURL || user.photoURL;
+		clearUser['uid'] = user.uid;
 	});
 	return clearUser;
 }
