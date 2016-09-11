@@ -34,10 +34,11 @@ class PetCreation extends Component {
 		if (!pet.name || !pet.age || !pet.sex || !pet.type) return;
 		pet = new Pet(pet.name, pet.age, pet.sex, pet.type);
 		pet.owners = this.props.user.uid;
-		let res  = await PetsAPI.pets.createPet(pet, this.props.user.uid);
+		let res = await PetsAPI.pets.createPet(pet, this.props.user.uid);
 		
 		// TODO:Need to promisify this!
-		
+		alert(`Created profile for ${pet.name}`);
+		this.props.navigator.pop();
 	}
 	
 	inputUpdate(key, val) {
