@@ -21,14 +21,20 @@ let petsStore = createStore(
 		// when not provided, all methods starting with 'on' will get called
 		
 		// config.actions can either be an array of strings or a filter function.
-		actions: ['createPet','retrievePets'], // specify methods that will get called when equivalent action triggered
+		actions: ['createPet','retrievePets','initPetsListener'], // specify methods that will get called when equivalent action triggered
 	},
 	{
 		/* this is the store definition: */
 		getInitialState(){ // same as React!
 			return {
+				test:'1',
 				pets: []
 			}
+		},
+		initPetsListener(){
+			this.setState({
+				pets:['a','sdsd','asdasd','qwrqwer']
+			})
 		},
 		async createPet(pet, owner_uid){
 			let petPromise = new Promise((res, rej)=> {
