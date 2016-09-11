@@ -51,6 +51,7 @@ let imageStore = createStore(
 			return {
 			}
 		},
+		// TODO: Fix the image store
 		uploadImageToProfile(base64Image){
 			console.log(base64Image);
 			// return;
