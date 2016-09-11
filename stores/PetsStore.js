@@ -21,7 +21,7 @@ let petsStore = createStore(
 		// when not provided, all methods starting with 'on' will get called
 		
 		// config.actions can either be an array of strings or a filter function.
-		actions: ['createPet'], // specify methods that will get called when equivalent action triggered
+		actions: ['createPet','retrievePets'], // specify methods that will get called when equivalent action triggered
 	},
 	{
 		/* this is the store definition: */
@@ -50,6 +50,9 @@ let petsStore = createStore(
 					rej('error')
 				}
 			});
+		},
+		retrievePets(uid){
+			
 		}
 	});
 // createStore.allowHMR(module, authStore);
