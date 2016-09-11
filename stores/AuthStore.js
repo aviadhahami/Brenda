@@ -3,15 +3,7 @@
  */
 import {createStore} from 'cartiv';
 import AuthAPI from './APIs/AuthAPI'
-import * as firebase from 'firebase';
-
-const firebaseConfig = {
-	apiKey: "AIzaSyDvHAflY3tpYWmqL3tYxTUZ29TDV17mHUM",
-	authDomain: "brenda-139c4.firebaseapp.com",
-	databaseURL: "https://brenda-139c4.firebaseio.com",
-	storageBucket: "",
-};
-const firebaseRef = firebase.initializeApp(firebaseConfig);
+import firebaseRef from './firebase'
 
 
 function sanitizeUserData(user) {
