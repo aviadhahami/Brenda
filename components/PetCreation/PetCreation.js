@@ -113,7 +113,7 @@ class PetCreation extends Component {
 						</View>
 					</View>
 					<View style={styles.createButton}>
-						<Icon.Button name="paw" iconStyle={{color: '#009688'}} backgroundColor="transparent"
+						<Icon.Button name="check-circle-o" color='#00E676' size={40} backgroundColor="transparent"
 									 onPress={this.createPet.bind(this)}>
 							<Text style={styles.buttonText}>Create</Text>
 						</Icon.Button>
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'row',
 		textAlign: 'center',
-		color: 'rgba(255,255,255,0.95)',
+		color: '#00E676',
 		fontSize: 25,
 		fontWeight: "900"
 	},
