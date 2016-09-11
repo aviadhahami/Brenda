@@ -29,22 +29,25 @@ class PetCreation extends Component {
 		}
 	}
 	
-	createPet() {
-		alert('creating pet');
-		let pet = new Pet('brenda', 9, 'female', 'dog');
+	async createPet() {
+		let {pet} = this.state
+		if (!pet.name || !pet.age || !pet.sex || !pet.type) return;
+		pet = new Pet(pet.name, pet.age, pet.sex, pet.type);
 		pet.owners = this.props.user.uid;
-		PetsAPI.pets.createPet(pet);
+		let res  = await PetsAPI.pets.createPet(pet, this.props.user.uid);
+		
+		// TODO:Need to promisify this!
+		
 	}
 	
 	inputUpdate(key, val) {
 		const newState = {...this.state};
 		newState['pet'][key] = val;
-		console.log('new state',newState)
 		this.setState(newState);
 	}
+	
 	render() {
 		return (
-			
 			<LinearGradient colors={gradientColor} style={styles.gradient}>
 				<ScrollView contentContainerStyle={styles.scrollContainer}>
 					<View style={styles.inputContainer}>
@@ -68,7 +71,7 @@ class PetCreation extends Component {
 									textColor={inputTextColor}
 									labelColor={inputTextColor}
 									ref="name"
-									onChangeText={this.inputUpdate.bind(this,'name')}
+									onChangeText={this.inputUpdate.bind(this, 'name')}
 								/>
 							</View>
 							<View>
@@ -99,7 +102,7 @@ class PetCreation extends Component {
 									textColor={inputTextColor}
 									labelColor={inputTextColor}
 									ref="age"
-									onChangeText={this.inputUpdate.bind(this,'age')}
+									onChangeText={this.inputUpdate.bind(this, 'age')}
 								/>
 							</View>
 							<View>

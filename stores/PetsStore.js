@@ -8,6 +8,7 @@
 import {createStore} from 'cartiv';
 import PetsApi from './APIs/PetsAPI'
 import firebaseRef from './firebase'
+import q from 'q'
 
 
 let petsStore = createStore(
@@ -29,13 +30,25 @@ let petsStore = createStore(
 				pets: []
 			}
 		},
-		createPet(pet){
-			alert('creating pet - store');
-			let petKey = firebaseRef.database().ref('pets').push().key;
-			firebaseRef.database().ref(`pets/${petKey}`).set(pet.toJSON()).then(res=> {
-				console.log('res frm pet creation', res);
-			}, err=> {
-				console.log('err from pet', err);
+		async createPet(pet, owner_uid){
+			let petPromise = new Promise((res, rej)=> {
+				let petKey = firebaseRef.database().ref('pets').push().key;
+				let newRef = firebaseRef.database().ref(`pets/${petKey}`).set(pet.toJSON());
+				if (newRef) {
+					res(petKey)
+				} else {
+					rej('error')
+				}
+			});
+			let key = await petPromise;
+			let userPromise = new Promise((res, rej)=> {
+				let prom = firebaseRef.database().ref(`users/${owner_uid}/pets`).push(key);
+				if (prom) {
+					res(prom)
+					return 'success'
+				} else {
+					rej('error')
+				}
 			});
 		}
 	});

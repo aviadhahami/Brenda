@@ -9,6 +9,7 @@
     "apsl-react-native-button": "^3.0.0",
     "cartiv": "^0.2.0",
     "firebase": "^3.2.1",
+    "q": "^1.4.1",
     "react": "15.2.1",
     "react-native": "0.30.0",
     "react-native-dialogbox": "^0.6.0",
