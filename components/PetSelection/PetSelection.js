@@ -17,32 +17,34 @@ import LinearGradient from 'react-native-linear-gradient'
 import {createConnector} from 'cartiv';
 const connect = createConnector(React);
 
-let {height} = Dimensions.get('window');
 
+let {height} = Dimensions.get('window');
 @connect(PetsStore)
 class PetSelection extends Component {
 	constructor(props) {
 		super(props);
 		const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 		this.state = {
-			dataSource: ds.cloneWithRows([
-				'Aohn', 'Boel', 'Cames', 'Dimmy', 'Jacksasdasdasdon', 'Jillian', 'Julie', 'Devin'
-			])
+			dataSource: ds.cloneWithRows([]),
 		};
+		PetsAPI.pets.initPetsListener();
+		const that = this;
+		console.log(this.state);
 	}
 	
-	componentWillMount() {
-		PetsAPI.pets.initPetsListener();
+	componentDidMount() {
+		console.log('state', this.state);
+		PetsAPI.pets.retrievePets(this.props.user.uid)
 	}
 	
 	render() {
 		return (
 			<LinearGradient colors={gradientColor} style={styles.gradient}>
-				<ListView style={{backgroundColor: 'rgba(0,0,0,0)', marginTop: height * 0.1, height: height}}
-						  contentContainerStyle={styles.list}
-						  dataSource={this.state.dataSource}
-						  renderRow={(rowData) => <CircleNameButton style={styles.item} name={rowData}/>}>
-				</ListView>
+				{/*<ListView style={{backgroundColor: 'rgba(0,0,0,0)', marginTop: height * 0.1, height: height}}*/}
+				{/*contentContainerStyle={styles.list}*/}
+				{/*dataSource={this.state.dataSource}*/}
+				{/*renderRow={(rowData) => <CircleNameButton style={styles.item} name={rowData}/>}>*/}
+				{/*</ListView>*/}
 			</LinearGradient>
 		)
 	}
