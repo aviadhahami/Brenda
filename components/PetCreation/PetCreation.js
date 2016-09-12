@@ -7,6 +7,7 @@ import {Text, View, TouchableHighlight, ScrollView, Dimensions, StyleSheet, Pick
 import TextField from 'react-native-md-textinput'
 import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import PopupDialog from 'react-native-popup-dialog'
 import Pet from './../../classes/Pet'
 import PetsAPI from './../../stores/APIs/PetsAPI'
 
@@ -37,8 +38,8 @@ class PetCreation extends Component {
 		let res = await PetsAPI.pets.createPet(pet, this.props.user.uid);
 		
 		// TODO:Need to promisify this!
-		alert(`Created profile for ${pet.name}`);
-		this.props.navigator.pop();
+		// alert(`Created profile for ${pet.name}`);
+		this.popupDialog.openDialog();
 	}
 	
 	inputUpdate(key, val) {
@@ -122,7 +123,19 @@ class PetCreation extends Component {
 							<Text style={styles.buttonText}>Create</Text>
 						</Icon.Button>
 					</View>
-				
+					<PopupDialog
+						width={width * 0.7}
+						height={height * 0.2}
+						ref={(popupDialog) => {
+							this.popupDialog = popupDialog;
+						}}
+						onClosed={this.props.navigator.pop}
+					>
+						<View style={styles.dialogTextContainer}>
+							<Icon name="check" size={50} color="#4CAF50"></Icon>
+							<Text style={styles.dialogText}>Done</Text>
+						</View>
+					</PopupDialog>
 				</ScrollView>
 			</LinearGradient>
 		)
@@ -191,6 +204,20 @@ const styles = StyleSheet.create({
 	},
 	gradient: {
 		flex: 1,
+	},
+	dialogTextContainer: {
+		// backgroundColor:'black',
+		height:height*0.15,
+		flexDirection: 'row',
+		justifyContent:'center',
+		alignItems:'center'
+	},
+	dialogText: {
+		margin:10,
+		fontWeight:'800',
+		fontSize:30,
+		textAlign: 'center',
+		color:'#4CAF50'
 	}
 });
 const gradientColor = ['#673AB7', '#673AB7', '#673AB7', 'black'];
