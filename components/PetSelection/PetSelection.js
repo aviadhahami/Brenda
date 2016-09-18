@@ -3,49 +3,59 @@
  */
 
 
-import React, {Component} from 'react'
-import {ScrollView, View, ListView, Text, StyleSheet, Dimensions, TouchableHighlight} from 'react-native'
+import React, { Component } from 'react'
+import { ScrollView, View, ListView, Text, StyleSheet, Dimensions, TouchableHighlight } from 'react-native'
 import Route from './../Navigation/Route'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Button from 'apsl-react-native-button'
-import {PetCreationRoute} from './../PetCreation/PetCreation'
+import { PetCreationRoute } from './../PetCreation/PetCreation'
 
+
+import LinearGradient from 'react-native-linear-gradient'
+const { height:HEIGHT } = Dimensions.get('window');
+
+
+import petsStore from './../../stores/PetsStore'; // Important to keep
 
 import PetsAPI from './../../stores/APIs/PetsAPI'
-import PetsStore from './../../stores/PetsStore' // Important! invoking the pet store
-import LinearGradient from 'react-native-linear-gradient'
-import {createConnector} from 'cartiv';
-const connect = createConnector(React);
 
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
-let {height} = Dimensions.get('window');
-@connect(PetsStore)
 class PetSelection extends Component {
 	constructor(props) {
 		super(props);
-		const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 		this.state = {
+			pets: [],
 			dataSource: ds.cloneWithRows([]),
 		};
-		PetsAPI.pets.initPetsListener();
-		const that = this;
-		console.log(this.state);
 	}
 	
 	componentDidMount() {
-		console.log('state', this.state);
-		PetsAPI.pets.retrievePets(this.props.user.uid)
+		PetsAPI.pets.retrievePets(this.props.user.uid, this.petsStateListener.bind(this));
+	}
+	
+	petsStateListener(promise) {
+		promise.then(data=> {
+			PetsAPI.pets.retrievePetsInfo(data, this.petsInfoListener.bind(this));
+		});
+	}
+	
+	petsInfoListener(data) {
+		const petsArray = this.state.pets;
+		petsArray.push(data);
+		this.setState({ pets: petsArray, dataSource: ds.cloneWithRows(petsArray) });
 	}
 	
 	render() {
+		console.log(this.state);
 		return (
-			<LinearGradient colors={gradientColor} style={styles.gradient}>
-				{/*<ListView style={{backgroundColor: 'rgba(0,0,0,0)', marginTop: height * 0.1, height: height}}*/}
-				{/*contentContainerStyle={styles.list}*/}
-				{/*dataSource={this.state.dataSource}*/}
-				{/*renderRow={(rowData) => <CircleNameButton style={styles.item} name={rowData}/>}>*/}
-				{/*</ListView>*/}
-			</LinearGradient>
+				<LinearGradient colors={gradientColor} style={styles.gradient}>
+					<ListView style={{ backgroundColor: 'rgba(0,0,0,0)', marginTop: HEIGHT * 0.1, height: HEIGHT }}
+										contentContainerStyle={styles.list}
+										dataSource={this.state.dataSource}
+										renderRow={(rowData) => <CircleNameButton style={styles.item} data={rowData}/>}>
+					</ListView>
+				</LinearGradient>
 		)
 	}
 	
@@ -83,7 +93,7 @@ const styles = StyleSheet.create({
 const gradientColor = ['#673AB7', '#673AB7', '#673AB7', 'black'];
 
 let petSelectionRoute = new Route(0, 'My Pets', 'petSelection', <PetSelection />, leftButtonFunc, rightButtonFunc);
-export {petSelectionRoute};
+export { petSelectionRoute };
 
 class CircleNameButton extends Component {
 	constructor(props) {
@@ -91,27 +101,28 @@ class CircleNameButton extends Component {
 	}
 	
 	render() {
-		let fullName = this.props.name.charAt(0).toUpperCase();
-		
-		if (this.props.name.length > 7) {
-			fullName += this.props.name.substring(1, 5).toLowerCase() + '..'
-		} else {
-			fullName += this.props.name.substring(1).toLowerCase()
+		const { name } = this.props.data;
+		let fullName = name.charAt(0).toUpperCase();
+		if ( name ) {
+			if ( name.length > 7 ) {
+				fullName += name.substring(1, 5).toLowerCase() + '..'
+			} else {
+				fullName += name.substring(1).toLowerCase()
+			}
 		}
 		return (
-			<View style={circleStyles.circle}>
-				<TouchableHighlight>
-					<View>
-						<Text style={circleStyles.bigLetter}>
-							{this.props.name.charAt(0).toUpperCase()}
-						</Text>
-						<Text style={circleStyles.fullName}>
-							{fullName}
-						</Text>
-					</View>
-				
-				</TouchableHighlight>
-			</View>
+				<View style={circleStyles.circle}>
+					<TouchableHighlight>
+						<View>
+							<Text style={circleStyles.bigLetter}>
+								{this.props.data.name.charAt(0).toUpperCase()}
+							</Text>
+							<Text style={circleStyles.fullName}>
+								{fullName}
+							</Text>
+						</View>
+					</TouchableHighlight>
+				</View>
 		)
 	}
 }
