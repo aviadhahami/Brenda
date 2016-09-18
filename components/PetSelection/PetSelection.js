@@ -34,20 +34,18 @@ class PetSelection extends Component {
 		PetsAPI.pets.retrievePets(this.props.user.uid, this.petsStateListener.bind(this));
 	}
 	
-	petsStateListener(promise) {
-		promise.then(data=> {
-			PetsAPI.pets.retrievePetsInfo(data, this.petsInfoListener.bind(this));
-		});
+	petsStateListener(data) {
+		PetsAPI.pets.retrievePetsInfo(data, this.petsInfoListener.bind(this));
 	}
 	
-	petsInfoListener(data) {
-		const petsArray = this.state.pets;
+	petsInfoListener(data, flag) {
+		const petsArray = flag ? [] : this.state.pets;
+		console.log(data);
 		petsArray.push(data);
 		this.setState({ pets: petsArray, dataSource: ds.cloneWithRows(petsArray) });
 	}
 	
 	render() {
-		console.log(this.state);
 		return (
 				<LinearGradient colors={gradientColor} style={styles.gradient}>
 					<ListView style={{ backgroundColor: 'rgba(0,0,0,0)', marginTop: HEIGHT * 0.1, height: HEIGHT }}
@@ -110,6 +108,7 @@ class CircleNameButton extends Component {
 				fullName += name.substring(1).toLowerCase()
 			}
 		}
+		
 		return (
 				<View style={circleStyles.circle}>
 					<TouchableHighlight>

@@ -50,25 +50,22 @@ let PetsStore = createStore(
 				});
 			},
 			retrievePets(uid, callback){
-				let deferred = q.defer();
-				firebaseRef.database().ref(`/users/${uid}/pets`).once('value').then((snapshot, err)=> {
-					if ( err ) {
-						deferred.reject(err);
-					}
-					deferred.resolve(snapshot.val());
+				firebaseRef.database().ref(`/users/${uid}/pets`).on('value', (snapshot)=> {
+					callback(snapshot.val());
 				});
-				callback(deferred.promise);
 			},
 			retrievePetsInfo(petsObj, callback){
-				console.log(Object.keys(petsObj));
-				
 				let result = [];
-				Object.keys(petsObj).forEach(k => {
-					console.log('getting', petsObj[k]);
-					firebaseRef.database().ref(`/pets/${petsObj[k]}`).once('value').then((snapshot)=>
-							callback(snapshot.val())
-					)
-				});
+				let flag = true;
+				if ( !!petsObj ) {
+					Object.keys(petsObj).forEach(k => {
+						firebaseRef.database().ref(`/pets/${petsObj[k]}`).once('value').then((snapshot)=> {
+									callback(snapshot.val(), flag);
+									flag = false;
+								}
+						)
+					});
+				}
 			}
 		});
 // createStore.allowHMR(module, authStore);
