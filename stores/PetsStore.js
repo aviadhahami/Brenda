@@ -6,7 +6,7 @@ import { createStore } from 'cartiv';
 import PetsAPI from './APIs/PetsAPI'
 import firebaseRef from './firebase'
 import q from 'q'
-
+let currentPet;
 
 let PetsStore = createStore(
 		{
@@ -18,7 +18,7 @@ let PetsStore = createStore(
 			// when not provided, all methods starting with 'on' will get called
 			
 			// config.actions can either be an array of strings or a filter function.
-			actions: ['createPet', 'retrievePets', 'retrievePetsInfo'], // specify methods that will get called when equivalent action triggered
+			actions: ['createPet', 'retrievePets', 'retrievePetsInfo', 'setCurrentPet'], // specify methods that will get called when equivalent action triggered
 		},
 		{
 			/* this is the store definition: */
@@ -63,9 +63,15 @@ let PetsStore = createStore(
 									callback(snapshot.val(), flag);
 									flag = false;
 								}
-						)
+						);
 					});
 				}
+			},
+			setCurrentPet(pet){
+				currentPet = pet;
+			},
+			getCurrentPet(callback){
+				callback(currentPet);
 			}
 		});
 // createStore.allowHMR(module, authStore);

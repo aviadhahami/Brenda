@@ -9,15 +9,11 @@ import Route from './../Navigation/Route'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Button from 'apsl-react-native-button'
 import { PetCreationRoute } from './../PetCreation/PetCreation'
-
-
 import LinearGradient from 'react-native-linear-gradient'
-const { height:HEIGHT } = Dimensions.get('window');
-
-
 import petsStore from './../../stores/PetsStore'; // Important to keep
-
 import PetsAPI from './../../stores/APIs/PetsAPI'
+
+const { height:HEIGHT } = Dimensions.get('window');
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -39,8 +35,8 @@ class PetSelection extends Component {
 	}
 	
 	petsInfoListener(data, flag) {
+		// Flag is true in every iteration start
 		const petsArray = flag ? [] : this.state.pets;
-		console.log(data);
 		petsArray.push(data);
 		this.setState({ pets: petsArray, dataSource: ds.cloneWithRows(petsArray) });
 	}
@@ -51,7 +47,9 @@ class PetSelection extends Component {
 					<ListView style={{ backgroundColor: 'rgba(0,0,0,0)', marginTop: HEIGHT * 0.1, height: HEIGHT }}
 										contentContainerStyle={styles.list}
 										dataSource={this.state.dataSource}
-										renderRow={(rowData) => <CircleNameButton style={styles.item} data={rowData}/>}>
+										renderRow={(rowData) => <CircleNameButton style={styles.item}
+																															pet={rowData}
+																															navigator={this.props.navigator}/>}>
 					</ListView>
 				</LinearGradient>
 		)
@@ -93,13 +91,18 @@ const gradientColor = ['#673AB7', '#673AB7', '#673AB7', 'black'];
 let petSelectionRoute = new Route(0, 'My Pets', 'petSelection', <PetSelection />, leftButtonFunc, rightButtonFunc);
 export { petSelectionRoute };
 
+
+import { petTimelineRoute } from './../petTimeline/petTimeline'
+
 class CircleNameButton extends Component {
 	constructor(props) {
 		super(props)
 	}
 	
 	render() {
-		const { name } = this.props.data;
+		const nav = this.props.navigator;
+		const pet = this.props.pet;
+		const { name } = pet;
 		let fullName = name.charAt(0).toUpperCase();
 		if ( name ) {
 			if ( name.length > 7 ) {
@@ -111,10 +114,13 @@ class CircleNameButton extends Component {
 		
 		return (
 				<View style={circleStyles.circle}>
-					<TouchableHighlight>
+					<TouchableHighlight onPress={()=> {
+						PetsAPI.pets.setCurrentPet(pet);
+						nav.push(petTimelineRoute);
+					}}>
 						<View>
 							<Text style={circleStyles.bigLetter}>
-								{this.props.data.name.charAt(0).toUpperCase()}
+								{name.charAt(0).toUpperCase()}
 							</Text>
 							<Text style={circleStyles.fullName}>
 								{fullName}
