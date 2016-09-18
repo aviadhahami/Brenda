@@ -11,11 +11,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import PetsAPI from './../../stores/APIs/PetsAPI'
 
-let { height, width } = Dimensions.get('window');
+let { height: HEIGHT, width: WIDTH } = Dimensions.get('window');
 
 class PetTimeline extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			pet: {}
+		}
 	}
 	
 	componentWillMount() {
@@ -27,10 +30,11 @@ class PetTimeline extends Component {
 	}
 	
 	render() {
-		alert('timeline');
 		return (
 				<LinearGradient colors={gradientColor} style={styles.gradient}>
-					<Text>try</Text>
+					<View>
+						<Text style={{ color: 'black' }}>{this.state.pet.name}</Text>
+					</View>
 				</LinearGradient>
 		)
 	}
@@ -47,10 +51,21 @@ function rightButtonFunc(route, navigator, index, navState) {
 const gradientColor = ['#673AB7', '#673AB7', '#673AB7', 'black'];
 
 const styles = StyleSheet.create({
-	gradient: {
-		flex: 1
+	container: {
+		flexDirection: 'column',
+		flex: 1,
 	},
+	gradient: {
+		flexDirection: 'column',
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	logo: {
+		flex: 1,
+		width: 300
+	}
 });
 
-let petTimelineRoute = new Route(3, 'Pet Timeline', 'petTimeline', <PetTimeline />, leftButtonFunc, rightButtonFunc);
+const petTimelineRoute = new Route(3, 'Pet Timeline', 'petTimeline', <PetTimeline />, leftButtonFunc, rightButtonFunc);
 export { petTimelineRoute };

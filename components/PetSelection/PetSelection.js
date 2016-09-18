@@ -13,6 +13,11 @@ import LinearGradient from 'react-native-linear-gradient'
 import petsStore from './../../stores/PetsStore'; // Important to keep
 import PetsAPI from './../../stores/APIs/PetsAPI'
 
+
+
+import { petTimelineRoute } from './../petTimeline/petTimeline'
+
+
 const { height:HEIGHT } = Dimensions.get('window');
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -92,7 +97,6 @@ let petSelectionRoute = new Route(0, 'My Pets', 'petSelection', <PetSelection />
 export { petSelectionRoute };
 
 
-import { petTimelineRoute } from './../petTimeline/petTimeline'
 
 class CircleNameButton extends Component {
 	constructor(props) {

@@ -18,7 +18,7 @@ let PetsStore = createStore(
 			// when not provided, all methods starting with 'on' will get called
 			
 			// config.actions can either be an array of strings or a filter function.
-			actions: ['createPet', 'retrievePets', 'retrievePetsInfo', 'setCurrentPet'], // specify methods that will get called when equivalent action triggered
+			actions: ['createPet', 'retrievePets', 'retrievePetsInfo', 'getCurrentPet','setCurrentPet'], // specify methods that will get called when equivalent action triggered
 		},
 		{
 			/* this is the store definition: */

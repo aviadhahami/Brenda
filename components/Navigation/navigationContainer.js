@@ -69,7 +69,7 @@ class NavigationContainer extends Component {
 		let boundedRoute = React.cloneElement(route.component, props);
 		if ( route.name == 'petSelection' || route.name == 'userSettings' ) {
 			return this._generateDrawer(boundedRoute, route, navigator);
-		} else if ( route.name == 'petCreation' ) {
+		} else {//if ( route.name == 'petCreation' ) {
 			return boundedRoute
 		}
 	}
