@@ -4,7 +4,15 @@
 
 
 import React, { Component } from 'react'
-import { ScrollView, View, Text, StyleSheet, Dimensions, TouchableHighlight } from 'react-native'
+import {
+		ScrollView,
+		View,
+		Text,
+		StyleSheet,
+		Dimensions,
+		TouchableHighlight,
+		Image
+} from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 import Route from './../Navigation/Route'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -31,9 +39,11 @@ class PetTimeline extends Component {
 	
 	render() {
 		return (
-				<LinearGradient colors={gradientColor} style={styles.gradient}>
-					<View>
-						<Text style={{ color: 'black' }}>{this.state.pet.name}</Text>
+				<LinearGradient colors={gradientColor} style={styles.container}>
+					<View style={styles.titleContainer}>
+						<Image  style={styles.titleImage} source={require('./../../assets/stubs/brenda.png')}>
+							<Text style={styles.title}>{this.state.pet.name}</Text>
+						</Image>
 					</View>
 				</LinearGradient>
 		)
@@ -48,22 +58,34 @@ function leftButtonFunc(route, navigator, index, navState) {
 function rightButtonFunc(route, navigator, index, navState) {
 	return null;
 }
-const gradientColor = ['#673AB7', '#673AB7', '#673AB7', 'black'];
+const gradientColor = ['rgba(255,255,255,1)','rgba(255,255,255,0.76)','rgba(103,58,183,0.8)', 'rgba(30,17,54,1)' ];
 
 const styles = StyleSheet.create({
 	container: {
+		marginTop: 59,
 		flexDirection: 'column',
 		flex: 1,
 	},
 	gradient: {
-		flexDirection: 'column',
 		flex: 1,
+	},
+	titleContainer: {
+		flexDirection: 'row',
+		// height: HEIGHT * 0.2,
+		width: WIDTH,
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	title: {
+		color: 'rgba(255,255,255,0.85)',
+		fontSize: 90,
+		fontWeight: '100',
+	},
+	titleImage:{
+		resizeMode:'cover',
+		height:HEIGHT*0.2,
 		justifyContent: 'center',
 		alignItems: 'center',
-	},
-	logo: {
-		flex: 1,
-		width: 300
 	}
 });
 
