@@ -12,7 +12,7 @@
     "cartiv": "^0.2.0",
     "firebase": "^4.5.1",
     "react": "15.2.1",
-    "react-native": "0.56.0",
+    "react-native": "0.59.0",
     "react-native-linear-gradient": "^1.5.12",
     "react-native-loading-spinner-overlay": "^0.3.0",
     "react-native-md-textinput": "^2.0.4",
