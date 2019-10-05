@@ -17,7 +17,7 @@
     "react-native-loading-spinner-overlay": "^0.3.0",
     "react-native-md-textinput": "^2.0.4",
     "react-native-vector-icons": "^2.0.3",
-    "snyk": "^1.110.2"
+    "snyk": "^1.231.0"
   },
   "devDependencies": {
     "babel-preset-react-native-stage-0": "^1.0.1"
